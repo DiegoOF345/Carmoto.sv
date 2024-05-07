@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  font-family: "Inter", sans-serif;
+  user-select: none;
+}
+
+.title-3 > span {
+  color: red;
+}
+
+.about-us-container {
+  padding: 3rem 2rem;
+  width: 65%;
+  min-width: 800px;
+  display: flex;
+  flex-direction: row;
+  gap: 6rem;
+}
+
+.img-container {
+  width: 600px;
+  height: 300px;
+  min-width: 250px;
+  min-height: 250px;
+}
+.img-container > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.information-pic {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.information-pic > p {
+  width: 90%;
+  min-width: 250px;
+  line-height: 1.8rem;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+.more-information {
+  height: min-content;
+  padding-top: 2rem;
+}
+.more-information > p {
+  width: 80%;
+  min-width: 250px;
+  line-height: 2.2rem;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+.division {
+  width: 75%;
+  height: 2px;
+  background-color: black;
+}
+
+.mision-vision-container {
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  gap: 4rem;
+  padding-top: 4rem;
+}
+
+.mision-vision {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: red;
+  border-radius: 0.5rem;
+  padding: 2.5rem;
+  line-height: 1.5em;
+  position: relative;
+  transition: transform 0.4s ease-in-out;
+  max-width: 500px;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.mision-vision > .title-container {
+  position: absolute;
+  top: -25px;
+  background-color: black;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+}
