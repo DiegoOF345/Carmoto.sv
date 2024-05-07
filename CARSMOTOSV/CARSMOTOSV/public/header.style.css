@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+/* HEADER */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+.header-container {
+  background-color: hsl(0, 100%, 50%);
+  display: flex;
+  justify-content: center;
+}
+.header-content {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  width: 75%;
+}
+
+.logo-img {
+  height: 5rem;
+  width: 12rem;
+  background-image: url("../assets/img/content/logo.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.action-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+}
+
+.hamburger-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  background-color: white;
+}
+
+.title-navigation {
+  padding: 1rem;
+  border-radius: 1.25rem;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+.icons {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icons.hamburger {
+  width: 2rem;
+  height: 2rem;
+}
+/*  */
+#menu {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: white;
+}
+
+#menu ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu ul {
+  position: relative;
+  z-index: 597;
+  /* float: left; */
+}
+
+#menu ul li {
+  /* float: left; */
+  min-height: 1px;
+  line-height: 1em;
+  vertical-align: middle;
+}
+
+#menu ul li.hover,
+#menu ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+
+#menu ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 598;
+  width: 100%;
+}
+
+#menu ul ul li {
+  float: none;
+}
+
+#menu ul li:hover > ul {
+  visibility: visible;
+}
+
+#menu ul ul {
+  bottom: -40px;
+}
+
+#menu ul li {
+  float: none;
+}
+
+#menu {
+  width: 255px;
+}
+
+#menu span,
+#menu a {
+  display: inline-block;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+#menu:after,
+#menu ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#menu ul,
+#menu li {
+  width: 100%;
+}
+#menu li {
+  background: #dddddd;
+}
+#menu li:hover {
+  background: #f6f6f6;
+}
+#menu a {
+  color: black;
+  line-height: 160%;
+  padding: 11px 28px 11px 28px;
+  width: 253px;
+}
+#menu ul ul li {
+  background: white;
+}
+#menu ul ul li:hover {
+  border-radius: 0.5rem;
+  background: #dddddd;
+}
+#menu ul ul li:hover a {
+  color: #666666;
+}
+#menu ul ul li ul li {
+  background: #dddddd;
+}
+#menu ul ul li ul li:hover {
+  background: #b7b7b7;
+}
+#menu .has-sub {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu .has-sub:after,
+#menu .has-sub > ul > .has-sub:hover:after {
+  content: "";
+  display: flex;
+  flex-direction: column;
+  width: 10px;
+  height: 9px;
+  position: absolute;
+  /* right: 5px; */
+  /* top: 50%; */
+  margin-top: -5px;
+}
+
+#menu .fa-angle-right {
+  /* float: right; */
+}

@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+/* MAIN */
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  font-family: "Inter", sans-serif;
+}
+
+.carousel {
+  position: relative;
+  height: 450px;
+  width: 60%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.carousel-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel__tracker-container {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel__tracker {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  height: 100%;
+  transition: transform 800ms ease;
+}
+
+.carousel__slide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-button.left {
+  left: -125px;
+}
+.carousel-button.right {
+  right: -125px;
+}
+.carousel > .actions-btn-no-background > img {
+  width: 6rem;
+  height: 6rem;
+}
+
+.right img {
+  transform: scaleX(-1);
+}
+
+.division-line {
+  height: 3px;
+  width: 90%;
+  background-color: black;
+  align-self: flex-start;
+  margin: 1rem 0;
+}
+
+.main > .title-2 {
+  align-self: flex-start;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.video-section {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  align-items: center;
+}
+
+.video-article {
+  width: 100%;
+  background-color: red;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.video-text-article {
+  font-size: medium;
+  line-height: 2;
+  max-width: 500px;
+}
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  outline: none; /* Remove the default focus outline */
+}

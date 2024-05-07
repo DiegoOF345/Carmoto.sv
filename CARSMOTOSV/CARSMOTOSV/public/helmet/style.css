@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  font-family: "Inter", sans-serif;
+  user-select: none;
+}
+
+.selection-container {
+  width: 95%;
+  padding: 2rem;
+  background-color: gray;
+  margin: 1rem 0;
+  border-radius: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selection-container > h2 {
+  color: white;
+}
+
+.selection-container > select {
+  max-width: 700px;
+  min-width: 250px;
+  padding: 0.8rem 1.3rem;
+  border-radius: 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  &:focus {
+    outline: none;
+  }
+}
+
+.helmet-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.helmet-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2rem;
+  background-color: #b8b8b8;
+  max-width: 1200px;
+  min-width: 500px;
+  border-radius: 0.5rem;
+  gap: 2rem;
+  min-height: 350px;
+}
+
+.helmet-card > .img-container {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  margin: 1rem;
+  border: 0.5rem;
+}
+.helmet-card > .img-container > img {
+  width: 100%;
+  height: 100%;
+  border: 2px solid gray;
+  border-radius: 0.5rem;
+}
+.helmet-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+.helmet-information-container > .title-2 {
+  margin-bottom: 0.5rem;
+}
+.helmet-information-container > .helmets-size {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: min-content;
+  gap: 0.5rem;
+}
+.helmet-information-container .semi-bold {
+  left: 5px;
+}
+.division-size {
+  height: 20px;
+  border: none;
+  width: 2px;
+  background-color: black;
+}
+
+.order-actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  background-color: white;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  &:first-child {
+    border-radius: 0.5rem 0rem 0 0.5rem;
+  }
+
+  &:last-child {
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+}
+.action-btn > p {
+  height: 1.5rem;
+}
+.order-actions > p {
+  background-color: white;
+  padding: 0.5rem;
+  min-width: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+}
+
+.add-cart-btn {
+  padding: 1rem;
+  width: min-content;
+  background-color: white;
+  border: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  justify-self: flex-end;
+  margin-top: 1rem;
+}
+.add-cart-btn > p {
+  white-space: nowrap;
+}
