@@ -24,13 +24,13 @@ class ProductoHandler
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
     */
-    public function searchRows()
+    public function searchPrice()
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
                 FROM producto
                 INNER JOIN categoria USING(id_categoria)
-                WHERE nombre_producto LIKE ? OR descripcion_producto LIKE ?
+                WHERE nombre_producto LIKE ? 
                 ORDER BY nombre_producto';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
