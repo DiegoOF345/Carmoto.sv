@@ -10,31 +10,7 @@ html {
   
   }
 
-  .separador{
-    margin-top: 20px;
-  }
 
-  .bigger-input{
-    height: 100px;
-  }
-
-  .objeto_izquierda{
-    text-align: right;
-  }
-
-  .header_font{
-    color: rgb(0, 0, 0);
-  }
-
-  .centered-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* This will make the container take up the full height of the viewport */
-  }
-
-*modal*
   
   .login-box {
     position: absolute;
@@ -136,11 +112,6 @@ html {
       left: 100%;
     }
   }
-
-  .fixed{
-    width: 150px;
-    height: 100px;
-  }
   
   .login-box a span:nth-child(2) {
     top: -100%;
@@ -198,70 +169,29 @@ html {
       bottom: 100%;
     }
   }
+  footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+  footer p {
+    margin: 10px 0;
+}
 
+footer i {
+    color: rgb(0, 0, 0);
+}
 
-  
-  .col{
-    margin-left: 150px;
-  } 
-  
-  .btn{
-    position: absolute;
-    left: 1710px;
-    background-color: grey;
-  }
-  
-  .container{
-    background-color: rgb(160, 155, 155);
-    font-size: 40px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(17, 17, 17);
-    margin-top: 50px;
-  }
-  
-  .overlay-image{
-    height: 80vh;
-    min-height: 300px;
-    background: no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;    
-  }
-  .navbar-brand{
-    color: white;
-    
-  }
-
-  .navbar {
-    position: relative;
-    z-index: 1000;
-  }
-  .col{
-    margin-top: 50px;
-  }
-  
-  body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("https://cdn.planetradio.co.uk/one/media/5f6c/6239/f694/007e/c382/1df3/20151018_044604_7549_770421.jpeg?quality=80&format=jpg&width=960&ratio=16-9&crop=25,0,476,800&resize=crop");
-    size: 100%;
-  }
-
-
-
-    
-
-
-  .container1{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  
-
-
-
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
 
 
   
