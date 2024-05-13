@@ -21,40 +21,43 @@ CREATE TABLE Clientes (
 );
 
 CREATE TABLE Administradores (
-    id_Administrador INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre_Administrador VARCHAR(100) NOT NULL,
-    Apellido_Administrador VARCHAR(100) NOT NULL,
-    Correo_Administrador VARCHAR(100) NOT NULL,
-    Contrasenia_Administrador VARCHAR(100) NOT NULL,
-    Fecha_Registro DATE NOT NULL
+    id_administrador INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_administrador VARCHAR(100) NOT NULL,
+    apellido_administrador VARCHAR(100) NOT NULL,
+    correo_administrador VARCHAR(100) NOT NULL,
+    contrasenia_administrador VARCHAR(100) NOT NULL,
+    fecha_registro DATE NOT NULL
 );
 
 CREATE TABLE Marcas_Cascos (
-    id_Marcas_Cascos INT PRIMARY KEY AUTO_INCREMENT,
-    Nombres_Marcas VARCHAR(100) NOT NULL,
-    Descripcion_Marcas VARCHAR(300) NOT NULL
+    id_marca_casco INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_marca VARCHAR(100) NOT NULL,
+    descripcion_marca VARCHAR(300) NOT NULL
 );
 
 CREATE TABLE Modelos_de_Cascos (
-    id_Modelos_de_Cascos INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre_Modelo VARCHAR(100) NOT NULL,
-    Descripcion_Modelo VARCHAR(300) NOT NULL,
-    Año_Modelo VARCHAR(30) NOT NULL,
-    id_Marcas_Cascos INT,
-    CONSTRAINT fk_Marcas_Cascos_Modelos_de_Cascos FOREIGN KEY (id_Marcas_Cascos) REFERENCES Marcas_Cascos(id_Marcas_Cascos)
+    id_modelo_de_casco INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_modelo VARCHAR(100) NOT NULL,
+    descripcion_modelo VARCHAR(300) NOT NULL,
+    año_modelo VARCHAR(30) NOT NULL,
+    id_marca_casco INT,
+    CONSTRAINT fk_Marcas_Cascos_Modelos_de_Cascos FOREIGN KEY (id_marca_casco) REFERENCES Marcas_Cascos(id_marca_casco)
 );
 
 CREATE TABLE Cascos (
-    id_Cascos INT PRIMARY KEY AUTO_INCREMENT,
-    Nombres_Cascos VARCHAR(100) NOT NULL,
-    Descripcion_Cascos VARCHAR(300) NOT NULL,
-    Imagen_Cascos VARCHAR(300) NOT NULL,
-    id_Modelos_de_Cascos INT,
+    id_casco INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_casco VARCHAR(100) NOT NULL,
+    descripcion_casco VARCHAR(300) NOT NULL,
+    imagen_casco VARCHAR(300) NOT NULL,
+    precio_casco NUMERIC(5,2) NOT NULL,
+    existencia_casco INT NOT NULL,
+    id_modelo_de_casco INT,
     id_administrador INT NOT NULL,
-    CONSTRAINT fk_Modelos_de_Cascos FOREIGN KEY (id_Modelos_de_Cascos) REFERENCES Modelos_de_Cascos(id_Modelos_de_Cascos)
+    CONSTRAINT fk_Modelos_de_Cascos FOREIGN KEY (id_modelo_de_casco) REFERENCES Modelos_de_Cascos(id_modelo_de_casco),
+    CONSTRAINT fk_Administradores_Cascos FOREIGN KEY (id_administrador) REFERENCES Administradores(id_administrador)
 );
 
-CREATE TABLE pedidos (
+CREATE TABLE Pedidos (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT NOT NULL,
     estado_pedidos ENUM('Activo', 'Finalizado'),
@@ -66,11 +69,11 @@ CREATE TABLE pedidos (
 CREATE TABLE detalle_pedidos (
     id_detalle_pedidos INT PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT NOT NULL,
-    id_Cascos INT NOT NULL,
+    id_casco INT NOT NULL,
     cantidad_productos INT NOT NULL,
-    precio_productos NUMERIC(5,2) NOT NULL,
-    CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
-    CONSTRAINT fk_detalle_pedidos FOREIGN KEY (id_Cascos) REFERENCES Cascos(id_Cascos)
+    precio_total_productos NUMERIC(5,2) NOT NULL,
+    CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
+    CONSTRAINT fk_detalle_pedidos FOREIGN KEY (id_casco) REFERENCES Cascos(id_casco)
 );
 
 CREATE TABLE valoraciones (
