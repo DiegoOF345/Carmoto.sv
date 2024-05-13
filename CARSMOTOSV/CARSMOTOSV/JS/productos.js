@@ -2,7 +2,7 @@
 const PRODUCTO_API = 'services/admin/producto.php';
 const CATEGORIA_API = 'services/admin/categoria.php';
 // Constante para establecer el formulario de buscar.
-const SEARCH_FORM = document.getElementById('searchForm');
+const SEARCH_PRICE = document.getElementById('searchForm');
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
