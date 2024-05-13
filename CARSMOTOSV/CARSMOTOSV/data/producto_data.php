@@ -98,13 +98,13 @@ class ProductoData extends ProductoHandler
         }
     }
 
-    public function setCategoria($value)
+    public function setModelo($value)
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->categoria = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador de la categoría es incorrecto';
+            $this->data_error = 'El identificador del modelo es incorrecto';
             return false;
         }
     }

@@ -145,32 +145,28 @@
           </div>
           <input type="number" class="d-none" id="idProducto" name="idProducto">
           <label for="Nombre" class="sr-only"></label>
-          <input type="Nombre" id="Nombre Producto" class="form-control" placeholder="Nombre" required autofocus>
+          <input type="Nombre" name="Nombre_Producto" class="form-control" placeholder="Nombre" required autofocus>
           <br>
           <label for="Precio" class="sr-only">Precio</label>
-          <input type="number" id="Precio" placeholder="Precio" class="form-control">
-          <br>
-          <label for="Codigo Producto " class="sr-only"></label>
-          <input type="Codigo" id="Codigo Producto" class="form-control" placeholder="Codigo Producto" required
-            autofocus>
+          <input type="number" name="Precio" placeholder="Precio" class="form-control">
           <br>
           <label for="Descripcion" class="sr-only"></label>
-          <input type="text" id="En existencias1" class="form-control" placeholder="Descripción" required autofocus>
+          <input type="text" name="Descripcion" class="form-control" placeholder="Descripción" required autofocus>
           <br>
           <label for="En existencias" class="sr-only"></label>
-          <input type="number" id="En existencias1" class="form-control" placeholder="En existencias" required
+          <input type="number" name="En_existencias1" class="form-control" placeholder="En existencias" required
             autofocus>
           <br>
           <label for="modelo" class="sr-only"></label>
-          <input type="text" id="En existencias1" class="form-control" placeholder="Modelo" required autofocus>
+          <input type="text" name="Modelo_Casco" class="form-control" placeholder="Modelo" required autofocus>
           <br>
           <label for="formFile" class="form-label">Imagen del Casco</label>
-          <input class="form-control" type="file" id="formFile">
+          <input class="form-control" type="file" name="formFile">
           <br>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Agregar</button>
+            <button type="submit" class="btn btn-primary">Agregar</button>
           </div>
           </form>
         </div>
@@ -188,8 +184,7 @@
 
 
   <div class="cards_div">
-    <div class="row">
-      <tbody id="tableBody"></tbody>
+    <div class="row" id="Cards_Read">
       <div class="col-sm-6 mb-6 mb-sm-0">
         <div class="card">
           <div class="card-body">

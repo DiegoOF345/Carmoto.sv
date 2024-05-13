@@ -15,8 +15,12 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
-    EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto'),
-    ESTADO_PRODUCTO = document.getElementById('estadoProducto');
+    EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto');
+    
+
+const PARAMS = new URLSearchParams(location.search);
+const PRODUCTOS = document.getElementById('Cards_Read');
+
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -66,40 +70,46 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
-    ROWS_FOUND.textContent = '';
-    TABLE_BODY.innerHTML = '';
+    const FORM = new FormData();
+    FORM.append('id_modelo_de_casco', PARAMS.get('id'));
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        
+        // Se inicializa el contenedor de productos.
+        PRODUCTOS.innerHTML = '';
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
-            // Se establece un icono para el estado del producto.
-            (row.estado_producto) ? icon = 'bi bi-eye-fill' : icon = 'bi bi-eye-slash-fill';
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            TABLE_BODY.innerHTML += `
-                <tr>
-                    <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
-                    <td>${row.nombre_producto}</td>
-                    <td>${row.precio_producto}</td>
-                    <td>${row.nombre_categoria}</td>
-                    <td><i class="${icon}"></i></td>
-                    <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_producto})">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
-                </tr>
+            // Se crean y concatenan las tarjetas con los datos de cada producto.
+            PRODUCTOS.innerHTML += `
+            <div class="col-sm-6 mb-6 mb-sm-0">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column">
+                  <div class="d-flex">
+                    <h4 class="card-title card_titulo">${row.nombre_casco}</h4>
+                    <h4 class="card-text ms-auto">$${row.precio_casco}</h4>
+                  </div>
+                  <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
+                  <img src="../Imagenes/${imagen_casco}" class="fixed" alt="${row.nombre_casco}">
+                </div>
+                <!--Modal-->
+                <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal"
+                  data-target="#exampleModal3" style="justify-tracks: left;">
+                  Editar Producto
+                </button>
+                
+                <!--Modal-->
+              </div>
+            </div>
+          </div>
             `;
         });
-        // Se muestra un mensaje de acuerdo con el resultado.
-        ROWS_FOUND.textContent = DATA.message;
-    } else {
+    } 
+    else {
         sweetAlert(4, DATA.error, true);
     }
 }

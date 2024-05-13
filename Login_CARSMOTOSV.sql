@@ -39,7 +39,7 @@ CREATE TABLE Modelos_de_Cascos (
     id_modelo_de_casco INT PRIMARY KEY AUTO_INCREMENT,
     nombre_modelo VARCHAR(100) NOT NULL,
     descripcion_modelo VARCHAR(300) NOT NULL,
-    año_modelo VARCHAR(30) NOT NULL,
+    anio_modelo VARCHAR(30) NOT NULL,
     id_marca_casco INT,
     CONSTRAINT fk_Marcas_Cascos_Modelos_de_Cascos FOREIGN KEY (id_marca_casco) REFERENCES Marcas_Cascos(id_marca_casco)
 );

@@ -16,7 +16,7 @@ class ProductoHandler
     protected $existencias = null;
     protected $imagen = null;
     protected $categoria = null;
-    protected $estado = null;
+    protected $modelo = null;
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../imagenes/';
@@ -51,20 +51,11 @@ class ProductoHandler
         return Database::getRows($sql);
     }
 
-    public function readOne()
-    {
-        $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto, imagen_producto, id_categoria, estado_producto
-                FROM producto
-                WHERE id_producto = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
-
     public function readFilename()
     {
-        $sql = 'SELECT imagen_producto
-                FROM producto
-                WHERE id_producto = ?';
+        $sql = 'SELECT imagen_casco
+                FROM Cascos
+                WHERE id_casco = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -72,9 +63,9 @@ class ProductoHandler
     public function updateRow()
     {
         $sql = 'UPDATE producto
-                SET imagen_producto = ?, nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, estado_producto = ?, id_categoria = ?
-                WHERE id_producto = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->estado, $this->categoria, $this->id);
+                SET imagen_casco = ?, nombre_casco = ?, descripcion_casco = ?, precio_casco = ?, existencia_casco = ?, id_modelo_de_casco = ?
+                WHERE id_casco = ?';
+        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->modelo, $this->categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -86,13 +77,13 @@ class ProductoHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosCategoria()
+    public function readProductosModelos()
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ? AND estado_producto = true
-                ORDER BY nombre_producto';
+        $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
+                FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
+                WHERE id_modelo_de_casco = ?
+                ORDER BY nombre_casco';
         $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
