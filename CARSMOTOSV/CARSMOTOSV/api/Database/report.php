@@ -9,7 +9,7 @@ require_once('../Librerias/fpdf185/fpdf.php');
 class Report extends FPDF
 {
     // Constante para definir la ruta de las vistas del sitio privado.
-    const CLIENT_URL = 'http://localhost/coffeeshop/views/admin/';
+    const CLIENT_URL = 'http://localhost/Carmoto.sv\CARSMOTOSV\CARSMOTOSV/views/admin/';
     // Propiedad para guardar el título del reporte.
     private $title = null;
 
