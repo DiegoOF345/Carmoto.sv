@@ -1,8 +1,8 @@
 <?php
 // Se incluye la clase para validar los datos de entrada.
-require_once('../Database/validator.php');
+require_once('../../Database/validator.php');
 // Se incluye la clase padre.
-require_once('../Handlers/producto_handler.php');
+require_once('../../Handlers/producto_handler.php');
 /*
  *	Clase para manejar el encapsulamiento de los datos de la tabla PRODUCTO.
  */

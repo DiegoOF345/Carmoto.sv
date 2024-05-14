@@ -39,8 +39,8 @@ CREATE TABLE Modelos_de_Cascos (
     id_modelo_de_casco INT PRIMARY KEY AUTO_INCREMENT,
     nombre_modelo VARCHAR(100) NOT NULL,
     descripcion_modelo VARCHAR(300) NOT NULL,
-    anio_modelo VARCHAR(30) NOT NULL,
-    id_marca_casco INT,
+    año_modelo VARCHAR(30) NOT NULL,
+    id_marca_casco INT NOT null,
     CONSTRAINT fk_Marcas_Cascos_Modelos_de_Cascos FOREIGN KEY (id_marca_casco) REFERENCES Marcas_Cascos(id_marca_casco)
 );
 
@@ -81,3 +81,13 @@ CREATE TABLE valoraciones (
     id_detalle_pedidos INT NOT NULL,
     CONSTRAINT fk_valoracion_pieza FOREIGN KEY (id_detalle_pedidos) REFERENCES detalle_pedidos(id_detalle_pedidos)
 );
+
+INSERT INTO Marcas_Cascos(nombre_marca,descripcion_marca) VALUES ("AGV","Que lindo");
+
+INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("AGV","Buen modelo","2-12-24",1);
+
+INSERT INTO Administradores(nombre_administrador,apellido_administrador,correo_administrador,contrasenia_administrador,fecha_registro)
+VALUES ("Carlos","Ramon","a@gmail.com","Maceta",CURRENT_DATE());
+
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("Casco 9291","Resistente","casco.png",24.00,10,1,1);

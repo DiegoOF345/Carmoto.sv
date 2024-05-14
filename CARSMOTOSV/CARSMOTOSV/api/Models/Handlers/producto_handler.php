@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../Database/database.php');
+require_once('../../Database/database.php');
 /*
 *	Clase para manejar el comportamiento de los datos de la tabla PRODUCTO.
 */
@@ -19,7 +19,7 @@ class ProductoHandler
     protected $modelo = null;
 
     // Constante para establecer la ruta de las imágenes.
-    const RUTA_IMAGEN = '../imagenes/';
+    const RUTA_IMAGEN = '../../Imagenes/productos/';
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
@@ -39,7 +39,7 @@ class ProductoHandler
     {
         $sql = 'INSERT INTO Cascos(nombre_casco, descripcion_casco, precio_casco, existencia_casco, imagen_casco, id_modelo_de_casco, id_administrador)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->imagen, $this->modelo, $_SESSION['idAdministrador']);
+        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->imagen, $this->modelo, 1);
         return Database::executeRow($sql, $params);
     }
 
@@ -47,7 +47,7 @@ class ProductoHandler
     {
         $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
                 FROM Cascos
-                ORDER BY nombre_producto';
+                ORDER BY nombre_casco';
         return Database::getRows($sql);
     }
 

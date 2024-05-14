@@ -1,14 +1,11 @@
 // Constantes para completar las rutas de la API.
-const PRODUCTO_API = '../Handlers/producto_handler.php';
+const PRODUCTO_API = 'admin/producto.php';
 //const CATEGORIA_API = 'services/admin/categoria.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_PRICE = document.getElementById('searchForm');
-// Constantes para establecer el contenido de la tabla.
-const TABLE_BODY = document.getElementById('tableBody'),
-    ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+//const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+//    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
@@ -25,20 +22,19 @@ const PRODUCTOS = document.getElementById('Cards_Read');
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
-    loadTemplate();
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
-SEARCH_FORM.addEventListener('submit', (event) => {
+/*SEARCH_PRICE.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SEARCH_FORM);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
-});
+});*/
 
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -53,7 +49,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
-        SAVE_MODAL.hide();
+       // SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -86,26 +82,21 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las tarjetas con los datos de cada producto.
             PRODUCTOS.innerHTML += `
             <div class="col-sm-6 mb-6 mb-sm-0">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column">
-                  <div class="d-flex">
-                    <h4 class="card-title card_titulo">${row.nombre_casco}</h4>
-                    <h4 class="card-text ms-auto">$${row.precio_casco}</h4>
-                  </div>
-                  <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
-                  <img src="../Imagenes/${imagen_casco}" class="fixed" alt="${row.nombre_casco}">
+                <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex">
+                            <h4 class="card-title card_titulo">${row.nombre_casco}</h4>
+                            <h4 class="card-text ms-auto">$${row.precio_casco}</h4>
+                        </div>
+                        <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
+                        <img src="../Imagenes/productos/${row.imagen_casco}" class="fixed" alt="${row.nombre_casco}">
+                    </div>
+                    <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal" data-target="#exampleModal3" style="justify-tracks: left;">
+                        Editar Producto
+                    </button>
                 </div>
-                <!--Modal-->
-                <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal"
-                  data-target="#exampleModal3" style="justify-tracks: left;">
-                  Editar Producto
-                </button>
-                
-                <!--Modal-->
-              </div>
             </div>
-          </div>
             `;
         });
     } 
