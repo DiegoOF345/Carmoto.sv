@@ -124,8 +124,7 @@
 
     <div class="d-flex align-items-center justify-content-center" style="height: 100px;">
         <!--Modal-->
-        <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal"
-            data-target="#exampleModal0" style="justify-tracks: left;">
+        <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" style="justify-tracks: left;" onclick="openCreate()">
             Agregar Producto
         </button>
     </div>
@@ -145,26 +144,26 @@
 
                         <input type="number" class="d-none" id="idProducto" name="idProducto">
                         <label for="Nombre" class="sr-only"></label>
-                        <input type="Nombre" name="Nombre_Producto" class="form-control" placeholder="Nombre" required
+                        <input type="Nombre" name="Nombre_Producto" id="Nombre_Producto" class="form-control" placeholder="Nombre" required
                             autofocus>
                         <br>
                         <label for="Precio" class="sr-only">Precio</label>
-                        <input type="number" name="Precio" placeholder="Precio" class="form-control">
+                        <input type="number" name="Precio" id="Precio" placeholder="Precio" class="form-control">
                         <br>
                         <label for="Descripcion" class="sr-only"></label>
-                        <input type="text" name="Descripcion" class="form-control" placeholder="Descripción" required
+                        <input type="text" name="Descripcion" id="Descripcion" class="form-control" placeholder="Descripción" required
                             autofocus>
                         <br>
                         <label for="En existencias" class="sr-only"></label>
-                        <input type="number" name="En_existencias1" class="form-control" placeholder="En existencias"
+                        <input type="number" name="En_existencias1" id="En_existencias1" class="form-control" placeholder="En existencias"
                             required autofocus>
                         <br>
                         <label for="modelo" class="sr-only"></label>
-                        <input type="text" name="Modelo_Casco" class="form-control" placeholder="Modelo" required
-                            autofocus>
+                        <select name="Modelo_Casco" id="Modelo_Casco" class="form-control" required>
+                        </select>
                         <br>
                         <label for="formFile" class="form-label">Imagen del Casco</label>
-                        <input class="form-control" type="file" name="formFile">
+                        <input class="form-control" type="file" name="formFile" id="formFile">
                         <br>
 
                         <div class="modal-footer">
@@ -208,12 +207,10 @@
 
             <!--Modal-->
 
-            <!--
+            
 
-            <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal"
-              data-target="#exampleModal3" style="justify-tracks: left;">
-              Editar Producto
-            </button>
+
+            
             <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -226,8 +223,9 @@
                   <div class="modal-body">
                     <div class="text-center">
                       <form>
-                        <img src="../Imagenes/Productos.png" height="72" alt="Logo">
+                        <img src="../../api/Imagenes/Productos.png" height="72" alt="Logo">
                         <h1>Actualizacion de productos </h1>
+                        <input type="number" class="d-none" id="idProducto" name="idProducto">
                         <label for="Nombre" class="sr-only"></label>
                         <input type="Nombre" id="Nombre Producto" class="form-control" placeholder="Nombre" required
                           autofocus>
@@ -265,7 +263,7 @@
               </div>
             </div>
 
-            -->
+           
 
             <!--Modal-->
 

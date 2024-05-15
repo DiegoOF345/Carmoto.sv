@@ -1,10 +1,11 @@
 // Constantes para completar las rutas de la API.
 const PRODUCTO_API = 'services/admin/producto.php';
-//const CATEGORIA_API = 'services/admin/categoria.php';
+const MODELO_API = 'services/admin/categoria.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_PRICE = document.getElementById('searchForm');
 // Constantes para establecer los elementos del componente Modal.
-//const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+const ADD_MODAL = new bootstrap.Modal('#exampleModal0'),
+    EDIT_MODAL = new bootstrap.Modal('#exampleModal1');
 //    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -14,7 +15,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
     MODELO_PRODUCTO = document.getElementById('Modelo_Casco'),
     EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto');
-    
+
 
 const PARAMS = new URLSearchParams(location.search);
 const PRODUCTOS = document.getElementById('Cards_Read');
@@ -50,7 +51,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
-       // SAVE_MODAL.hide();
+        // SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -75,7 +76,7 @@ const fillTable = async (form = null) => {
     const DATA = await fetchData(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        
+
         // Se inicializa el contenedor de productos.
         PRODUCTOS.innerHTML = '';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
@@ -93,14 +94,14 @@ const fillTable = async (form = null) => {
                         <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
                         <center><img src="${SERVER_URL}/Imagenes/productos/${row.imagen_casco}" class="fixed" alt="${row.nombre_casco}" width="200"></center>
                     </div>
-                    <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal" data-target="#exampleModal3" style="justify-tracks: left;">
+                    <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" style="justify-tracks: left;" onclick="openUpdate()">
                         Editar Producto
                     </button>
                 </div>
             </div>
             `;
         });
-    } 
+    }
     else {
         sweetAlert(4, DATA.error, true);
     }
@@ -113,7 +114,7 @@ const fillTable = async (form = null) => {
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
-    SAVE_MODAL.show();
+    ADD_MODAL_MODAL.show();
     MODAL_TITLE.textContent = 'Crear producto';
     // Se prepara el formulario.
     SAVE_FORM.reset();
@@ -135,7 +136,7 @@ const openUpdate = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        SAVE_MODAL.show();
+        EDIT_MODAL.show();
         MODAL_TITLE.textContent = 'Actualizar producto';
         // Se prepara el formulario.
         SAVE_FORM.reset();
@@ -146,8 +147,8 @@ const openUpdate = async (id) => {
         NOMBRE_PRODUCTO.value = ROW.nombre_producto;
         DESCRIPCION_PRODUCTO.value = ROW.descripcion_producto;
         PRECIO_PRODUCTO.value = ROW.precio_producto;
+        MODELO_PRODUCTO.value = ROW.id_modelo_de_casco;
         EXISTENCIAS_PRODUCTO.value = ROW.existencias_producto;
-        ESTADO_PRODUCTO.checked = ROW.estado_producto;
         fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
     } else {
         sweetAlert(2, DATA.error, false);

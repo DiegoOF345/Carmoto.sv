@@ -4,7 +4,7 @@ require_once('../../helpers/database.php');
 /*
 *	Clase para manejar el comportamiento de los datos de la tabla PRODUCTO.
 */
-class ProductoHandler
+class ModeloHandler
 {
     /*
     *   Declaración de atributos para el manejo de datos.
@@ -12,49 +12,58 @@ class ProductoHandler
     protected $id = null;
     protected $nombre = null;
     protected $descripcion = null;
-    protected $precio = null;
-    protected $existencias = null;
-    protected $imagen = null;
-    
-    protected $modelo = null;
+    protected $año = null;
+    protected $marca = null;
 
     // Constante para establecer la ruta de las imágenes.
-    const RUTA_IMAGEN = '../../Imagenes/productos/';
+    const RUTA_IMAGEN = '../../images/productos/';
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
     */
-    public function searchPrice()
+    public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
-                FROM Cascos
-                WHERE precio_casco LIKE ? 
-                ORDER BY nombre_casco';
+        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
+                FROM Modelos_de_Cascos
+                INNER JOIN Marcas_Cascos USING(id_marca_casco)
+                WHERE nombre_modelo LIKE ? OR descripcion_modelo LIKE ?
+                ORDER BY nombre_producto';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
 
     public function createRow()
     {
-        $sql = 'INSERT INTO Cascos(nombre_casco, descripcion_casco, precio_casco, existencia_casco, imagen_casco, id_modelo_de_casco, id_administrador)
-                VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->imagen, $this->modelo, 1);
+        $sql = 'INSERT INTO Modelos_de_Cascos(nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco)
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->nombre, $this->descripcion, $this->año, $this->marca);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
-                FROM Cascos';
+        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
+                FROM Modelos_de_Cascos
+                INNER JOIN Marcas_Cascos USING(id_marca_casco)
+                ORDER BY nombre_producto';
         return Database::getRows($sql);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto, imagen_producto, id_categoria, estado_producto
+                FROM producto
+                WHERE id_producto = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
 
     public function readFilename()
     {
-        $sql = 'SELECT imagen_casco
-                FROM Cascos
-                WHERE id_casco = ?';
+        $sql = 'SELECT imagen_producto
+                FROM producto
+                WHERE id_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -62,9 +71,9 @@ class ProductoHandler
     public function updateRow()
     {
         $sql = 'UPDATE producto
-                SET imagen_casco = ?, nombre_casco = ?, descripcion_casco = ?, precio_casco = ?, existencia_casco = ?, id_modelo_de_casco = ?
-                WHERE id_casco = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->modelo, $this->modelo, $this->id);
+                SET imagen_producto = ?, nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, estado_producto = ?, id_categoria = ?
+                WHERE id_producto = ?';
+        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->estado, $this->categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -76,14 +85,14 @@ class ProductoHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosModelos()
+    public function readProductosCategoria()
     {
-        $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
-                FROM Cascos
-                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
-                WHERE id_modelo_de_casco = ?
-                ORDER BY nombre_casco';
-        $params = array($this->modelo);
+        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto
+                FROM producto
+                INNER JOIN categoria USING(id_categoria)
+                WHERE id_categoria = ? AND estado_producto = true
+                ORDER BY nombre_producto';
+        $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
 
@@ -118,7 +127,7 @@ class ProductoHandler
                 INNER JOIN categoria USING(id_categoria)
                 WHERE id_categoria = ?
                 ORDER BY nombre_producto';
-        $params = array($this->modelo);
+        $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
 }

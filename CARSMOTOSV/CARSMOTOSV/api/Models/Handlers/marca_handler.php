@@ -4,7 +4,7 @@ require_once('../../helpers/database.php');
 /*
 *	Clase para manejar el comportamiento de los datos de la tabla PRODUCTO.
 */
-class ProductoHandler
+class MarcaHandler
 {
     /*
     *   Declaración de atributos para el manejo de datos.
@@ -12,12 +12,7 @@ class ProductoHandler
     protected $id = null;
     protected $nombre = null;
     protected $descripcion = null;
-    protected $precio = null;
-    protected $existencias = null;
-    protected $imagen = null;
     
-    protected $modelo = null;
-
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../Imagenes/productos/';
 
@@ -39,14 +34,14 @@ class ProductoHandler
     {
         $sql = 'INSERT INTO Cascos(nombre_casco, descripcion_casco, precio_casco, existencia_casco, imagen_casco, id_modelo_de_casco, id_administrador)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->imagen, $this->modelo, 1);
+        $params = array($this->nombre, $this->descripcion);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
-                FROM Cascos';
+        $sql = 'SELECT id_marca_casco, nombre_marca, descripcion_marca
+                FROM Marcas_Cascos';
         return Database::getRows($sql);
     }
 
@@ -64,7 +59,7 @@ class ProductoHandler
         $sql = 'UPDATE producto
                 SET imagen_casco = ?, nombre_casco = ?, descripcion_casco = ?, precio_casco = ?, existencia_casco = ?, id_modelo_de_casco = ?
                 WHERE id_casco = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->modelo, $this->modelo, $this->id);
+        $params = array($this->nombre, $this->descripcion,  $this->id);
         return Database::executeRow($sql, $params);
     }
 
