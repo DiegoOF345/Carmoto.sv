@@ -12,6 +12,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
+    MODELO_PRODUCTO = document.getElementById('Modelo_Casco'),
     EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto');
     
 
@@ -90,7 +91,7 @@ const fillTable = async (form = null) => {
                             <h4 class="card-text ms-auto">$${row.precio_casco}</h4>
                         </div>
                         <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
-                        <img src="../Imagenes/productos/${row.imagen_casco}" class="fixed" alt="${row.nombre_casco}">
+                        <center><img src="${SERVER_URL}/Imagenes/productos/${row.imagen_casco}" class="fixed" alt="${row.nombre_casco}" width="200"></center>
                     </div>
                     <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" data-toggle="modal" data-target="#exampleModal3" style="justify-tracks: left;">
                         Editar Producto
