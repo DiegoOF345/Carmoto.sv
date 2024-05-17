@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tu Página</title>
+  <title>CARMOTOSV</title>
   <link rel="stylesheet" type="text/css" href="../../resources/css/CSS.css">
 </head>
 <body>
@@ -10,33 +10,22 @@
     <h2>Login</h2>
     <form>
       <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Usuario</label>
+        <input type="text" id="username" placeholder="Usuario" required>
       </div>
       <div class="user-box">
-        <input type="password" name="" required="">
-        <label>Contraseña</label>
+        <input type="password" id="password" placeholder="Contraseña" required>
       </div>
-      <a href="productos.html">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Ingresar
-      </a>
-      
-      </div>
+      <button type="button" onclick="validarInicioSesion()">Ingresar</button>
     </form>
-  </div>
-  <footer>
+</div>
+<footer>
     <p>
-      ©Todos los derechos estan reservados por Carmoto.sv <i class="fa fa-heart"></i> 
-     
-     
+      ©Todos los derechos están reservados por Carmoto.sv <i class="fa fa-heart"></i> 
     </p>
-  </footer>
-          
-        
+</footer>
+
+<script src="../../controllers/admin/login.js"></script>
 
 </body>
 </html>
+
