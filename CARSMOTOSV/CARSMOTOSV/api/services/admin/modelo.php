@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
             if ($result['dataset'] = $modelo->readAll()) {
                 $result['status'] = 1;
             } else {
-                $result['error'] = 'No existen productos para mostrar';
+                $result['error'] = 'No existen modelos para mostrar';
             }
             break;
         case 'createRow':
@@ -28,7 +28,7 @@ if (isset($_GET['action'])) {
                 $result['error'] = $producto->getDataError();
             } elseif ($producto->createRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Producto creado correctamente';
+                $result['message'] = 'Modelo creado correctamente';
                 // Se asigna el estado del archivo después de insertar.
                 $result['fileStatus'] = Validator::saveFile($_FILES['formFile'], $producto::RUTA_IMAGEN);
             } else {
