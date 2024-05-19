@@ -140,16 +140,16 @@ const openUpdate = async (id) => {
         EDIT_MODAL.show();
         // Se prepara el formulario.
         SAVE_FORM.reset();
-        EXISTENCIAS_PRODUCTO.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_PRODUCTO.value = ROW.id_producto;
-        NOMBRE_PRODUCTO.value = ROW.nombre_producto;
-        DESCRIPCION_PRODUCTO.value = ROW.descripcion_producto;
-        PRECIO_PRODUCTO.value = ROW.precio_producto;
-        MODELO_PRODUCTO.value = ROW.id_modelo_de_casco;
+        ID_PRODUCTO.value = ROW.id_casco;
+        NOMBRE_PRODUCTO.value = ROW.nombre_casco;
+        DESCRIPCION_PRODUCTO.value = ROW.descripcion_casco;
+        PRECIO_PRODUCTO.value = ROW.precio_casco;
+        fillSelect(MODELO_API, 'readAll', 'Modelo_Casco', ROW.id_modelo_de_casco)
         EXISTENCIAS_PRODUCTO.value = ROW.existencias_producto;
-        fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
+        
+        
     } else {
         sweetAlert(2, DATA.error, false);
     }

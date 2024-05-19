@@ -50,6 +50,15 @@ class ProductoHandler
         return Database::getRows($sql);
     }
 
+    public function readOne()
+    {
+        $sql = 'SELECT id_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco, imagen_casco, id_modelo_de_casco
+                FROM Cascos
+                WHERE id_casco = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
     public function readFilename()
     {
         $sql = 'SELECT imagen_casco
@@ -61,7 +70,7 @@ class ProductoHandler
 
     public function updateRow()
     {
-        $sql = 'UPDATE producto
+        $sql = 'UPDATE Cascos
                 SET imagen_casco = ?, nombre_casco = ?, descripcion_casco = ?, precio_casco = ?, existencia_casco = ?, id_modelo_de_casco = ?
                 WHERE id_casco = ?';
         $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->modelo, $this->modelo, $this->id);
@@ -70,8 +79,8 @@ class ProductoHandler
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM producto
-                WHERE id_producto = ?';
+        $sql = 'DELETE FROM Cascos
+                WHERE id_casco = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
