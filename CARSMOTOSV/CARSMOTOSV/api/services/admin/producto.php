@@ -36,6 +36,33 @@ if (isset($_GET['action'])) {
             } else {
                 $result['error'] = 'Ocurrió un problema al crear el producto';
             }
+            case 'updateRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                !$producto->setNombre($_POST['Nombre_Producto']) or
+                !$producto->setDescripcion($_POST['Descripcion']) or
+                !$producto->setPrecio($_POST['Precio']) or
+                !$producto->setExistencias($_POST['En_existencias1']) or
+                !$producto->setModelo($_POST['Modelo_Casco']) or
+                !$producto->setImagen($_FILES['formFile'])
+                ) {
+                    $result['error'] = $producto->getDataError();
+                } elseif ($producto->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto modificado correctamente';
+                    $result['fileStatus'] = Validator::saveFile($_FILES['formFile'], $producto::RUTA_IMAGEN);
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el producto';
+                }
+            break;
+            case 'readOne':
+                if (!$producto->setId($_POST['idProducto'])) {
+                    $result['error'] = 'Producto incorrecto';
+                } elseif ($result['dataset'] = $producto->readOne()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Producto inexistente';
+                }
             break;
         default:
             $result['error'] = 'Acción no disponible';
