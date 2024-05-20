@@ -12,6 +12,14 @@ class ClienteHandler
     protected $id = null;
     protected $nombre = null;
     protected $descripcion = null;
+    protected $apellido = null;
+    protected $dui = null;
+    protected $correo = null;
+    protected $telefono = null;
+    protected $nacimiento = null;
+    protected $direccion = null;
+    protected $clave = null;
+    protected $fecha = null;
     
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../Imagenes/productos/';
@@ -62,7 +70,7 @@ class ClienteHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosModelos()
+    /*public function readProductosModelos()
     {
         $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
                 FROM Cascos
@@ -71,7 +79,7 @@ class ClienteHandler
                 ORDER BY nombre_casco';
         $params = array($this->modelo);
         return Database::getRows($sql, $params);
-    }
+    }*/
 
     /*
     *   Métodos para generar gráficos.
@@ -97,7 +105,7 @@ class ClienteHandler
     /*
     *   Métodos para generar reportes.
     */
-    public function productosCategoria()
+    /*public function productosCategoria()
     {
         $sql = 'SELECT nombre_producto, precio_producto, estado_producto
                 FROM producto
@@ -106,5 +114,14 @@ class ClienteHandler
                 ORDER BY nombre_producto';
         $params = array($this->modelo);
         return Database::getRows($sql, $params);
+    }*/
+
+    public function checkDuplicate($value)
+    {
+        $sql = 'SELECT id_cliente
+                FROM Clientes
+                WHERE dui_cliente = ? OR correo_cliente = ?';
+        $params = array($value, $value);
+        return Database::getRow($sql, $params);
     }
 }

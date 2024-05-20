@@ -101,7 +101,7 @@ class ProductoData extends ProductoHandler
     public function setModelo($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->categoria = $value;
+            $this->modelo = $value;
             return true;
         } else {
             $this->data_error = 'El identificador del modelo es incorrecto';

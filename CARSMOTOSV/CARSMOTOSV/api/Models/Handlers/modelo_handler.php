@@ -15,6 +15,7 @@ class ModeloHandler
     protected $año = null;
     protected $marca = null;
 
+
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/productos/';
 
@@ -28,7 +29,7 @@ class ModeloHandler
                 FROM Modelos_de_Cascos
                 INNER JOIN Marcas_Cascos USING(id_marca_casco)
                 WHERE nombre_modelo LIKE ? OR descripcion_modelo LIKE ?
-                ORDER BY nombre_producto';
+                ORDER BY nombre_modelo';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
@@ -76,16 +77,7 @@ class ModeloHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosCategoria()
-    {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ? AND estado_producto = true
-                ORDER BY nombre_producto';
-        $params = array($this->categoria);
-        return Database::getRows($sql, $params);
-    }
+    
 
     /*
     *   Métodos para generar gráficos.
@@ -111,14 +103,14 @@ class ModeloHandler
     /*
     *   Métodos para generar reportes.
     */
-    public function productosCategoria()
-    {
-        $sql = 'SELECT nombre_producto, precio_producto, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ?
-                ORDER BY nombre_producto';
-        $params = array($this->categoria);
-        return Database::getRows($sql, $params);
-    }
+    //public function productosCategoria()
+    //{
+    //    $sql = 'SELECT nombre_producto, precio_producto, estado_producto
+    //            FROM producto
+    //            INNER JOIN categoria USING(id_categoria)
+    //            WHERE id_categoria = ?
+    //            ORDER BY nombre_producto';
+    //    $params = array($this->categoria);
+    //    return Database::getRows($sql, $params);
+    //}
 }

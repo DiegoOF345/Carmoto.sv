@@ -62,7 +62,7 @@ class MarcaHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosModelos()
+    /*public function readProductosModelos()
     {
         $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
                 FROM Cascos
@@ -71,7 +71,7 @@ class MarcaHandler
                 ORDER BY nombre_casco';
         $params = array($this->modelo);
         return Database::getRows($sql, $params);
-    }
+    }*/
 
     /*
     *   Métodos para generar gráficos.
@@ -97,7 +97,8 @@ class MarcaHandler
     /*
     *   Métodos para generar reportes.
     */
-    public function productosCategoria()
+
+    /*public function productosCategoria()
     {
         $sql = 'SELECT nombre_producto, precio_producto, estado_producto
                 FROM producto
@@ -106,5 +107,5 @@ class MarcaHandler
                 ORDER BY nombre_producto';
         $params = array($this->modelo);
         return Database::getRows($sql, $params);
-    }
+     }*/
 }

@@ -62,10 +62,10 @@ class ModeloData extends ModeloHandler
     public function setAño($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->existencias = $value;
+            $this->año = $value;
             return true;
         } else {
-            $this->data_error = 'El valor de las existencias debe ser numérico entero';
+            $this->data_error = 'El  debe ser numérico entero';
             return false;
         }
     }
@@ -73,10 +73,10 @@ class ModeloData extends ModeloHandler
     public function setMarca($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->categoria = $value;
+            $this->marca = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del modelo es incorrecto';
+            $this->data_error = 'El identificador de la marca es incorrecto';
             return false;
         }
     }

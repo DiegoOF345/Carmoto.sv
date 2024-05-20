@@ -2,7 +2,7 @@
 // Se incluye la clase para validar los datos de entrada.
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
-require_once('../../Models/Handlers/marca_handler.php');
+require_once('../../Models/Handlers/cliente_handler.php');
 /*
  *	Clase para manejar el encapsulamiento de los datos de la tabla PRODUCTO.
  */
@@ -51,7 +51,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'La descripción contiene caracteres prohibidos';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->descripcion = $value;
+            $this->apellido = $value;
             return true;
         } else {
             $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -139,7 +139,7 @@ class ClienteData extends ClienteHandler
 
     public function setFecha ($value){
         if (Validator::validateDate($value)) {
-            $this->nacimiento = $value;
+            $this->fecha = $value;
             return true;
         } else {
             $this->data_error = 'La fecha es incorrecta';

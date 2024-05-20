@@ -1,5 +1,3 @@
-import * as bootstrap from 'bootstrap'; window.bootstrap = bootstrap;
-
 
 // Constante para completar la ruta de la API.
 const MODELO_API = 'services/admin/modelo.php';
@@ -14,10 +12,11 @@ const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos')
 //const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_Modelo = document.getElementById('idCategoria'),
-    NOMBRE_CATEGORIA = document.getElementById('nombreCategoria'),
-    DESCRIPCION_CATEGORIA = document.getElementById('descripcionCategoria'),
-    IMAGEN_CATEGORIA = document.getElementById('imagenCategoria');
+    ID_MODELO = document.getElementById('idModelo'),
+    NOMBRE_MODELO = document.getElementById('Nombre_Modelo'),
+    DESCRIPCION_MODELO = document.getElementById('Descripcion_modelo'),
+    AÑO_MODELO = document.getElementById('Año_modelo'),
+    MARCA_MODELO = document.getElementById('id_Marca');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -79,8 +78,8 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                <td>${row.nombre_administrador}</td>
-                <td>${row.apellido_administrador}</td>
+                <td>${row.nombre_modelo}</td>
+                <td>${row.descripcion_modelo}</td>
                 <td>${row.correo_administrador}</td>
                 <td>
                     <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_administrador})">
@@ -111,7 +110,7 @@ const openCreate = () => {
     //MODAL_TITLE.textContent = 'Crear modelo';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    fillSelect(MARCA_API, 'readAll', 'Modelo_Casco');
+    fillSelect(MARCA_API, 'readAll', 'id_Marca');
 }
 
 /*
@@ -122,9 +121,9 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idCategoria', id);
+    FORM.append('idModelo', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CATEGORIA_API, 'readOne', FORM);
+    const DATA = await fetchData(MODELO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
