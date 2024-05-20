@@ -20,10 +20,10 @@ if (isset($_GET['action'])) {
         case 'createRow':
             $_POST = Validator::validateForm($_POST);
             if (
-                !$modelo->setNombre($_POST['Nombre_Producto']) or
-                !$modelo->setDescripcion($_POST['Descripcion']) or
-                !$modelo->setAño($_POST['Precio']) or
-                !$modelo->setMarca($_POST['En_existencias1'])                 
+                !$modelo->setNombre($_POST['Nombre_Modelo']) or
+                !$modelo->setDescripcion($_POST['Descripcion_modelo']) or
+                !$modelo->setAño($_POST['Año_modelo']) or
+                !$modelo->setMarca($_POST['id_Marca'])                 
             ) {
                 $result['error'] = $producto->getDataError();
             } elseif ($producto->createRow()) {

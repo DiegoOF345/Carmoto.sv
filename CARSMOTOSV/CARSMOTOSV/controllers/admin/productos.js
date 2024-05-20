@@ -4,8 +4,8 @@ const MODELO_API = 'services/admin/modelo.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_PRICE = document.getElementById('searchForm');
 // Constantes para establecer los elementos del componente Modal.
-const ADD_MODAL = new bootstrap.Modal('#exampleModal0'),
-    EDIT_MODAL = new bootstrap.Modal('#exampleModal1');
+const ADD_MODAL = new bootstrap.Modal(document.getElementById('exampleModal0')),
+    EDIT_MODAL = new bootstrap.Modal(document.getElementById('exampleModal1'));
 //    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -17,7 +17,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
     EXISTENCIAS_PRODUCTO = document.getElementById('En_existencias1');
 
 const Cerrar = document.getElementById('Cerrar');
-
 
 const PARAMS = new URLSearchParams(location.search);
 const PRODUCTOS = document.getElementById('Cards_Read');
@@ -45,7 +44,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
+    const action = (ID_PRODUCTO.value) ? 'updateRow' : 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.

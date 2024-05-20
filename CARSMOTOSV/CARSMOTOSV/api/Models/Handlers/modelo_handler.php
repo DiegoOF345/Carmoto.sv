@@ -52,9 +52,9 @@ class ModeloHandler
 
     public function readOne()
     {
-        $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto, imagen_producto, id_categoria, estado_producto
-                FROM producto
-                WHERE id_producto = ?';
+        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
+                FROM Modelos_de_Cascos
+                WHERE id_modelo_de_casco = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -62,8 +62,8 @@ class ModeloHandler
     public function readFilename()
     {
         $sql = 'SELECT imagen_producto
-                FROM producto
-                WHERE id_producto = ?';
+                FROM Modelos_de_Cascos
+                WHERE id_modelo_de_casco = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
