@@ -22,18 +22,18 @@ class MarcaHandler
     public function searchPrice()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
-                FROM Cascos
-                WHERE precio_casco LIKE ? 
-                ORDER BY nombre_casco';
+        $sql = 'SELECT id_marca_casco, nombre_marca, descripcion_marca
+                FROM Marcas_Cascos
+                WHERE nombre_marca LIKE ? 
+                ORDER BY nombre_marca';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
 
     public function createRow()
     {
-        $sql = 'INSERT INTO Cascos(nombre_casco, descripcion_casco, precio_casco, existencia_casco, imagen_casco, id_modelo_de_casco, id_administrador)
-                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO Marcas_Cascos(nombre_marca, descripcion_marca)
+                VALUES(?, ?)';
         $params = array($this->nombre, $this->descripcion);
         return Database::executeRow($sql, $params);
     }
@@ -45,28 +45,19 @@ class MarcaHandler
         return Database::getRows($sql);
     }
 
-    public function readFilename()
-    {
-        $sql = 'SELECT imagen_casco
-                FROM Cascos
-                WHERE id_casco = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
-
     public function updateRow()
     {
-        $sql = 'UPDATE producto
-                SET imagen_casco = ?, nombre_casco = ?, descripcion_casco = ?, precio_casco = ?, existencia_casco = ?, id_modelo_de_casco = ?
-                WHERE id_casco = ?';
+        $sql = 'UPDATE Marcas_Cascos
+                SET nombre_marca = ?, descripcion_marca = ?
+                WHERE id_marca_casco = ?';
         $params = array($this->nombre, $this->descripcion,  $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM producto
-                WHERE id_producto = ?';
+        $sql = 'DELETE FROM Marcas_Cascos
+                WHERE id_marca_casco = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

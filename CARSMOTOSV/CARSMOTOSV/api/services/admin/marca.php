@@ -20,16 +20,15 @@ if (isset($_GET['action'])) {
         case 'createRow':
             $_POST = Validator::validateForm($_POST);
             if (
-                !$marca->setNombre($_POST['Nombre_Producto']) or
-                !$marca->setDescripcion($_POST['Descripcion'])
+                !$marca->setNombre($_POST['nombre_marca']) or
+                !$marca->setDescripcion($_POST['Descripcion_marca'])
                 
             ) {
-                $result['error'] = $producto->getDataError();
+                $result['error'] = $marca->getDataError();
             } elseif ($producto->createRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Producto creado correctamente';
+                $result['message'] = 'Marca creada correctamente';
                 // Se asigna el estado del archivo después de insertar.
-                $result['fileStatus'] = Validator::saveFile($_FILES['formFile'], $producto::RUTA_IMAGEN);
             } else {
                 $result['error'] = 'Ocurrió un problema al crear el producto';
             }
