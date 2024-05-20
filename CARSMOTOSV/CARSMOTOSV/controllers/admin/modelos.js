@@ -1,13 +1,13 @@
 // Constante para completar la ruta de la API.
 const MODELO_API = 'services/admin/modelo.php';
+const MARCA_API = 'services/admin/marca.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+const SAVE_MODAL = new bootstrap.Modal(document.getElementById('#Agregar_Modelos'));
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_Modelo = document.getElementById('idCategoria'),
@@ -110,6 +110,7 @@ const openCreate = () => {
     //MODAL_TITLE.textContent = 'Crear modelo';
     // Se prepara el formulario.
     SAVE_FORM.reset();
+    fillSelect(MARCA_API, 'readAll', 'Modelo_Casco');
 }
 
 /*

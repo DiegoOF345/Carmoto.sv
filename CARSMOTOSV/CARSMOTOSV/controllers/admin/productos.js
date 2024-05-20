@@ -118,8 +118,7 @@ const openCreate = () => {
     ADD_MODAL.show();
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    EXISTENCIAS_PRODUCTO.disabled = false;
-    fillSelect(MODELO_API, 'readAll', 'Modelo_Casco');
+    fillSelect(MODELO_API, 'readAll', 'id_Marca');
 }
 
 /*

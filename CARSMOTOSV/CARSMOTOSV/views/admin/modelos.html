@@ -108,7 +108,7 @@
     </form>
     <div class="col-sm-12 col-md-6 text-end">
       <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-      <button type="button" class="btn btn-primary" onclick="openCreate()" style="justify-tracks: left;" >
+      <button type="button" class="btn btn-primary" style="justify-tracks: left;" onclick="openCreate()">
         <i class="bi bi-plus"></i>
       </button>
       
@@ -147,6 +147,46 @@
   </table>
 
   <div class="modal fade" id="Agregar_Modelos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+                <form>
+                  <i class="bi bi-card-list fa-3x"></i>
+                  <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                  <input type="number" class="d-none" id="idModelo" name="idModelo">
+                  <label for="Nombre Producto" class="sr-only"></label>
+                  <input type="Nombre" id="Nombre_Modelo" name="Nombre_Modelo" class="form-control" placeholder="Nombre del modelo"
+                    required autofocus>
+                  <br>
+                  <label for="Descripción" class="sr-only"></label>
+                  <textarea class="form-control" name="Descripcion_modelo" id="Descripcion_modelo" rows="3" placeholder="Descripción Marca"></textarea> 
+                  <br>
+                  <label for="Año" class="sr-only"></label>
+                  <input type="number" name="Año_modelo" id="Año_modelo" class="form-control" placeholder="Año" required autofocus>
+                  <br>
+                  <label for="Marca" class="sr-only"></label>
+                  <select id="id_Marca" name="id_Marca" class="form-control" placeholder="Nombre de la marca" required autofocus>
+                  </select>
+                  <br>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="Modificar_Modelos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
