@@ -4,7 +4,7 @@ require_once('../../helpers/database.php');
 /*
 *	Clase para manejar el comportamiento de los datos de la tabla PRODUCTO.
 */
-class ModeloHandler
+class ClienteHandler
 {
     /*
     *   Declaración de atributos para el manejo de datos.
@@ -12,78 +12,64 @@ class ModeloHandler
     protected $id = null;
     protected $nombre = null;
     protected $descripcion = null;
-    protected $año = null;
-    protected $marca = null;
-
+    
     // Constante para establecer la ruta de las imágenes.
-    const RUTA_IMAGEN = '../../images/productos/';
+    const RUTA_IMAGEN = '../../Imagenes/productos/';
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
     */
-    public function searchRows()
+    public function searchPrice()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
-                FROM Modelos_de_Cascos
-                INNER JOIN Marcas_Cascos USING(id_marca_casco)
-                WHERE nombre_modelo LIKE ? OR descripcion_modelo LIKE ?
-                ORDER BY nombre_producto';
-        $params = array($value, $value);
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente, fecha_cliente
+                FROM Clientes
+                WHERE nombre_cliente LIKE ? 
+                ORDER BY nombre_cliente';
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 
     public function createRow()
     {
-        $sql = 'INSERT INTO Modelos_de_Cascos(nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco)
-                VALUES(?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->año, $this->marca);
+        $sql = 'INSERT INTO Clientes(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente, fecha_cliente)
+                VALUES(?,?,?,?,?,?,?,?,CURRENT_DATE())';
+        $params = array($this->nombre, $this->descripcion);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
-                FROM Modelos_de_Cascos
-                INNER JOIN Marcas_Cascos USING(id_marca_casco)
-                ORDER BY nombre_producto';
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente, fecha_cliente
+                FROM Clientes';
         return Database::getRows($sql);
-    }
-
-    public function readOne()
-    {
-        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
-                FROM Modelos_de_Cascos
-                WHERE id_modelo_de_casco = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
     }
 
     public function updateRow()
     {
-        $sql = 'UPDATE Modelos_de_Cascos
-                SET nombre_modelo = ?, descripcion_modelo = ?, año_modelo = ?, id_marca_casco = ?
-                WHERE id_modelo_de_casco = ?';
-        $params = array($this->nombre, $this->descripcion, $this->año, $this->marca, $this->id);
+        $sql = 'UPDATE Clientes
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, contraseña_cliente = ?, fecha_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->nombre, $this->descripcion,  $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM Modelos_de_Cascos
-                WHERE id_modelo_de_casco = ?';
+        $sql = 'DELETE FROM Clientes
+                WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosCategoria()
+    public function readProductosModelos()
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, existencias_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ? AND estado_producto = true
-                ORDER BY nombre_producto';
-        $params = array($this->categoria);
+        $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
+                FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
+                WHERE id_modelo_de_casco = ?
+                ORDER BY nombre_casco';
+        $params = array($this->modelo);
         return Database::getRows($sql, $params);
     }
 
@@ -118,7 +104,7 @@ class ModeloHandler
                 INNER JOIN categoria USING(id_categoria)
                 WHERE id_categoria = ?
                 ORDER BY nombre_producto';
-        $params = array($this->categoria);
+        $params = array($this->modelo);
         return Database::getRows($sql, $params);
     }
 }
