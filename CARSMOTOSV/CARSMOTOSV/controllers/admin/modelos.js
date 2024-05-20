@@ -1,3 +1,6 @@
+import * as bootstrap from 'bootstrap'; window.bootstrap = bootstrap;
+
+
 // Constante para completar la ruta de la API.
 const MODELO_API = 'services/admin/modelo.php';
 const MARCA_API = 'services/admin/marca.php';
@@ -7,7 +10,8 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal(document.getElementById('#Agregar_Modelos'));
+const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos')
+//const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_Modelo = document.getElementById('idCategoria'),
@@ -74,23 +78,20 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" height="50"></td>
-                    <td>${row.nombre_categoria}</td>
-                    <td>${row.descripcion_categoria}</td>
-                    <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_categoria})">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                        <button type="button" class="btn btn-warning" onclick="openReport(${row.id_categoria})">
-                            <i class="bi bi-filetype-pdf"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
+            <tr>
+                <td>${row.nombre_administrador}</td>
+                <td>${row.apellido_administrador}</td>
+                <td>${row.correo_administrador}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_administrador})">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_administrador})">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            </tr>
+    `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;

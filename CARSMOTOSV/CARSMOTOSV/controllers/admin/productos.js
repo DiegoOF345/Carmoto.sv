@@ -95,7 +95,7 @@ const fillTable = async (form = null) => {
                         <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
                         <center><img src="${SERVER_URL}/Imagenes/productos/${row.imagen_casco}" class="fixed" alt="${row.nombre_casco}" width="200"></center>
                     </div>
-                    <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" style="justify-tracks: left;" onclick="openUpdate()">
+                    <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" style="justify-tracks: left;" onclick="openUpdate(${row.id_casco})">
                         Editar Producto
                     </button>
                 </div>
