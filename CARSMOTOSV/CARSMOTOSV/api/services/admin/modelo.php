@@ -25,15 +25,32 @@ if (isset($_GET['action'])) {
                 !$modelo->setAño($_POST['Año_modelo']) or
                 !$modelo->setMarca($_POST['id_Marca'])                 
             ) {
-                $result['error'] = $producto->getDataError();
-            } elseif ($producto->createRow()) {
+                $result['error'] = $modelo->getDataError();
+            } elseif ($modelo->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Modelo creado correctamente';
                 // Se asigna el estado del archivo después de insertar.
             } else {
-                $result['error'] = 'Ocurrió un problema al crear el producto';
+                $result['error'] = 'Ocurrió un problema al crear el modelo';
             }
             break;
+            case 'updateRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$modelo->setId($_POST['idAdministrador']) or
+                    !$modelo->setNombre($_POST['Nombre_Modelo']) or
+                    !$modelo->setDescripcion($_POST['Descripcion_modelo']) or
+                    !$modelo->setAño($_POST['Año_modelo']) or
+                    !$modelo->setMarca($_POST['id_Marca'])
+                ) {
+                    $result['error'] = $administrador->getDataError();
+                } elseif ($administrador->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Administrador modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el administrador';
+                }
+                break;
         default:
             $result['error'] = 'Acción no disponible';
     }

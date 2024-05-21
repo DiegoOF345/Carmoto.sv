@@ -8,7 +8,8 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos')
+const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 //const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -82,14 +83,12 @@ const fillTable = async (form = null) => {
             <td>${row.año_modelo}</td>
             <td>${row.id_marca_casco}</td>
             <td>
-                <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_modelo_de_casco})">
-                    <i class="bi bi-pencil-fill"></i>
+                <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_modelo_de_casco})">
+                    <i class="bi bi-pencil-square"></i>
                 </button>
-    
-                <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_modelo_de_casco}>
+                <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_modelo_de_casco})">
                     <i class="bi bi-trash-fill"></i>
-                </button>
-        
+                </button>        
             </td>
         `;
         });
@@ -108,7 +107,7 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    //MODAL_TITLE.textContent = 'Crear modelo';
+    MODAL_TITLE.textContent = 'Crear modelo';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     fillSelect(MARCA_API, 'readAll', 'id_Marca');
@@ -129,14 +128,15 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar categoría';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_CATEGORIA.value = ROW.id_categoria;
-        NOMBRE_CATEGORIA.value = ROW.nombre_categoria;
-        DESCRIPCION_CATEGORIA.value = ROW.descripcion_categoria;
+        ID_MODELO.value = ROW.id_categoria;
+        NOMBRE_MODELO.value = ROW.nombre_categoria;
+        DESCRIPCION_MODELO.value = ROW.descripcion_categoria;
+        AÑO_MODELO.value = ROW.descripcion_categoria;
+
     } else {
         sweetAlert(2, DATA.error, false);
     }
