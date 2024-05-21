@@ -40,7 +40,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_Modelo.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_MODELO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
@@ -77,20 +77,21 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-            <tr>
-                <td>${row.nombre_modelo}</td>
-                <td>${row.descripcion_modelo}</td>
-                <td>${row.correo_administrador}</td>
-                <td>
-                    <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_administrador})">
-                        <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_administrador})">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
-                </td>
-            </tr>
-    `;
+            <td>${row.nombre_modelo}</td>
+            <td>${row.descripcion_modelo}</td>
+            <td>${row.año_modelo}</td>
+            <td>${row.id_marca_casco}</td>
+            <td>
+                <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_modelo_de_casco})">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+    
+                <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_modelo_de_casco}>
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+        
+            </td>
+        `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
