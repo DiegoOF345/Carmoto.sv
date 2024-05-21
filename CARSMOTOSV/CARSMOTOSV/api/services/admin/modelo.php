@@ -30,7 +30,6 @@ if (isset($_GET['action'])) {
                 $result['status'] = 1;
                 $result['message'] = 'Modelo creado correctamente';
                 // Se asigna el estado del archivo después de insertar.
-                $result['fileStatus'] = Validator::saveFile($_FILES['formFile'], $producto::RUTA_IMAGEN);
             } else {
                 $result['error'] = 'Ocurrió un problema al crear el producto';
             }
