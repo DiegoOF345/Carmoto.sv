@@ -10,6 +10,17 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null);
     // Se compara la acción a realizar según la petición del controlador.
     switch ($_GET['action']) {
+        case 'searchRows':
+            if (!Validator::validateSearch($_POST['search'])) {
+                $result['error'] = Validator::getSearchError();
+            } elseif ($result['dataset'] = $modelo->searchRows()) {
+                $result['status'] = 1;
+                $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
+            } else {
+                $result['error'] = 'No hay coincidencias';
+            }
+            break;
+
         case 'readAll':
             if ($result['dataset'] = $modelo->readAll()) {
                 $result['status'] = 1;
@@ -17,6 +28,7 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'No existen modelos para mostrar';
             }
             break;
+
         case 'createRow':
             $_POST = Validator::validateForm($_POST);
             if (
@@ -34,23 +46,45 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'Ocurrió un problema al crear el modelo';
             }
             break;
-            case 'updateRow':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$modelo->setId($_POST['idAdministrador']) or
-                    !$modelo->setNombre($_POST['Nombre_Modelo']) or
-                    !$modelo->setDescripcion($_POST['Descripcion_modelo']) or
-                    !$modelo->setAño($_POST['Año_modelo']) or
-                    !$modelo->setMarca($_POST['id_Marca'])
-                ) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->updateRow()) {
+
+        case 'updateRow':
+            $_POST = Validator::validateForm($_POST);
+            if (
+                !$modelo->setId($_POST['idModelo']) or
+                !$modelo->setNombre($_POST['Nombre_Modelo']) or
+                !$modelo->setDescripcion($_POST['Descripcion_modelo']) or
+                !$modelo->setAño($_POST['Año_modelo']) or
+                !$modelo->setMarca($_POST['id_Marca'])
+            ) {
+                $result['error'] = $modelo->getDataError();
+            } elseif ($modelo->updateRow()) {
+                $result['status'] = 1;
+                $result['message'] = 'Modelo modificado correctamente';
+            } else {
+                $result['error'] = 'Ocurrió un problema al modificar el modelo';
+            }
+            break;
+
+            case 'readOne':
+                if (!$modelo->setId($_POST['idModelo'])) {
+                    $result['error'] = 'Modelo incorrecto';
+                } elseif ($result['dataset'] = $modelo->readOne()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Administrador modificado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el administrador';
+                    $result['error'] = 'Modelo inexistente';
                 }
                 break;
+            
+            case 'deleteRow':
+                    if (!$modelo->setId($_POST['idModelo'])) {
+                       $result['error'] = $modelo->getDataError();
+                   } elseif ($modelo->deleteRow()) {
+                       $result['status'] = 1;
+                       $result['message'] = 'Modelo eliminado correctamente';
+                   } else {
+                       $result['error'] = 'Ocurrió un problema al eliminar el modelo';
+                   }
+                   break;
         default:
             $result['error'] = 'Acción no disponible';
     }

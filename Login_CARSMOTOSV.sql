@@ -84,7 +84,7 @@ CREATE TABLE valoraciones (
 
 INSERT INTO Marcas_Cascos(nombre_marca,descripcion_marca) VALUES ("AGV","Que lindo");
 
-INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("AGV","Buen modelo","2-12-24",1);
+INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("AGV","Buen modelo","2024",1);
 
 INSERT INTO Administradores(nombre_administrador,apellido_administrador,correo_administrador,contrasenia_administrador,fecha_registro)
 VALUES ("Carlos","Ramon","a@gmail.com","Maceta",CURRENT_DATE());

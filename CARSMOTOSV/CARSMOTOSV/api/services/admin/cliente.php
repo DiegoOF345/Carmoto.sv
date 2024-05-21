@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
                     !$cliente->setTelefono($_POST['Correo_admin']) or
                     !$cliente->setNacimiento($_POST['Correo_admin']) or
                     !$cliente->setDireccion($_POST['Correo_admin']) or
-                    !$cliente->setClave($_POST['Correo_admin']) or
+                    !$cliente->setClave($_POST['Correo_admin'])
                     
                 ) {
                     $result['error'] = $cliente->getDataError();
