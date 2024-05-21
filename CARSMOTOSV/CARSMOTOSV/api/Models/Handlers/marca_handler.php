@@ -19,7 +19,7 @@ class MarcaHandler
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
     */
-    public function searchPrice()
+    public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_marca_casco, nombre_marca, descripcion_marca
@@ -28,6 +28,15 @@ class MarcaHandler
                 ORDER BY nombre_marca';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT id_marca_casco, nombre_marca, descripcion_marca
+                FROM Marcas_Cascos
+                WHERE id_marca_casco = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
 
     public function createRow()

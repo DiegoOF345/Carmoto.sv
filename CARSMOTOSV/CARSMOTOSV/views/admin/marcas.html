@@ -107,42 +107,11 @@
     </form>
     <div class="col-sm-12 col-md-6 text-end">
       <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" onclick="openCreate()"
+      <button type="button" class="btn btn-primary" onclick="openCreate()"
         style="justify-tracks: left;">
         <i class="bi bi-plus"></i>
       </button>
-      <div class="modal fade" id="guardar_marca" tabindex="-1" role="dialog" aria-labelledby="guardar_admin"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="text-center">
-                <form id="saveForm">
-                  <i class="bi bi-card-list fa-3x"></i>
-                  <h1>Agregar Marca</h1>
-                  <input type="number" class="d-none" id="idMarca" name="idMarca">
-                  <label for="Nombre de la marca" class="sr-only"></label>
-                  <input type="Nombre" id="nombre_marca" class="form-control" placeholder="Nombre de la marca"
-                    required autofocus>
-                  <br>
-                  <label for="Descripción de la marca" class="sr-only"></label>
-                  <textarea class="form-control" id="Descripcion_marca" rows="3" placeholder="Descripción Marca"></textarea> 
-                  <br>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Insertar</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 
@@ -151,6 +120,9 @@
     <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
     <thead>
       <tr>
+        <td colspan="4" id="rowsFound"></td>
+    </tr>
+      <tr>
         <th>NOMBRE</th>
         <th>DESCRIPCION</th>
         <th>ACCIONES</th>
@@ -158,92 +130,42 @@
     </thead>
     <!-- Cuerpo de la tabla para mostrar un registro por fila -->
     <tbody id="tableBody">
-      <td>SPD</td>
-      <td>Hermoso, muy bonito</td>
-      <td>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Actualizar">
-          <i class="bi bi-pencil-fill"></i>
-        </button>
-        <div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-center">
-                  <form>
-                    <i class="bi bi-card-list fa-3x"></i>
-                    <h1>#Actualizar Marca</h1>
-                    <label for="Nombre Producto" class="sr-only"></label>
-                    <input type="Nombre" id="Nombre Producto1" class="form-control" placeholder="Nombre de la marca"
-                      required autofocus>
-                    <br>
-                    <label for="Codigo Producto " class="sr-only"></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder=""></textarea> 
-                    <br>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Actualizar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Eliminar">
-          <i class="bi bi-trash-fill"></i>
-        </button>
-        <div class="modal fade" id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-center">
-                  <form>
-                    <i class="bi bi-card-list fa-3x"></i>
-                    <h1>Eliminar Marca</h1>
-                    <p>¿Desea eliminar esta marca permanentemente?</p>
-                    <br>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Eliminar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
+      
     </tbody>
   </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="modal fade" id="guardar_marca" tabindex="-1" role="dialog" aria-labelledby="guardar_admin"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <form id="saveForm">
+            <i class="bi bi-card-list fa-3x"></i>
+            <h1 class="modal-title fs-5" id="modalTitle"></h1>
+            <input type="number" class="d-none" id="idMarca" name="idMarca">
+            <label for="Nombre de la marca" class="sr-only"></label>
+            <input type="Nombre" id="nombre_marca" name="nombre_marca" class="form-control" placeholder="Nombre de la marca"
+              required autofocus>
+            <br>
+            <label for="Descripción de la marca" class="sr-only"></label>
+            <textarea class="form-control" id="Descripcion_marca" name="Descripcion_marca" rows="3" placeholder="Descripción Marca"></textarea> 
+            <br>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -269,7 +191,6 @@
 
 </body>
 
-
 </div>
 <div class="pie">
   <p>© CARMOTOSV 2024 | Todos los Derechos Reservados | Términos de uso | Política de privacidad</p>
@@ -287,5 +208,6 @@
   viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
 </svg>
+
 
 </html>

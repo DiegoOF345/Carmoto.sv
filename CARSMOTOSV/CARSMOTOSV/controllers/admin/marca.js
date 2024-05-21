@@ -1,22 +1,17 @@
 // Constantes para completar las rutas de la API.
 const MARCA_API = 'services/admin/marca.php';
 // Constante para establecer el formulario de buscar.
-const SEARCH_PRICE = document.getElementById('searchForm');
+const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const ADD_MODAL = new bootstrap.Modal(document.getElementById('guardar_marca')),
-    EDIT_MODAL = new bootstrap.Modal(document.getElementById('exampleModal1'));
-//    MODAL_TITLE = document.getElementById('modalTitle');
+const SAVE_MODAL = new bootstrap.Modal('#guardar_marca'),  
+    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_MARCA = document.getElementById('idMarca'),
     NOMBRE_MARCA = document.getElementById('nombre_marca'),
     DESCRIPCION_MARCA = document.getElementById('Descripcion_marca');
-    
-
-const Cerrar = document.getElementById('Cerrar');
-
 const PARAMS = new URLSearchParams(location.search);
 
 
@@ -29,29 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
-/*SEARCH_PRICE.addEventListener('submit', (event) => {
+SEARCH_FORM.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SEARCH_FORM);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
-});*/
+});
 
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    const action = (ID_PRODUCTO.value) ? 'updateRow' : 'createRow';
+    (ID_MARCA.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(PRODUCTO_API, action, FORM);
+    const DATA = await fetchData(MARCA_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
-        ADD_MODAL.hide();
+        SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -73,26 +68,24 @@ const fillTable = async (form = null) => {
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(ADMINISTRADOR_API, action, form);
+    const DATA = await fetchData(MARCA_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td>${row.nombre_administrador}</td>
-                    <td>${row.apellido_administrador}</td>
-                    <td>${row.correo_administrador}</td>
+                    <td>${row.nombre_marca}</td>
+                    <td>${row.descripcion_marca}</td>                    
                     <td>
-                        <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_administrador})">
+                        <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_marca_casco})">
                             <i class="bi bi-pencil-square"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_administrador})">
+                        <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_marca_casco})">
                             <i class="bi bi-trash-fill"></i>
                         </button>
                     </td>
-                </tr>
+                
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -110,9 +103,9 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
+    MODAL_TITLE.textContent = 'Crear marca';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    fillSelect(MODELO_API, 'readAll', 'id_Marca');
 }
 
 /*
@@ -123,13 +116,13 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idProducto', id);
+    FORM.append('idMarca', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(PRODUCTO_API, 'readOne', FORM);
+    const DATA = await fetchData(MARCA_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        EDIT_MODAL.show();
+        SAVE_MODAL.show();
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
@@ -154,9 +147,9 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('idProducto', id);
+        FORM.append('idMarca', id);
         // Petición para eliminar el registro seleccionado.
-        const DATA = await fetchData(PRODUCTO_API, 'deleteRow', FORM);
+        const DATA = await fetchData(MARCA_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
             // Se muestra un mensaje de éxito.

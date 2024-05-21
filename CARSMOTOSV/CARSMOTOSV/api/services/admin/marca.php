@@ -21,18 +21,55 @@ if (isset($_GET['action'])) {
             $_POST = Validator::validateForm($_POST);
             if (
                 !$marca->setNombre($_POST['nombre_marca']) or
-                !$marca->setDescripcion($_POST['Descripcion_marca'])
-                
+                !$marca->setDescripcion($_POST['Descripcion_marca'])                
             ) {
                 $result['error'] = $marca->getDataError();
-            } elseif ($producto->createRow()) {
+            } elseif ($marca->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Marca creada correctamente';
                 // Se asigna el estado del archivo después de insertar.
             } else {
-                $result['error'] = 'Ocurrió un problema al crear el producto';
+                $result['error'] = 'Ocurrió un problema al crear el marca';
             }
             break;
+
+            case 'updateRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$marca->setId($_POST['idMarca']) or
+                    !$marca->setNombre($_POST['nombre_marca']) or
+                    !$marca->setDescripcion($_POST['Descripcion_marca']) 
+                ) {
+                    $result['error'] = $marca->getDataError();
+                } elseif ($marca->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Marca modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el marca';
+                }
+                break;
+    
+            case 'readOne':
+                if (!$marca->setId($_POST['idMarca'])) {
+                    $result['error'] = 'Marca incorrecto';
+                } elseif ($result['dataset'] = $marca->readOne()) {
+                        $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Marca inexistente';
+                }
+                break;
+                
+            case 'deleteRow':
+                    if (!$marca->setId($_POST['idMarca'])) {
+                        $result['error'] = $marca->getDataError();
+                    } elseif ($marca->deleteRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Marca eliminado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al eliminar el marca';
+                    }
+                    break;
+
         default:
             $result['error'] = 'Acción no disponible';
     }
