@@ -4,8 +4,8 @@ const MODELO_API = 'services/admin/modelo.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_PRICE = document.getElementById('searchForm');
 // Constantes para establecer los elementos del componente Modal.
-const ADD_MODAL = new bootstrap.Modal(document.getElementById('exampleModal0')),
-    EDIT_MODAL = new bootstrap.Modal(document.getElementById('exampleModal1'));
+const ADD_MODAL = new bootstrap.Modal('#exampleModal0'),
+    EDIT_MODAL = new bootstrap.Modal('#Actualizar');
 //    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -24,11 +24,6 @@ const PRODUCTOS = document.getElementById('Cards_Read');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
-    // Llamada a la función para mostrar el encabezado y pie del documento.
-    // Llamada a la función para llenar la tabla con los registros existentes.
-
-    // Se establece el título del contenido principal.
-  MAIN_TITLE.textContent = 'Gestionar Productos';
   // Llamada a la función para llenar la tabla con los registros existentes.
   
     fillTable();
@@ -119,7 +114,7 @@ const openCreate = () => {
     ADD_MODAL.show();
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    fillSelect(MODELO_API, 'readAll', 'id_Marca');
+    fillSelect(MODELO_API, 'readAll', 'id_Producto');
 }
 
 /*

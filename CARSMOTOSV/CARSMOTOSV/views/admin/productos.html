@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  
   <header>
     <div class="p-3" style="background-color: #ED1B24;">
       <div class="containerLogo d-flex justify-content-center">
@@ -108,12 +109,12 @@
     </form>
     <div class="col-sm-12 col-md-6 text-end">
       <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" onclick="openCreate()"
+      <button type="button" class="btn btn-primary"  onclick="openCreate()"
         style="justify-tracks: left;">
         <i class="bi bi-plus"></i>
       </button>
-      <div class="modal fade" id="guardar_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+      <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true"  data-bs-backdrop="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -125,21 +126,25 @@
                   <i class="bi bi-card-list fa-3x"></i>
                   <h1>Agregar Producto</h1>
                   <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                  <input type="number" class="d-none" id="idAdministrador" name="idAdministrador">
-                  <label for="Nombre " class="sr-only"></label>
-                  <input type="text" id="Nombre_admin" name="Nombre_admin" class="form-control" placeholder="Nombre" required
+                  <input type="Nombre_Producto" class="d-none" id="idProducto" name="idProducto">
+                  <label for="Nombre_Producto " class="sr-only"></label>
+                  <input type="text" id="Nombre_Producto" name="Nombre_Producto" class="form-control" placeholder="Nombre" required
                     autofocus>
                   <br>
-                  <label for="apellido " class="sr-only"></label>
-                  <input type="text" id="Apellido_admin" name="Apellido_admin" class="form-control" placeholder="Apellido" required
+                  <label for="Descripcion " class="sr-only"></label>
+                  <input type="text" id="Descripcion" name="Descripcion" class="form-control" placeholder="Descripcion" required
                     autofocus>
                   <br>
-                  <label for="correo" class="sr-only"></label>
-                  <input type="email" id="Correo_admin" name="Correo_admin" class="form-control" placeholder="Correo" required
+                  <label for="Precio" class="sr-only">Precio</label>
+<input type="number" id="Precio" name="Precio" class="form-control" placeholder="Precio" autofocus required>
+                  <br>
+                  <label for="Modelo_Casco" class="sr-only"></label>
+                  <input type="number" id="Modelo_Casco" name="Modelo_Casco" class="form-control" placeholder="Modelo Casco" required
                     autofocus>
                   <br>
-                  <label for="CONTRASEÑA" class="sr-only"></label>
-                  <input type="password" id="Contraseña_admin" name="Contraseña_admin" class="form-control" placeholder="Contraseña" required
+                  <br>
+                  <label for="En_existencias1" class="sr-only"></label>
+                  <input type="number" id="En_existencias1" name="En_existencias1" class="form-control" placeholder="En existencias" required
                     autofocus>
                   <br>
                   <div class="modal-footer">
@@ -161,19 +166,20 @@
     <thead>
       <tr><td colspan="4" id="rowsFound"></td></tr>
       <tr>
-        <th>NOMBRE</th>
-        <th>APELLIDO</th>
-        <th>CORREO</th>
-        <th>ACCIONES</th>
+        <th>Nombre producto</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Modelo casco</th>
+        <th>En existencias</th>
       </tr>
     </thead>
     <!-- Cuerpo de la tabla para mostrar un registro por fila -->
     <tbody id="tableBody">
-      <td>Portas</td>
-      <td>Maribel</td>
-      <td>2024-03-19</td>
-      <td>20220200@ricaldone.edu.sv</td>
-      <td>Caricatura</td>
+      <td>Casco 9291</td>
+      <td>Resistente</td>
+      <td>24.00</td>
+      <td>10</td>
+      <td>1</td>
       <td>
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Actualizar">
           <i class="bi bi-pencil-fill"></i>
@@ -191,23 +197,28 @@
                 <div class="text-center">
                   <form>
                     <i class="bi bi-people-fill fa-3x"></i>
-                    <h1>Actualizar Administrador</h1>
-                    <label for="Nombre " class="sr-only"></label>
-                    <input type="Nombre" id="Nombre_admin" class="form-control" placeholder="Nombre" required
+                    <h1>Actualizar productos </h1>
+                    <label for="Nombre_Producto " class="sr-only"></label>
+                    <input type="Nombre_Producto" id="Nombre_Producto" class="form-control" placeholder="Nombre Producto" required
                       autofocus>
                     <br>
-                    <label for="apellido " class="sr-only"></label>
-                    <input type="Nombre" id="Apellido_admin" class="form-control" placeholder="Apellido" required
+                    <label for="Descripcion " class="sr-only"></label>
+                    <input type="Descripcion" id="Descripcion" class="form-control" placeholder="Descripcion" required
                       autofocus>
                     <br>
-                    <label for="correo" class="sr-only"></label>
-                    <input type="correo" id="Correo_admin" class="form-control" placeholder="Correo" required
+                    <label for="Precio" class="sr-only"></label>
+                    <input type="Precio" id="Precio" class="form-control" placeholder="Precio" required
                       autofocus>
-                    <br>
-                    <label for="CONTRASEÑA" class="sr-only"></label>
-                    <input type="contraseña" id="Nombre Producto1" class="form-control" placeholder="Contraseña" required
-                      autofocus>
-                    <br>
+                      <br>
+                      <label for="Modelo_Casco" class="sr-only"></label>
+                      <input type="Modelo_Casco" id="Modelo_Casco" class="form-control" placeholder="Modelo Casco" required
+                        autofocus>
+                      <br>
+                      <br>
+                      <label for="En_existencias1" class="sr-only"></label>
+                      <input type="En_existencias1" id="En_existencias1" class="form-control" placeholder="En existencias " required
+                        autofocus>
+                      <br>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                       <button type="button" class="btn btn-primary">Actualizar</button>
