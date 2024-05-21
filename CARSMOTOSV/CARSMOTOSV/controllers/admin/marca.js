@@ -2,6 +2,8 @@
 const MARCA_API = 'services/admin/marca.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_PRICE = document.getElementById('searchForm');
+const TABLE_BODY = document.getElementById('tableBody'),
+    ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const ADD_MODAL = new bootstrap.Modal(document.getElementById('guardar_marca')),
     EDIT_MODAL = new bootstrap.Modal(document.getElementById('exampleModal1'));
