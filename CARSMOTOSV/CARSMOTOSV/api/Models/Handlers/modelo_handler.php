@@ -47,7 +47,7 @@ class ModeloHandler
         $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
                 FROM Modelos_de_Cascos
                 INNER JOIN Marcas_Cascos USING(id_marca_casco)
-                ORDER BY nombre_producto';
+                ORDER BY nombre_modelo';
         return Database::getRows($sql);
     }
 
