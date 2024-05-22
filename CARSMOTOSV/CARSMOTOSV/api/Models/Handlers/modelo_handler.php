@@ -44,7 +44,7 @@ class ModeloHandler
 
     public function readAll()
     {
-        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, id_marca_casco
+        $sql = 'SELECT id_modelo_de_casco, nombre_modelo, descripcion_modelo, año_modelo, nombre_marca
                 FROM Modelos_de_Cascos
                 INNER JOIN Marcas_Cascos USING(id_marca_casco)
                 ORDER BY nombre_modelo';

@@ -24,7 +24,7 @@ class MarcaHandler
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_marca_casco, nombre_marca, descripcion_marca
                 FROM Marcas_Cascos
-                WHERE nombre_marca LIKE ? 
+                WHERE nombre_marca LIKE ? OR descripcion_marca LIKE ?
                 ORDER BY nombre_marca';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
