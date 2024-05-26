@@ -20,19 +20,19 @@ if (isset($_GET['action'])) {
         case 'createRow':
             $_POST = Validator::validateForm($_POST);
             if (
-                !$producto->setNombre($_POST['Nombre_Producto']) or
-                !$producto->setDescripcion($_POST['Descripcion']) or
-                !$producto->setPrecio($_POST['Precio']) or
-                !$producto->setExistencias($_POST['En_existencias1']) or
-                !$producto->setModelo($_POST['Modelo_Casco']) or
-                !$producto->setImagen($_FILES['formFile'])
+                !$producto->setNombre($_POST['nombreProducto']) or
+                !$producto->setDescripcion($_POST['descripcionProducto']) or
+                !$producto->setPrecio($_POST['precioProducto']) or
+                !$producto->setExistencias($_POST['existenciasProducto']) or
+                !$producto->setModelo($_POST['modeloProducto']) or
+                !$producto->setImagen($_FILES['imagenProducto'])
             ) {
                 $result['error'] = $producto->getDataError();
             } elseif ($producto->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto creado correctamente';
                 // Se asigna el estado del archivo después de insertar.
-                $result['fileStatus'] = Validator::saveFile($_FILES['formFile'], $producto::RUTA_IMAGEN);
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN);
             } else {
                 $result['error'] = 'Ocurrió un problema al crear el producto';
             }
@@ -45,13 +45,13 @@ if (isset($_GET['action'])) {
                 !$producto->setPrecio($_POST['Precio']) or
                 !$producto->setExistencias($_POST['En_existencias1']) or
                 !$producto->setModelo($_POST['Modelo_Casco']) or
-                !$producto->setImagen($_FILES['formFile'])
+                !$producto->setImagen($_FILES['imagenProducto'])
             ) {
                 $result['error'] = $producto->getDataError();
             } elseif ($producto->updateRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto modificado correctamente';
-                $result['fileStatus'] = Validator::saveFile($_FILES['formFile'], $producto::RUTA_IMAGEN);
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN);
             } else {
                 $result['error'] = 'Ocurrió un problema al modificar el producto';
             }
