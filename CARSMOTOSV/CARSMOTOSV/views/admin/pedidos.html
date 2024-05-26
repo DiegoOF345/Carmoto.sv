@@ -94,7 +94,7 @@
     <form class="col-sm-12 col-md-6" id="searchForm">
       <div class="row">
         <div class="col-6">
-          <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+          <input type="search" class="form-control" name="search" placeholder="Buscar por fecha" required>
         </div>
         <div class="col-6">
           <button type="submit" class="btn btn-success">
@@ -113,102 +113,76 @@
     <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
     <thead>
       <tr>
-        <th>CLIENTE</th>
-        <th>ESTADO</th>
+        <td colspan="6" id="rowsFound"></td>
+    </tr>
+      <tr>
         <th>FECHA REGISTRO</th>
-        <th>CASCO</th>
-        <th>CANTIDAD</th>
-        <th>PRECIO TOTAL</th>
+        <th>DIRECCIÓN</th>
+        <th>ESTADO</th>
         <th>ACCIONES</th>
       </tr>
     </thead>
     <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-    <tbody id="tableBody">
-      <td>Diego</td>
-      <td>Activo</td>
-      <td>2024-03-19</td>
-      <td>Casco 829 GPTEK</td>
-      <td>2</td>
-      <td>$20.00</td>
-      <td>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Actualizar">
-          <i class="bi bi-check2"></i>
-        </button>
-        <div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-center">
-                  <form>
-                    <i class="bi bi-check2 fa-3x"></i>
-                    <h1>Pedido entregado</h1>
+    <tbody id="tableBody"></tbody>
 
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">cerrar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Eliminar">
-          <i class="bi bi-journal-x"></i>
-        </button>
-        <div class="modal fade" id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-center">
-                  <form>
-                    <i class="bi bi-journal-x fa-3x"></i>
-                    <h1>Cancelar pedido</h1>
-                    <p>¿Desea cancelar este pedido?</p>
-                    <br>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">cancelar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tbody>
   </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="hidden" id="idProducto" name="idProducto">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreProducto" class="form-label"><i class="bi bi-file-earmark-text"></i>
+                                    Nombre</label>
+                                <input id="nombreProducto" type="text" name="nombreProducto" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="precioProducto" class="form-label"><i class="bi bi-currency-dollar"></i>
+                                    Precio (US$)</label>
+                                <input id="precioProducto" type="number" name="precioProducto" min="0.01" step="0.01"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="marcaProducto" class="form-label"><i class="bi bi-bookmark-fill"></i>
+                                    Marca</label>
+                                <select id="marcaProducto" name="marcaProducto" class="form-select" required>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="categoriaProducto" class="form-label"><i class="bi bi-bookmarks-fill"></i>
+                                    Categoría</label>
+                                <select id="categoriaProducto" name="categoriaProducto" class="form-select" required>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="imagenProducto" class="form-label"><i class="bi bi-card-image"></i>
+                                    Imagen</label>
+                                <input id="imagenProducto" type="file" name="imagenProducto" class="form-control"
+                                    accept=".png, .jpg">
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <label for="descripcionProducto" class="form-label"><i
+                                        class="bi bi-file-earmark-text"></i> Descripción</label>
+                                <input id="descripcionProducto" type="text" name="descripcionProducto"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer container justify-content-center">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-floppy2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
   <div class="footer">
     <div class="footer-seccion-1">
@@ -243,6 +217,9 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="../../resources/JS/sweetalert.min.js"></script>
+  <script src="../../controllers/utils/components.js"></script>
+  <script src="../../controllers/admin/pedido.js"></script>
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
   viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
