@@ -26,7 +26,7 @@ class ClienteData extends ClienteHandler
             $this->id = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del producto es incorrecto';
+            $this->data_error = 'El identificador del cliente es incorrecto';
             return false;
         }
     }

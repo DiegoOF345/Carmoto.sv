@@ -63,7 +63,7 @@ class ClienteHandler
     public function updateRow()
     {
         $sql = 'UPDATE Clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, contraseña_cliente = ?, fecha_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, contraseña_cliente = ?
                 WHERE id_cliente = ?';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->clave, $this->id);
         return Database::executeRow($sql, $params);
