@@ -2,14 +2,14 @@
 const PRODUCTO_API = 'services/admin/producto.php';
 const MODELO_API = 'services/admin/modelo.php';
 // Constante para establecer el formulario de buscar.
-const SEARCH_PRICE = document.getElementById('searchForm');
-// Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
-
+const SEARCH_FORM = document.getElementById('searchForm');
+const MAIN_TITLE = document.getElementById('mainTitle');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+// Constantes para establecer los elementos del componente Modal.
+const SAVE_MODAL = new bootstrap.Modal('#guardar_producto'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
@@ -22,15 +22,24 @@ const SAVE_FORM = document.getElementById('saveForm'),
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
 
+
+    // Se establece el título del contenido principal.
+    MAIN_TITLE.textContent = 'Gestionar Productos';
+    // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
 
 
 
-
-
-
-
+// Método del evento para cuando se envía el formulario de buscar.
+SEARCH_FORM.addEventListener('submit', (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SEARCH_FORM);
+    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+    fillTable(FORM);
+});
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -60,14 +69,15 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 *   Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
+    // Se inicializa el contenido de la tabla.
+    ROWS_FOUND.textContent = '';
+    TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se inicializa el contenedor de productos.
-        TABLE_BODY.innerHTML = '';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las tarjetas con los datos de cada producto.
@@ -79,6 +89,14 @@ const fillTable = async (form = null) => {
                 <td>${row.nombre_modelo}</td>
                 <td>${row.existencia_casco}</td>
             </tr>
+            <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_casco})">
+            <i class="bi bi-pencil-square"></i>
+        </button>
+        <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_casco})">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </td>
+</tr>
             `;
         });
     }
@@ -114,7 +132,7 @@ const openUpdate = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        EDIT_MODAL.show();
+        SAVE_MODAL.show();
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
@@ -157,17 +175,4 @@ const openDelete = async (id) => {
             sweetAlert(2, DATA.error, false);
         }
     }
-}
-
-
-/*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
-const openReport = () => {
-    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-    const PAtd = new URL($,{SERVER_URL},reports/admin/productos.php);
-    // Se abre el reporte en una nueva pestaña.
-    window.open(PAtd.href);
 }

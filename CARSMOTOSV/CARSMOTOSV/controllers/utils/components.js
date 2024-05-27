@@ -103,7 +103,10 @@ const fillSelect = async (filename, action, select, selected = null) => {
         content += '<option>No hay opciones disponibles</option>';
     }
     // Se agregan las opciones a la etiqueta select mediante el id.
-    document.getElementById(select).innerHTML = content;
+    document.addEventListener('DOMContentLoaded', () => {
+        fillSelect(MODELO_API, 'readAll', 'modeloProducto');
+    });
+    
 }
 
 /*
