@@ -8,7 +8,7 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos'),
+const SAVE_MODAL = new bootstrap.Modal('#Modal_modelo'),
     MODAL_TITLE = document.getElementById('modalTitle');
 //const SAVE_MODAL = new bootstrap.Modal('#Agregar_Modelos');
 // Constantes para establecer los elementos del formulario de guardar.
@@ -16,8 +16,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ID_MODELO = document.getElementById('idModelo'),
     NOMBRE_MODELO = document.getElementById('Nombre_Modelo'),
     DESCRIPCION_MODELO = document.getElementById('Descripcion_modelo'),
-    AÑO_MODELO = document.getElementById('Año_modelo'),
-    MARCA_MODELO = document.getElementById('id_Marca');
+    AÑO_MODELO = document.getElementById('Año_modelo');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -128,6 +127,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
+        MODAL_TITLE.textContent = 'Modificar modelo';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.

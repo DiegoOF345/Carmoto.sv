@@ -45,7 +45,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    const action = (ID_PRODUCTO.value) ? 'updateRow' : 'createRow';
+    (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
@@ -88,15 +88,15 @@ const fillTable = async (form = null) => {
                 <td>${row.precio_casco}</td>
                 <td>${row.nombre_modelo}</td>
                 <td>${row.existencia_casco}</td>
+                <td>
+                <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_casco})">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_casco})">
+                    <i class="bi bi-trash-fill"></i>
+                </button>        
+                </td>
             </tr>
-            <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_casco})">
-            <i class="bi bi-pencil-square"></i>
-        </button>
-        <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_casco})">
-            <i class="bi bi-trash-fill"></i>
-        </button>
-    </td>
-</tr>
             `;
         });
     }
@@ -113,6 +113,7 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
+    MODAL_TITLE.textContent = 'Crear modelo';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     fillSelect(MODELO_API, 'readAll', 'modeloProducto');
@@ -133,6 +134,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
+        MODAL_TITLE.textContent = 'modificar producto';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
@@ -141,8 +143,8 @@ const openUpdate = async (id) => {
         NOMBRE_PRODUCTO.value = ROW.nombre_casco;
         DESCRIPCION_PRODUCTO.value = ROW.descripcion_casco;
         PRECIO_PRODUCTO.value = ROW.precio_casco;
-        fillSelect(MODELO_API, 'readAll', 'Modelo_Casco', ROW.id_modelo_de_casco)
-        EXISTENCIAS_PRODUCTO.value = ROW.existencias_producto;
+        fillSelect(MODELO_API, 'readAll', 'modeloProducto', ROW.id_modelo_de_casco)
+        EXISTENCIAS_PRODUCTO.value = ROW.existencia_casco;
 
 
     } else {

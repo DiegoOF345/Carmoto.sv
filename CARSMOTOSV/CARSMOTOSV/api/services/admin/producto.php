@@ -40,11 +40,12 @@ if (isset($_GET['action'])) {
         case 'updateRow':
             $_POST = Validator::validateForm($_POST);
             if (
-                !$producto->setNombre($_POST['Nombre_Producto']) or
-                !$producto->setDescripcion($_POST['Descripcion']) or
-                !$producto->setPrecio($_POST['Precio']) or
-                !$producto->setExistencias($_POST['En_existencias1']) or
-                !$producto->setModelo($_POST['Modelo_Casco']) or
+                !$producto->setId($_POST['idProducto']) or
+                !$producto->setNombre($_POST['nombreProducto']) or
+                !$producto->setDescripcion($_POST['descripcionProducto']) or
+                !$producto->setPrecio($_POST['precioProducto']) or
+                !$producto->setExistencias($_POST['existenciasProducto']) or
+                !$producto->setModelo($_POST['modeloProducto']) or
                 !$producto->setImagen($_FILES['imagenProducto'])
             ) {
                 $result['error'] = $producto->getDataError();
@@ -65,6 +66,16 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'Producto inexistente';
             }
             break;
+        case 'deleteRow':
+                if (!$producto->setId($_POST['idProducto'])) {
+                   $result['error'] = $producto->getDataError();
+               } elseif ($producto->deleteRow()) {
+                   $result['status'] = 1;
+                   $result['message'] = 'Modelo eliminado correctamente';
+               } else {
+                   $result['error'] = 'Ocurrió un problema al eliminar el modelo';
+               }
+               break;
         default:
             $result['error'] = 'Acción no disponible';
     }

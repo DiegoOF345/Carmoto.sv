@@ -73,7 +73,7 @@ class ProductoHandler
         $sql = 'UPDATE Cascos
                 SET imagen_casco = ?, nombre_casco = ?, descripcion_casco = ?, precio_casco = ?, existencia_casco = ?, id_modelo_de_casco = ?
                 WHERE id_casco = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->modelo, $this->modelo, $this->id);
+        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->modelo, $this->id);
         return Database::executeRow($sql, $params);
     }
 

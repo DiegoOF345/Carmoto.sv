@@ -117,6 +117,10 @@ INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,exis
 VALUES ("Casco 9291","Resistente","casco.png",24.00,10,1,1);
 
 
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("Casco 1413","wow","casco.png",24.00,10,1,1);
+
+
 DELIMITER $$
 CREATE PROCEDURE cambiar_estado_pedido(IN pedido_id INT)
 BEGIN

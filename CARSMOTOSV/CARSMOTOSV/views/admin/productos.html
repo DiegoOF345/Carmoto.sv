@@ -110,7 +110,7 @@
         </form>
         <div class="col-sm-12 col-md-6 text-end">
             <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" onclick="openCreate()"
+            <button type="button" class="btn btn-primary" onclick="openCreate()"
             style="justify-tracks: left;">
             <i class="bi bi-plus"></i>
           </button>
@@ -125,7 +125,7 @@
                   <div class="text-center">
                     <form id="saveForm">
                       <i class="bi bi-card-list fa-3x"></i>
-                            <h1>Agregar Producto</h1>
+                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                             <input type="number" class="d-none" id="idProducto" name="idProducto">
                             <label for="nombreProducto " class="sr-only">Nombre</label>
@@ -151,10 +151,10 @@
                             <br>
                             <br>
                             <label for="modeloProducto" class="sr-only">Modelo</label>
-                            <select id="modeloProducto" name="modeloProducto"></select>
+                            <select id="modeloProducto" name="modeloProducto" class="form-control" placeholder="Nombre del modelo" required autofocus></select>
                             <br>
                             <div class="modal-footer">
-                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="btn btn-primary">Insertar</button>
                             </div>
                         </form>
@@ -179,96 +179,12 @@
                 <th>Precio</th>
                 <th>Modelo casco</th>
                 <th>En existencias</th>
+                <th>ACCIONES</th>
             </tr>
         </thead>
         <!-- Cuerpo de la tabla para mostrar un registro por fila -->
             <tbody id="tableBody">
-                <td>Portas</td>
-                <td>Maribel</td>
-                <td>2024-03-19</td>
-                <td>20220200@ricaldone.edu.sv</td>
-                <td>Caricatura</td>
-                <td>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Actualizar">
-                <i class="bi bi-pencil-fill"></i>
-              </button>
-              <div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="text-center">
-                        <form>
-                          <i class="bi bi-people-fill fa-3x"></i>
-                          <h1>Actualizar Producto</h1>
-                            <label for="nombreProducto " class="sr-only">Nombre</label>
-                            <input type="text" id="nombreProducto" name="nombreProducto" class="form-control"
-                                placeholder="Nombre" required autofocus>
-                            <br>
-                            <label for="descripcionProducto " class="sr-only">Descripción</label>
-                            <input type="text" id="descripcionProducto" name="descripcionProducto" class="form-control"
-                                placeholder="Descripción" required autofocus>
-                            <br>
-                            <label for="precioProducto" class="sr-only">Precio</label>
-                            <input type="number" id="precioProducto" name="precioProducto" class="form-control"
-                                placeholder="Precio" autofocus required>
-                            <br>
-                            <br>
-                            <label for="imagenProducto" class="sr-only">Imagen</label>
-                            <input type="file" id="imagenProducto" name="imagenProducto" class="form-control"
-                                placeholder="Imagen">
-                           <br>
-                            <label for="existenciasProducto" class="sr-only"></label>
-                            <input type="number" id="existenciasProducto" name="existenciasProducto"
-                                class="form-control" placeholder="Existencias" required autofocus>
-                            <br>
-                            <br>
-                            <label for="modeloProducto" class="sr-only">Modelo</label>
-                            <select id="modeloProducto" name="modeloProducto"></select>
-                            <br>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Actualizar</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Eliminar">
-                <i class="bi bi-trash-fill"></i>
-              </button>
-              <div class="modal fade" id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="text-center">
-                        <form>
-                          <i class="bi bi-people-fill fa-3x"></i>
-                          <h1>Eliminar Producto</h1>
-                          <p>¿Desea eliminar este  producto permanentemente?</p>
-                          <br>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Eliminar</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                
             </td>
           </tbody>
         </table>
