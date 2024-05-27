@@ -11,7 +11,6 @@ class ClienteHandler
     */
     protected $id = null;
     protected $nombre = null;
-    protected $descripcion = null;
     protected $apellido = null;
     protected $dui = null;
     protected $correo = null;
@@ -19,7 +18,6 @@ class ClienteHandler
     protected $nacimiento = null;
     protected $direccion = null;
     protected $clave = null;
-    protected $fecha = null;
     
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../Imagenes/productos/';
@@ -42,7 +40,7 @@ class ClienteHandler
     {
         $sql = 'INSERT INTO Clientes(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente, fecha_cliente)
                 VALUES(?,?,?,?,?,?,?,?,CURRENT_DATE())';
-        $params = array($this->nombre, $this->descripcion);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->clave);
         return Database::executeRow($sql, $params);
     }
 
@@ -53,12 +51,21 @@ class ClienteHandler
         return Database::getRows($sql);
     }
 
+    public function readOne()
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente, fecha_cliente
+                FROM Clientes
+                WHERE id_cliente = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
     public function updateRow()
     {
         $sql = 'UPDATE Clientes
                 SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, contraseña_cliente = ?, fecha_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->descripcion,  $this->id);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->clave, $this->id);
         return Database::executeRow($sql, $params);
     }
 

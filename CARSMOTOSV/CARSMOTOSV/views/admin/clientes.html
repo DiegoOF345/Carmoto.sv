@@ -107,24 +107,24 @@
     </form>
     <div class="col-sm-12 col-md-6 text-end">
       <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"
+      <button type="button" class="btn btn-primary" onclick="openCreate()"
         style="justify-tracks: left;">
         <i class="bi bi-plus"></i>
       </button>
-      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div class="modal fade" id="Modal_Cliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <div class="text-center">
-                <form>
+                <form id="saveForm">
                   <i class="bi bi-card-list fa-3x"></i>
-                  <h1>Agregar cliente</h1>
+                  <h1 class="modal-title fs-5" id="modalTitle"></h1>
                   <input type="number" class="d-none" id="idCliente" name="idCliente">
                   <label for="Nombre " class="sr-only"></label>
                   <input type="Nombre" id="Nombre_cliente" name="Nombre_cliente" class="form-control" placeholder="Nombre" required
@@ -158,8 +158,8 @@
                     autofocus>
                   <br>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Insertar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                   </div>
                 </form>
               </div>
@@ -175,118 +175,23 @@
     <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
     <thead>
       <tr>
+        <td colspan="4" id="rowsFound"></td>
+    </tr>
+      <tr>
         <th>NOMBRE</th>
-        <th>APELLIDO</th>
-        <th>FECHA REGISTRO</th>
+        <th>APELLIDO</th>        
         <th>DUI</th>
         <th>CORREO</th>
         <th>TELEFONO</th>
         <th>NACIMIENTO</th>
         <th>DIRECCION</th>
-        <th>CONTRASEÑA</th>
-        <th>ACCIONES</th>
+        <th>FECHA REGISTRO</th>
+        <th>ACCIONES</th>        
       </tr>
     </thead>
     <!-- Cuerpo de la tabla para mostrar un registro por fila -->
     <tbody id="tableBody">
-      <td>Diego</td>
-      <td>Martinez</td>
-      <td>2024-03-19</td>
-      <td>145475248-0</td>
-      <td>20220100@ricaldone.edu.sv</td>
-      <td>1245-2541</td>
-      <td>2006-02-11</td>
-      <td>aguilares 5, casa roja, esquina azul</td>
-      <td>Caricatura</td>
-      <td>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Actualizar">
-          <i class="bi bi-pencil-fill"></i>
-        </button>
-        <div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-center">
-                  <form>
-                    <i class="bi bi-people-fill fa-3x"></i>
-                    <h1>Actualizar Clientes</h1>
-                    <label for="Nombre administrador" class="sr-only"></label>
-                    <input type="Nombre" id="Nombre Producto1" class="form-control" placeholder="Nombre" required
-                      autofocus>
-                    <br>
-                    <label for="apellido administrador" class="sr-only"></label>
-                    <input type="Nombre" id="Nombre Producto1" class="form-control" placeholder="Apellido" required
-                      autofocus>
-                    <br>
-                    <label for="dui" class="sr-only"></label>
-                    <input type="text" id="Nombre Producto1" class="form-control" placeholder="DUI" required autofocus>
-                    <br>
-                    <label for="correo" class="sr-only"></label>
-                    <input type="correo" id="Nombre Producto1" class="form-control" placeholder="Correo" required
-                      autofocus>
-                    <br>
-                    <label for="telefono" class="sr-only"></label>
-                    <input type="telefono" id="Nombre Producto1" class="form-control" placeholder="Teléfono" required
-                      autofocus>
-                    <br>
-                    <label for="NACIMIENTO" class="sr-only"></label>
-                    <input type="date" id="Nombre Producto1" class="form-control" placeholder="Nacimiento" required
-                      autofocus>
-                    <br>
-                    <label for="DIRECCION" class="sr-only"></label>
-                    <input type="direccion" id="Nombre Producto1" class="form-control" placeholder="Dirección" required
-                      autofocus>
-                    <br>
-                    <label for="CONTRASEÑA" class="sr-only"></label>
-                    <input type="contraseña" id="Nombre Producto1" class="form-control" placeholder="Contraseña"
-                      required autofocus>
-                    <br>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Actualizar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Eliminar">
-          <i class="bi bi-trash-fill"></i>
-        </button>
-        <div class="modal fade" id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-center">
-                  <form>
-                    <i class="bi bi-people-fill fa-3x"></i>
-                    <h1>Eliminar Cliente</h1>
-                    <p>¿Desea eliminar este cliente permanentemente?</p>
-                    <br>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Eliminar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
+      
     </tbody>
   </table>
 
@@ -327,6 +232,9 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>    
+  <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+  <script type="text/javascript" src="../../controllers/admin/cliente.js"></script>
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
   viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />

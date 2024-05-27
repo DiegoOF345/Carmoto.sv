@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
-                } elseif ($result['dataset'] = $administrador->searchRows()) {
+                } elseif ($result['dataset'] = $cliente->searchRows()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
                 } else {
@@ -28,14 +28,14 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setNombre($_POST['Nombre_admin']) or
-                    !$cliente->setApellido($_POST['Apellido_admin']) or
-                    !$cliente->setDUI($_POST['Correo_admin']) or
-                    !$cliente->setCorreo($_POST['Contraseña_admin']) or
-                    !$cliente->setTelefono($_POST['Correo_admin']) or
-                    !$cliente->setNacimiento($_POST['Correo_admin']) or
-                    !$cliente->setDireccion($_POST['Correo_admin']) or
-                    !$cliente->setClave($_POST['Correo_admin'])
+                    !$cliente->setNombre($_POST['Nombre_cliente']) or
+                    !$cliente->setApellido($_POST['Apellido_cliente']) or
+                    !$cliente->setDUI($_POST['Dui_cliente']) or
+                    !$cliente->setCorreo($_POST['Correo_cliente']) or
+                    !$cliente->setTelefono($_POST['Telefono_cliente']) or
+                    !$cliente->setNacimiento($_POST['Nacimiento_cliente']) or
+                    !$cliente->setDireccion($_POST['Direccion_cliente']) or
+                    !$cliente->setClave($_POST['Contraseña_cliente'])
                     
                 ) {
                     $result['error'] = $cliente->getDataError();
@@ -51,42 +51,47 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen administradores registrados';
+                    $result['error'] = 'No existen clientes registrados';
                 }
                 break;
             case 'readOne':
                 if (!$cliente->setId($_POST['idCliente'])) {
-                    $result['error'] = 'Administrador incorrecto';
+                    $result['error'] = 'clientes incorrecto';
                 } elseif ($result['dataset'] = $cliente->readOne()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Administrador inexistente';
+                    $result['error'] = 'clientes inexistente';
                 }
                 break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setId($_POST['idAdministrador']) or
-                    !$administrador->setNombre($_POST['Nombre_admin']) or
-                    !$administrador->setApellido($_POST['Apellido_admin']) or
-                    !$administrador->setCorreo($_POST['Correo_admin'])
+                    !$cliente->setId($_POST['idCliente']) or
+                    !$cliente->setNombre($_POST['Nombre_cliente']) or
+                    !$cliente->setApellido($_POST['Apellido_cliente']) or
+                    !$cliente->setDUI($_POST['Dui_cliente']) or
+                    !$cliente->setCorreo($_POST['Correo_cliente']) or
+                    !$cliente->setTelefono($_POST['Telefono_cliente']) or
+                    !$cliente->setNacimiento($_POST['Nacimiento_cliente']) or
+                    !$cliente->setDireccion($_POST['Direccion_cliente']) or
+                    !$cliente->setClave($_POST['Contraseña_cliente'])
                 ) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->updateRow()) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Administrador modificado correctamente';
+                    $result['message'] = 'cliente modificado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el administrador';
+                    $result['error'] = 'Ocurrió un problema al modificar el cliente';
                 }
                 break;
             case 'deleteRow':
-                 if (!$administrador->setId($_POST['idAdministrador'])) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->deleteRow()) {
+                 if (!$cliente->setId($_POST['idCliente'])) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Administrador eliminado correctamente';
+                    $result['message'] = 'cliente eliminado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar el administrador';
+                    $result['error'] = 'Ocurrió un problema al eliminar el cliente';
                 }
                 break;
             // case 'getUser':
