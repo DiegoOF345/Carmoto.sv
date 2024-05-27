@@ -2,39 +2,44 @@
 const PRODUCTO_API = 'services/admin/producto.php';
 const MODELO_API = 'services/admin/modelo.php';
 // Constante para establecer el formulario de buscar.
-const SEARCH_PRICE = document.getElementById('searchForm');
+const SEARCH_FORM = document.getElementById('searchForm');
+const MAIN_TITLE = document.getElementById('mainTitle');
+// Constantes para establecer los elementos de la tabla.
+const TABLE_BODY = document.getElementById('tableBody'),
+    ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const ADD_MODAL = new bootstrap.Modal('#exampleModal0'),
-    EDIT_MODAL = new bootstrap.Modal('#Actualizar');
-//    MODAL_TITLE = document.getElementById('modalTitle');
+const SAVE_MODAL = new bootstrap.Modal('#guardar_producto'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
-    NOMBRE_PRODUCTO = document.getElementById('Nombre_Producto'),
-    DESCRIPCION_PRODUCTO = document.getElementById('Descripcion'),
-    PRECIO_PRODUCTO = document.getElementById('Precio'),
-    MODELO_PRODUCTO = document.getElementById('Modelo_Casco'),
-    EXISTENCIAS_PRODUCTO = document.getElementById('En_existencias1');
-
-const Cerrar = document.getElementById('Cerrar');
-
-const PARAMS = new URLSearchParams(location.search);
-const PRODUCTOS = document.getElementById('Cards_Read');
-
+    NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
+    DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
+    PRECIO_PRODUCTO = document.getElementById('precioProducto'),
+    EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
-  // Llamada a la función para llenar la tabla con los registros existentes.
-  
+    // Llamada a la función para llenar la tabla con los registros existentes.
+
+
+    // Se establece el título del contenido principal.
+    MAIN_TITLE.textContent = 'Gestionar Productos';
+    // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
 
 
-  
 
-
-
-
+// Método del evento para cuando se envía el formulario de buscar.
+SEARCH_FORM.addEventListener('submit', (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SEARCH_FORM);
+    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+    fillTable(FORM);
+});
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -48,7 +53,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
-        ADD_MODAL.hide();
+        SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -65,37 +70,33 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 */
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
-    const FORM = new FormData();
-    FORM.append('id_modelo_de_casco', PARAMS.get('id'));
+    ROWS_FOUND.textContent = '';
+    TABLE_BODY.innerHTML = '';
     // Se verifica la acción a realizar.
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-
-        // Se inicializa el contenedor de productos.
-        PRODUCTOS.innerHTML = '';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las tarjetas con los datos de cada producto.
-            PRODUCTOS.innerHTML += `
-            <div class="col-sm-6 mb-6 mb-sm-0">
-                <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-column">
-                        <div class="d-flex">
-                            <h4 class="card-title card_titulo">${row.nombre_casco}</h4>
-                            <h4 class="card-text ms-auto">$${row.precio_casco}</h4>
-                        </div>
-                        <p class="card-text d-flex justify-content-center">${row.id_casco} | ${row.existencia_casco}</p>
-                        <center><img src="${SERVER_URL}/Imagenes/productos/${row.imagen_casco}" class="fixed" alt="${row.nombre_casco}" width="200"></center>
-                    </div>
-                    <button type="button" class="btn btn-light d-flex justify-content-center mx-auto" style="justify-tracks: left;" onclick="openUpdate(${row.id_casco})">
-                        Editar Producto
-                    </button>
-                </div>
-            </div>
+            TABLE_BODY.innerHTML += `
+            <tr>
+                <td>${row.nombre_casco}</td>
+                <td>${row.descripcion_casco}</td>
+                <td>${row.precio_casco}</td>
+                <td>${row.nombre_modelo}</td>
+                <td>${row.existencia_casco}</td>
+            </tr>
+            <button type="button" class="btn btn-outline-info" onclick="openUpdate(${row.id_casco})">
+            <i class="bi bi-pencil-square"></i>
+        </button>
+        <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_casco})">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </td>
+</tr>
             `;
         });
     }
@@ -111,10 +112,10 @@ const fillTable = async (form = null) => {
 */
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
-    ADD_MODAL.show();
+    SAVE_MODAL.show();
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    fillSelect(MODELO_API, 'readAll', 'id_Producto');
+    fillSelect(MODELO_API, 'readAll', 'modeloProducto');
 }
 
 /*
@@ -131,7 +132,7 @@ const openUpdate = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        EDIT_MODAL.show();
+        SAVE_MODAL.show();
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
@@ -142,8 +143,8 @@ const openUpdate = async (id) => {
         PRECIO_PRODUCTO.value = ROW.precio_casco;
         fillSelect(MODELO_API, 'readAll', 'Modelo_Casco', ROW.id_modelo_de_casco)
         EXISTENCIAS_PRODUCTO.value = ROW.existencias_producto;
-        
-        
+
+
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -174,17 +175,4 @@ const openDelete = async (id) => {
             sweetAlert(2, DATA.error, false);
         }
     }
-}
-
-
-/*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
-const openReport = () => {
-    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-    const PATH = new URL(`${SERVER_URL}reports/admin/productos.php`);
-    // Se abre el reporte en una nueva pestaña.
-    window.open(PATH.href);
 }

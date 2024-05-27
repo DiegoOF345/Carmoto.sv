@@ -94,7 +94,7 @@
     <form class="col-sm-12 col-md-6" id="searchForm">
       <div class="row">
         <div class="col-6">
-          <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+          <input type="search" class="form-control" name="search" placeholder="Buscar por nombre" required>
         </div>
         <div class="col-6">
           <button type="submit" class="btn btn-success">
@@ -123,7 +123,7 @@
               <div class="text-center">
                 <form id="saveForm">
                   <i class="bi bi-card-list fa-3x"></i>
-                  <h1>Agregar Administrador</h1>
+                  <h1 id="modalTitle"></h1>
                   <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                   <input type="number" class="d-none" id="idAdministrador" name="idAdministrador">
                   <label for="Nombre " class="sr-only"></label>
@@ -234,8 +234,8 @@
                 <div class="text-center">
                   <form>
                     <i class="bi bi-people-fill fa-3x"></i>
-                    <h1>Eliminar Administrador</h1>
-                    <p>¿Desea eliminar este administrador permanentemente?</p>
+                    <h1>Eliminar Producto</h1>
+                    <p>¿Desea eliminar este producto permanentemente?</p>
                     <br>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -250,20 +250,6 @@
       </td>
     </tbody>
   </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
