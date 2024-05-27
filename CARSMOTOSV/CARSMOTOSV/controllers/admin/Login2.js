@@ -4,7 +4,7 @@ function validarInicioSesion() {
 
     // Verificar si los campos no están vacíos
     if (correo === "" || contrasenia === "") {
-        alert("Por favor, ingresa tu correo y contraseña.");
+        alert("Por favor, ingresa tu correo y contrasena.");
         return false;
     }
 
@@ -20,10 +20,10 @@ function validarInicioSesion() {
                     // Redirigir a la página de productos
                     window.location.href = "productos.html";
                 } else {
-                    alert("Usuario o contraseña incorrectos");
+                    alert("Usuario o contrasena incorrectos");
                 }
             } else if (xhr.status == 401) {
-                alert("Usuario o contraseña incorrectos");
+                alert("Usuario o contrasena incorrectos");
             } else {
                 alert("Error en la solicitud: " + xhr.statusText);
             }
