@@ -3,7 +3,7 @@
 */
 // Constante para establecer la ruta base del servidor.
 const SERVER_URL = 'http://localhost/Carmoto.sv/CARSMOTOSV/CARSMOTOSV/api/';
-
+const USER_API = 'services/admin/administrador.php';
 /*
 *   Función para mostrar un mensaje de confirmación. Requiere la librería sweetalert para funcionar.
 *   Parámetros: message (mensaje de confirmación).
@@ -191,7 +191,7 @@ const logOut = async () => {
         const DATA = await fetchData(USER_API, 'logOut');
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
-            sweetAlert(1, DATA.message, true, 'index.html');
+            sweetAlert(1, DATA.message, true, 'Login2.html');
         } else {
             sweetAlert(2, DATA.exception, false);
         }
