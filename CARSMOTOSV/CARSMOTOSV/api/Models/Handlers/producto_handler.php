@@ -24,12 +24,12 @@ class ProductoHandler
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
     */
-    public function searchPrice()
+    public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
                 FROM Cascos
-                WHERE precio_casco LIKE ? 
+                WHERE precio_casco LIKE ? or nombre_casco LIKE ? 
                 ORDER BY nombre_casco';
         $params = array($value, $value);
         return Database::getRows($sql, $params);

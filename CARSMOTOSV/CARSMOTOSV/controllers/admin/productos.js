@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'Gestionar Productos';
+    MAIN_TITLE.textContent = '';
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
