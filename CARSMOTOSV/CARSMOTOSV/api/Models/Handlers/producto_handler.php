@@ -27,8 +27,9 @@ class ProductoHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
+        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco, nombre_modelo
                 FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
                 WHERE precio_casco LIKE ? or nombre_casco LIKE ? 
                 ORDER BY nombre_casco';
         $params = array($value, $value);
@@ -45,8 +46,9 @@ class ProductoHandler
 
     public function readAll()
     {
-        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco
-                FROM Cascos';
+        $sql = 'SELECT id_casco, imagen_casco, nombre_casco, descripcion_casco, precio_casco, existencia_casco, nombre_modelo
+                FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)';
         return Database::getRows($sql);
     }
 
