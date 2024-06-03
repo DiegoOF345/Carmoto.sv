@@ -109,6 +109,16 @@ class ProductoData extends ProductoHandler
         }
     }
 
+    public function setMarca($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->marca = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador de la marca es incorrecto';
+            return false;
+        }
+    }
 
     public function setFilename()
     {

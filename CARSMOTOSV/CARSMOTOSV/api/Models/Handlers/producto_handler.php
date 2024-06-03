@@ -87,14 +87,14 @@ class ProductoHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosModelos()
+    public function readProductosMarcas()
     {
         $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
                 FROM Cascos
                 INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
-                WHERE id_modelo_de_casco = ?
+                WHERE id_marca_casco = ?
                 ORDER BY nombre_casco';
-        $params = array($this->modelo);
+        $params = array($this->marca);
         return Database::getRows($sql, $params);
     }
 
