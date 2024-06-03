@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carmotosv</title>
+    <link rel="icon" href="../../api/Imagenes/img/content/logo.jpeg" />
+    <link rel="stylesheet" href="../../resources/css/style_home.css" />
+    <link rel="stylesheet" href="../../resources/css/reset.css" />
+    <link rel="stylesheet" href="../../resources/css/footer.style.css" />
+    <link rel="stylesheet" href="../../resources/css/header.style.css" />
+    <link rel="stylesheet" href="../../resources/css/common-class.style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-container">
+        <div class="header-content">
+          <a href="./home.html"
+            ><div class="logo-img" alt="carmotosv logo"></div
+          ></a>
+          <a href="./about_us.html" class="title-navigation title">
+            <h2>¿Quiénes somos?</h2>
+          </a>
+          <a
+            href="./promociones.html"
+            class="title-navigation title"
+          >
+            <h2>Promociones</h2>
+          </a>
+        </div>
+      </div>
+      <div class="action-header-container">
+        <div id="menu">
+          <ul>
+            <li class="has-sub">
+              <div class="hamburger-container">
+                <button
+                  class="hamburger actions-btn-no-background"
+                  id="hamburger"
+                >
+                  <img
+                    src="../../api/Imagenes/img/icons/hamburger.png"
+                    class="icons hamburger"
+                    alt="hamburger"
+                  />
+                </button>
+                <h2 class="action-title title">Marcas</h2>
+              </div>
+              <ul id="Marcas_fill">
+                <li class="item">
+                  <a title="" href="./productos.html">Inicio</a>
+                </li>
+                <li class="item">
+                  <a title="" href="../products/product-scorpion/index.html"
+                    >scorpion</a
+                  >
+                </li>
+                <li class="item">
+                  <a title="" href="../products/product-arai/index.html"
+                    >arai</a
+                  >
+                </li>
+                <li class="item">
+                  <a title="" href="../products/product-nexx-wed-2/index.html"
+                    >Nexx Wed 2</a
+                  >
+                </li>
+                <li class="item">
+                  <a title="" href="../products/product-agv/index.html">AGV</a>
+                </li>
+                <li class="item">
+                  <a title="" href="../products/product-niz/index.html">NZI</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h2 class="action-title title">Inicio</h2>
+        <div>
+          <button
+            class="shopping-car-btn actions-btn-no-background"
+            id="shopping-car"
+          >
+            <a href="./shopping_car.html"
+              ><img
+                src="../../api/Imagenes/img/icons/shopping car.png"
+                class="icons"
+                alt="shopping car"
+            /></a>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="main">
+      <section class="carousel">
+        <button
+          id="prevImgCarousel"
+          class="carousel-button left actions-btn-no-background hidden"
+        >
+          <img src="../../api/Imagenes/img/icons/row.png" alt="left row" />
+        </button>
+        <div class="carousel__tracker-container" id="carouselContainer">
+          <ul class="carousel__tracker">
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/1.jpeg"
+                alt="carousel image 1"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/2.jpeg"
+                alt="carousel image 2"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/3.jpeg"
+                alt="carousel image 3"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/4.jpeg"
+                alt="carousel image 4"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/5.jpeg"
+                alt="carousel image 5"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/6.jpeg "
+                alt="carousel image 6"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/7.jpeg"
+                alt="carousel image 7"
+              />
+            </li>
+            <li class="carousel__slide current__slide">
+              <img
+                class="carousel-img"
+                src="../../api/Imagenes/img/carousel/8.jpeg"
+                alt="carousel image 8"
+              />
+            </li>
+          </ul>
+        </div>
+        <button
+          id="nextImgCarousel"
+          class="carousel-button right actions-btn-no-background"
+        >
+          <img src="../../api/Imagenes/img/icons/row.png" alt="right row" />
+        </button>
+      </section>
+      <hr class="division-line" />
+      <h3 class="title-2">Seguridad vial</h3>
+      <section class="video-section">
+        <article class="video-article flex-centered">
+          <video
+            controls
+            width="90%"
+            height="300px"
+            type="video/mp4"
+            class="video"
+            autoplay
+            muted
+          >
+            <source src="../../api/Imagenes/video/1.mp4 " />
+            Tu browser no soporta este elemento
+          </video>
+        </article>
+        <article class="video-text-article">
+          <p>
+            Usar casco mientras se conduce es esencial para proteger la cabeza y
+            reducir el riesgo de lesiones graves en caso de accidente, además de
+            cumplir con las normativas de tránsito y fomentar una cultura de
+            seguridad vial.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <section class="footer-more-information">
+        <article class="footer-direction">
+          <p class="name"> CARMOTOSV El Salvador S.A. de C.V.</p>
+          <p class="direction">
+            Avenida Aguilares 218 San Salvador CP, San Salvador 1101 Instituto
+            Técnico Ricaldone, dirección
+          </p>
+        </article>
+        <article class="footer-help">
+          <p class="help">¿Necesitas ayuda? Contactanos</p>
+          <div class="help-container">
+            <div class="icon-cointainer">
+              <img src="../../api/Imagenes/img/icons/whatsapp.png" alt="whatsapp" />
+            </div>
+            <p>2545-6890</p>
+          </div>
+          <div class="help-container">
+            <div class="icon-cointainer">
+              <img src="../../api/Imagenes/img/icons/instagram.png" alt="instagram" />
+            </div>
+            <p>@Carmotosv</p>
+          </div>
+        </article>
+      </section>
+      <p class="copyright">
+        Copyright © 2024 CARMOTOSV. Todos los derechos Reservados.
+      </p>
+    </footer>
+
+    <script src="../../resources/JS/style.dynamic.js"></script>
+  </body>
+</html>
