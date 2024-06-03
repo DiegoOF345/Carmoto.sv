@@ -9,19 +9,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se establece la página web de destino con los parámetros.
-            let url = `products.html?id=${row.id_categoria}&nombre=${row.nombre_categoria}`;
+            let url = `productos.html?id=${row.id_marca_casco}&nombre=${row.nombre_marca}`;
             // Se crean y concatenan las tarjetas con los datos de cada categoría.
-            CATEGORIAS.innerHTML += `
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="card mb-3">
-                        <img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" class="card-img-top" alt="${row.nombre_categoria}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">${row.nombre_categoria}</h5>
-                            <p class="card-text">${row.descripcion_categoria}</p>
-                            <a href="${url}" class="btn btn-primary">Ver productos</a>
-                        </div>
-                    </div>
-                </div>
+            MARCA.innerHTML += `
+                <li class="item">
+                    <a title="" href="${url}">${row.nombre_marca}</a>
+                </li>
             `;
         });
     } else {

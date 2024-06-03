@@ -23,16 +23,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <h2 class="title semi-bold">${row.nombre_casco}</h2>
                             <p>Certificado</p>
                         </div>
-                        <p class="semi-bold">$${row.precio_producto}</p>
+                        <p class="semi-bold">${row.precio_casco}</p>
                     </div>
                     <div class="img-container">
                         <img
-                            src="${SERVER_URL}/img/Carmoto.sv/Imagenes de AGV/${row.imagen_casco} "
-                            alt="AGV product"
+                        src="${SERVER_URL}Imagenes/productos/${row.imagen_casco}"
+                        alt="AGV product"
                         />
                     </div>
                     <button class="check-details">
-                        <a href="../../helmet/index.html?id=${row.id_producto}" class="link">Ver detalles</a>
+                    <a href="helmet.html?id=${row.id_casco}" class="link">Ver detalles</a>
                     </button>
                 </article>
             `;

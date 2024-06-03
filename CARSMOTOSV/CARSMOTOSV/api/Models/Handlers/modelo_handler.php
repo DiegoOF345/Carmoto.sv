@@ -17,7 +17,7 @@ class ModeloHandler
 
 
     // Constante para establecer la ruta de las imágenes.
-    const RUTA_IMAGEN = '../../images/productos/';
+    const RUTA_IMAGEN = '../../imagenes/productos/';
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
