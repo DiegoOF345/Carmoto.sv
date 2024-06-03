@@ -44,9 +44,9 @@ SIGNUP_FORM.addEventListener('submit', async (event) => {
     const DATA = await fetchData(USER_API, 'signUp', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        sweetAlert(1, DATA.message, true, 'login.html');
+        sweetAlert(1, DATA.message, true, 'index.html');
     } else if (DATA.recaptcha) {
-        sweetAlert(2, DATA.error, false, 'index.html');
+        sweetAlert(2, DATA.error, false, 'home.html');
     } else {
         sweetAlert(2, DATA.error, false);
         // Se genera un nuevo token cuando ocurre un problema.

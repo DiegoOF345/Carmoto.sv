@@ -131,4 +131,12 @@ class ClienteHandler
         $params = array($value, $value);
         return Database::getRow($sql, $params);
     }
+    public function changePassword()
+    {
+        $sql = 'UPDATE cliente
+                SET contraseña_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->clave, $this->id);
+        return Database::executeRow($sql, $params);
+    }
 }

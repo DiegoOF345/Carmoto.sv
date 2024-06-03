@@ -69,10 +69,10 @@ if (isset($_GET['action'])) {
                     !$cliente->setDUI($_POST['duiCliente']) or
                     !$cliente->setNacimiento($_POST['nacimientoCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setClave($_POST['claveCliente'])
+                    !$cliente->setClave($_POST['contraseñaCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
-                } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
+                } elseif ($_POST['contraseñaCliente'] != $_POST['confirmarContraseña']) {
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
