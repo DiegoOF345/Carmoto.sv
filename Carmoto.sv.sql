@@ -69,6 +69,7 @@ CREATE TABLE detalle_pedidos (
     id_detalle_pedidos INT PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT NOT NULL,
     id_casco INT NOT NULL,
+    talla_casco ENUM("S","M","L"),
     cantidad_productos INT NOT NULL,
     precio_total_productos DECIMAL(5,2) NOT NULL,
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
