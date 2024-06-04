@@ -15,6 +15,7 @@ CREATE TABLE Clientes (
     nacimiento_cliente DATE NOT NULL,
     direccion_cliente VARCHAR(170) NOT NULL,
     contraseña_cliente VARCHAR(170) NOT NULL,
+    estado_cliente tinyint(1) NOT NULL DEFAULT 1,
     fecha_cliente DATE DEFAULT NOW(),
     CONSTRAINT dui_unico UNIQUE (dui_cliente)
 );

@@ -53,7 +53,7 @@
   border-radius: 1.25rem;
   &:hover {
     background-color: white;
-    color: black;
+    color: white;
   }
 }
 

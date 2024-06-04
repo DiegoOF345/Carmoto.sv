@@ -17,10 +17,46 @@ class ClienteHandler
     protected $telefono = null;
     protected $nacimiento = null;
     protected $direccion = null;
-    protected $clave = null;
+    protected $contraseña = null;
+
+    protected $estado = null;
+
+    
     
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../Imagenes/productos/';
+
+   /*
+    *   Métodos para gestionar la cuenta del cliente.
+    */
+    public function checkUser($mail, $password)
+    {
+        $sql = 'SELECT id_cliente, correo_cliente, contraseñaCliente, estado_cliente
+                FROM cliente
+                WHERE correo_cliente = ?';
+        $params = array($mail);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($password, $data['contraseñaCliente'])) {
+            $this->id = $data['id_cliente'];
+            $this->correo = $data['correo_cliente'];
+            $this->estado = $data['estado_cliente'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkStatus()
+    {
+        if ($this->estado) {
+            $_SESSION['idCliente'] = $this->id;
+            $_SESSION['correoCliente'] = $this->correo;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
@@ -40,7 +76,7 @@ class ClienteHandler
     {
         $sql = 'INSERT INTO Clientes(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente, fecha_cliente)
                 VALUES(?,?,?,?,?,?,?,?,CURRENT_DATE())';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->clave);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->contraseña);
         return Database::executeRow($sql, $params);
     }
 
@@ -65,7 +101,7 @@ class ClienteHandler
         $sql = 'UPDATE Clientes
                 SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, contraseña_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->clave, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->correo, $this->telefono, $this->nacimiento, $this->direccion, $this->contraseña, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -136,7 +172,7 @@ class ClienteHandler
         $sql = 'UPDATE cliente
                 SET contraseña_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->clave, $this->id);
+        $params = array($this->contraseña, $this->id);
         return Database::executeRow($sql, $params);
     }
 }

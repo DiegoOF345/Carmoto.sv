@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../Models/data/cliente_data.php');
+require_once('../../models/data/cliente_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -9,99 +9,20 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $cliente = new ClienteData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
-    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_administrador']) or true) {
+    $result = array('status' => 0, 'session' => 0, 'recaptcha' => 0, 'message' => null, 'error' => null, 'exception' => null, 'username' => null);
+    // Se verifica si existe una sesión iniciada como cliente para realizar las acciones correspondientes.
+    if (isset($_SESSION['idCliente'])) {
         $result['session'] = 1;
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+        // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'searchRows':
-                if (!Validator::validateSearch($_POST['search'])) {
-                    $result['error'] = Validator::getSearchError();
-                } elseif ($result['dataset'] = $cliente->searchRows()) {
+            case 'getUser':
+                if (isset($_SESSION['correoCliente'])) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
+                    $result['username'] = $_SESSION['correoCliente'];
                 } else {
-                    $result['error'] = 'No hay coincidencias';
+                    $result['error'] = 'Correo de usuario indefinido';
                 }
                 break;
-            case 'createRow':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$cliente->setNombre($_POST['Nombre_cliente']) or
-                    !$cliente->setApellido($_POST['Apellido_cliente']) or
-                    !$cliente->setDUI($_POST['Dui_cliente']) or
-                    !$cliente->setCorreo($_POST['Correo_cliente']) or
-                    !$cliente->setTelefono($_POST['Telefono_cliente']) or
-                    !$cliente->setNacimiento($_POST['Nacimiento_cliente']) or
-                    !$cliente->setDireccion($_POST['Direccion_cliente']) or
-                    !$cliente->setClave($_POST['Contraseña_cliente'])
-                    
-                ) {
-                    $result['error'] = $cliente->getDataError();
-                }  elseif ($cliente->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Cliente creado correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al crear el cliente';
-                }
-                break;
-            case 'readAll':
-                if ($result['dataset'] = $cliente->readAll()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
-                } else {
-                    $result['error'] = 'No existen clientes registrados';
-                }
-                break;
-            case 'readOne':
-                if (!$cliente->setId($_POST['idCliente'])) {
-                    $result['error'] = 'clientes incorrecto';
-                } elseif ($result['dataset'] = $cliente->readOne()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'clientes inexistente';
-                }
-                break;
-            case 'updateRow':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$cliente->setId($_POST['idCliente']) or
-                    !$cliente->setNombre($_POST['Nombre_cliente']) or
-                    !$cliente->setApellido($_POST['Apellido_cliente']) or
-                    !$cliente->setDUI($_POST['Dui_cliente']) or
-                    !$cliente->setCorreo($_POST['Correo_cliente']) or
-                    !$cliente->setTelefono($_POST['Telefono_cliente']) or
-                    !$cliente->setNacimiento($_POST['Nacimiento_cliente']) or
-                    !$cliente->setDireccion($_POST['Direccion_cliente']) or
-                    !$cliente->setClave($_POST['Contraseña_cliente'])
-                ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->updateRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'cliente modificado correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el cliente';
-                }
-                break;
-            case 'deleteRow':
-                 if (!$cliente->setId($_POST['idCliente'])) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->deleteRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'cliente eliminado correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar el cliente';
-                }
-                break;
-            // case 'getUser':
-            //     if (isset($_SESSION['aliasAdministrador'])) {
-            //         $result['status'] = 1;
-            //         $result['username'] = $_SESSION['aliasAdministrador'];
-            //     } else {
-            //         $result['error'] = 'Alias de administrador indefinido';
-            //     }
-            //     break;
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -110,84 +31,65 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
-            case 'readProfile':
-                if ($result['dataset'] = $administrador->readProfile()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'Ocurrió un problema al leer el perfil';
-                }
-                break;
-            case 'editProfile':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$administrador->setNombre($_POST['Nombre_admin']) or
-                    !$administrador->setApellido($_POST['Apellido_admin']) or
-                    !$administrador->setCorreo($_POST['Correo_admin']) or
-                    !$administrador->setAlias($_POST['aliasAdministrador'])
-                ) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->editProfile()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Perfil modificado correctamente';
-                    $_SESSION['aliasAdministrador'] = $_POST['aliasAdministrador'];
-                } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
-                }
-                break;
-            case 'changePassword':
-                $_POST = Validator::validateForm($_POST);
-                if (!$administrador->checkPassword($_POST['claveActual'])) {
-                    $result['error'] = 'Contraseña actual incorrecta';
-                } elseif ($_POST['claveNueva'] != $_POST['confirmarContraseña']) {
-                    $result['error'] = 'Confirmación de contraseña diferente';
-                } elseif (!$administrador->setClave($_POST['claveNueva'])) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->changePassword()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Contraseña cambiada correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
-                }
-                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
-        // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
+        // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'readUsers':
-                if ($administrador->readAll()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Debe autenticarse para ingresar';
-                } else {
-                    $result['error'] = 'Debe crear un administrador para comenzar';
-                }
-                break;
-            case 'registrarse':
+            case 'signUp':
                 $_POST = Validator::validateForm($_POST);
-                if (
-                    !$administrador->setNombre($_POST['Nombre_admin']) or
-                    !$administrador->setApellido($_POST['Apellido_admin']) or
-                    !$administrador->setCorreo($_POST['Correo_admin']) or
-                    !$administrador->setClave($_POST['Contraseña_admin'])
+                // Se establece la clave secreta para el reCAPTCHA de acuerdo con la cuenta de Google.
+                $secretKey = '6LdBzLQUAAAAAL6oP4xpgMao-SmEkmRCpoLBLri-';
+                // Se establece la dirección IP del servidor.
+                $ip = $_SERVER['REMOTE_ADDR'];
+                // Se establecen los datos del raCAPTCHA.
+                $data = array('secret' => $secretKey, 'response' => $_POST['gRecaptchaResponse'], 'remoteip' => $ip);
+                // Se establecen las opciones del reCAPTCHA.
+                $options = array(
+                    'http' => array('header' => 'Content-type: application/x-www-form-urlencoded\r\n', 'method' => 'POST', 'content' => http_build_query($data)),
+                    'ssl' => array('verify_peer' => false, 'verify_peer_name' => false)
+                );
+
+                $url = 'https://www.google.com/recaptcha/api/siteverify';
+                $context = stream_context_create($options);
+                $response = file_get_contents($url, false, $context);
+                $captcha = json_decode($response, true);
+
+                if (!$captcha['success']) {
+                    $result['recaptcha'] = 1;
+                    $result['error'] = 'No eres humano';
+                } elseif(!isset($_POST['condicion'])) {
+                    $result['error'] = 'Debe marcar la aceptación de términos y condiciones';
+                } elseif (
+                    !$cliente->setNombre($_POST['nombreCliente']) or
+                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setCorreo($_POST['correoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or
+                    !$cliente->setDUI($_POST['duiCliente']) or
+                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setClave($_POST['contraseñaCliente'])
                 ) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($_POST['Contraseña_admin'] != $_POST['confirmarContraseña']) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($_POST['contraseñaCliente'] != $_POST['confirmarClave']) {
                     $result['error'] = 'Contraseñas diferentes';
-                } elseif ($administrador->createRow()) {
+                } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Administrador registrado correctamente';
+                    $result['message'] = 'Cuenta registrada correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al registrar el administrador';
+                    $result['error'] = 'Ocurrió un problema al registrar la cuenta';
                 }
                 break;
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if ($administrador->checkUser($_POST['correo'], $_POST['contra'])) {
+                if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {
+                    $result['error'] = 'Datos incorrectos';
+                } elseif ($cliente->checkStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {
-                    $result['error'] = 'Credenciales incorrectas';
+                    $result['error'] = 'La cuenta ha sido desactivada';
                 }
                 break;
             default:
@@ -199,7 +101,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

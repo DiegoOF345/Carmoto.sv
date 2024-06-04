@@ -17,6 +17,8 @@ class ClienteData extends ClienteHandler
     private $data_error = null;
     private $filename = null;
 
+    
+
     /*
      *   Métodos para validar y establecer los datos.
      */
@@ -129,7 +131,7 @@ class ClienteData extends ClienteHandler
     public function setClave($value)
     {
         if (Validator::validatePassword($value)) {
-            $this->clave = password_hash($value, PASSWORD_DEFAULT);
+            $this->contraseña = password_hash($value, PASSWORD_DEFAULT);
             return true;
         } else {
             $this->data_error = Validator::getPasswordError();

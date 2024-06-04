@@ -234,3 +234,46 @@
   .hidden {
     display: none;
   }
+
+
+  
+  .header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: "Inter", sans-serif;
+  }
+  .header-container {
+    background-color: hsl(0, 100%, 50%);
+    display: flex;
+    justify-content: center;
+  }
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    width: 75%;
+  }
+
+  
+  .title-navigation {
+    padding: 1rem;
+    border-radius: 1.25rem;
+    &:hover {
+      background-color: white;
+      color: white;
+    }
+  }
+
+
+  .logo-img {
+    height: 5rem;
+    width: 12rem;
+    background-image: url("../../api/Imagenes/img/content/logo.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
