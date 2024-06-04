@@ -59,7 +59,7 @@ CREATE TABLE Cascos (
 CREATE TABLE Pedidos (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT NOT NULL,
-    estado_pedidos BOOLEAN DEFAULT 1,
+    estado_pedidos ENUM("Pendiente","Cancelado","Entregado"),
     fecha_registro DATETIME DEFAULT NOW(),
     direccion_pedidos VARCHAR(255) NOT NULL,
     CONSTRAINT fk_cliente_pedido FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
@@ -103,16 +103,16 @@ VALUES
   ('Andrea', 'Rodríguez', '109876543', 'andrea.rodriguez@email.com', '+503 7654 3210', '2003-10-27', 'Calle Delgado 5678, San Salvador', 'contraseña3210');
 
 INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedidos) VALUES
-(1, '2023-05-01 10:30:00', TRUE, '123 Calle Falsa, Ciudad Ejemplo'),
-(2, '2023-05-02 14:45:00', TRUE, '456 Avenida Siempreviva, Ciudad Ejemplo'),
-(3, '2023-05-03 09:15:00', FALSE, '789 Calle Verdadera, Ciudad Ejemplo'),
-(4, '2023-05-04 11:50:00', TRUE, '1011 Calle Principal, Ciudad Ejemplo'),
-(5, '2023-05-05 13:30:00', FALSE, '1213 Avenida Secundaria, Ciudad Ejemplo'),
-(6, '2023-05-06 16:20:00', TRUE, '1415 Calle Tercera, Ciudad Ejemplo'),
-(7, '2023-05-07 08:05:00', TRUE, '1617 Calle Cuarta, Ciudad Ejemplo'),
-(8, '2023-05-08 12:10:00', FALSE, '1819 Calle Quinta, Ciudad Ejemplo'),
-(9, '2023-05-09 15:40:00', TRUE, '2021 Calle Sexta, Ciudad Ejemplo'),
-(10, '2023-05-10 17:25:00', TRUE, '2223 Avenida Séptima, Ciudad Ejemplo');
+(1, '2023-05-01 10:30:00', 'Pendiente', '123 Calle Falsa, Ciudad Ejemplo'),
+(2, '2023-05-02 14:45:00', 'Entregado', '456 Avenida Siempreviva, Ciudad Ejemplo'),
+(3, '2023-05-03 09:15:00', 'Pendiente', '789 Calle Verdadera, Ciudad Ejemplo'),
+(4, '2023-05-04 11:50:00', 'Pendiente', '1011 Calle Principal, Ciudad Ejemplo'),
+(5, '2023-05-05 13:30:00', 'Pendiente', '1213 Avenida Secundaria, Ciudad Ejemplo'),
+(6, '2023-05-06 16:20:00', 'Pendiente', '1415 Calle Tercera, Ciudad Ejemplo'),
+(7, '2023-05-07 08:05:00', 'Cancelado', '1617 Calle Cuarta, Ciudad Ejemplo'),
+(8, '2023-05-08 12:10:00', 'Pendiente', '1819 Calle Quinta, Ciudad Ejemplo'),
+(9, '2023-05-09 15:40:00', 'Entregado', '2021 Calle Sexta, Ciudad Ejemplo'),
+(10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
 VALUES ("Casco 9291","Resistente","casco.png",24.00,10,1,1);

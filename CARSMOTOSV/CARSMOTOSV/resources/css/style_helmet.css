@@ -156,3 +156,9 @@
   background-color: #ffffff;
   border-radius: 50%;
 }
+
+.buttons :hover{
+  text-decoration: none;
+  background-color: #ffffff;
+  border-radius: 50%;
+}

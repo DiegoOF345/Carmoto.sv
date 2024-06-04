@@ -16,16 +16,39 @@ class PedidoData extends PedidoHandler
      *  Métodos para validar y asignar valores de los atributos.
      */
     // Validación y asignación del ID de Pedido.
-    public function setId($value)
+    public function setIdPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->id_pedido = $value;
             return true;
         } else {
             $this->data_error = 'El identificador del pedido es incorrecto';
             return false;
         }
     }
+
+    public function setIdDetalle($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_detalle = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del detalle pedido es incorrecto';
+            return false;
+        }
+    }
+
+    public function setCantidad($value){
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad del producto debe ser mayor o igual a 1';
+            return false;
+        }
+    }
+
+
 
     
 
