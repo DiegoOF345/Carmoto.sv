@@ -2,15 +2,18 @@ const PRODUCTO_API = 'services/public/producto.php';
 // Constante tipo objeto para obtener los parámetros disponibles en la URL.
 const PARAMS = new URLSearchParams(location.search);
 const PRODUCTOS = document.getElementById('productos');
+const MAIN_TITLE = document.getElementById('MainTitle');
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Se define un objeto con los datos de la categoría seleccionada.
+    
     const FORM = new FormData();
     FORM.append('idMarca', PARAMS.get('id'));
     // Petición para solicitar los productos de la categoría seleccionada.
     const DATA = await fetchData(PRODUCTO_API, 'readProductosMarcas', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {        
+    if (DATA.status) {
+        MAIN_TITLE.textContent = `${PARAMS.get('nombre')}`;
         // Se inicializa el contenedor de productos.
         PRODUCTOS.innerHTML = '';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.

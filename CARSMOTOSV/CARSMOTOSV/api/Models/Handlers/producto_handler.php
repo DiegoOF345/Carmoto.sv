@@ -18,6 +18,8 @@ class ProductoHandler
     
     protected $modelo = null;
 
+    protected $marca = null;
+
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../Imagenes/productos/';
 

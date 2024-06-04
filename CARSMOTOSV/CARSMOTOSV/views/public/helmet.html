@@ -47,41 +47,18 @@
                 </button>
                 <h2 class="action-title title">Marcas</h2>
               </div>
-              <ul>
-                <li class="item">
-                  <a title="" href="../home/index.html">Inicio</a>
-                </li>
-                <li class="item">
-                  <a title="" href="../products/product-scorpion/index.html"
-                    >scorpion</a
-                  >
-                </li>
-                <li class="item">
-                  <a title="" href="../products/product-arai/index.html"
-                    >arai</a
-                  >
-                </li>
-                <li class="item">
-                  <a title="" href="../products/product-nexx-wed-2/index.html"
-                    >Nexx Wed 2</a
-                  >
-                </li>
-                <li class="item">
-                  <a title="" href="../products/product-agv/index.html">AGV</a>
-                </li>
-                <li class="item">
-                  <a title="" href="../products/product-niz/index.html">NZI</a>
-                </li>
+              <ul id="Marcas_fill">
+                
               </ul>
             </li>
           </ul>
         </div>
-        <h2 class="action-title title">scorpion</h2>
+        <h2 class="action-title title" id="MainTitle"></h2>
         <button
           class="shopping-car-btn actions-btn-no-background"
           id="shopping-car"
         >
-          <a href="../shopping-cart/index.html"
+          <a href="./shopping_car.html"
             ><img
               src="../../api/Imagenes/img/icons/shopping car.png"
               class="icons"
@@ -93,15 +70,6 @@
 
     <!-- MAIN BODY -->
     <main class="main">
-      <div class="selection-container">
-        <h2 class="title-2">Precios</h2>
-        <select name="price" id="price" class="price-selector">
-          <option class="option" value="default">Seleccion</option>
-          <option class="option" value="15">$15.00</option>
-          <option class="option" value="26">$26.00</option>
-          <option class="option" value="40">$40.00</option>
-        </select>
-      </div>
       <section class="helmet-section">
         <article class="helmet-card">
           <div class="img-container">
@@ -121,16 +89,19 @@
               Precio:
               <span class="semi-bold">$48.00</span>
             </p>
-            <ul class="helmets-size">
-              <p>Talla:</p>
-              <li class="helmet-size-type semi-bold"><span>S</span></li>
-              <hr class="division-size" />
+            <p>Talla: </p>
+            <form>
+            <ul class="helmets-size flex-centered buttons">             
               <li class="helmet-size-type semi-bold">
-                <span>M</span>
+               <a href="#" class="buttons">S</a> 
               </li>
               <hr class="division-size" />
               <li class="helmet-size-type semi-bold">
-                <span>L</span>
+               <a href="#">M</a> 
+              </li>
+              <hr class="division-size" />
+              <li class="helmet-size-type semi-bold">
+               <a href="#">L</a> 
               </li>
             </ul>
             <div class="order-actions">
@@ -141,6 +112,7 @@
             <button class="add-cart-btn" id="addToCartBtn">
               <p>Agregar al carrito</p>
             </button>
+          </form>
           </div>
         </article>
       </section>
@@ -178,5 +150,8 @@
     </footer>
 
     <script src="../../resources/JS/style.dynamic.js"></script>
+    <script type="text/javascript" src="../../resources/JS/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../controllers/public/marca.js"></script>
   </body>
 </html>
