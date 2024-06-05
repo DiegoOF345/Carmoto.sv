@@ -59,7 +59,7 @@ CREATE TABLE Cascos (
 CREATE TABLE Pedidos (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT NOT NULL,
-    estado_pedidos ENUM("Pendiente","Cancelado","Entregado"),
+    estado_pedidos ENUM("Pendiente","Cancelado","En proceso","Finalizado"),
     fecha_registro DATETIME DEFAULT NOW(),
     direccion_pedidos VARCHAR(255) NOT NULL,
     CONSTRAINT fk_cliente_pedido FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
@@ -71,7 +71,7 @@ CREATE TABLE detalle_pedidos (
     id_casco INT NOT NULL,
     talla_casco ENUM("S","M","L"),
     cantidad_productos INT NOT NULL,
-    precio_total_productos DECIMAL(5,2) NOT NULL,
+    precio_casco_detalle DECIMAL(5,2) NOT NULL,
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
     CONSTRAINT fk_detalle_pedidos FOREIGN KEY (id_casco) REFERENCES Cascos(id_casco)
 );

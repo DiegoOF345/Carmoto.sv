@@ -15,6 +15,7 @@ class PedidoHandler
     protected $producto = null;
     protected $cantidad = null;
     protected $estado = null;
+    protected $talla = null;
 
 
     /*
@@ -37,10 +38,7 @@ class PedidoHandler
     // Función para leer todos los pedido
     public function readAll()
     {
-        $sql = 'SELECT id_pedido AS ID, fecha_registro AS FECHA, direccion_pedidos AS DIRECCION, CASE 
-        WHEN estado_pedidos = 1 THEN "Entregado"
-        WHEN estado_pedidos = 0 THEN "Cancelado"
-        END AS ESTADO FROM Pedidos
+        $sql = 'SELECT id_pedido AS ID, fecha_registro AS FECHA, direccion_pedidos AS DIRECCION, estado_pedidos AS ESTADO FROM Pedidos
         ORDER BY FECHA;';
         return Database::getRows($sql);
     }
@@ -66,8 +64,8 @@ class PedidoHandler
         if ($this->getOrder()) {
             return true;
         } else {
-            $sql = 'INSERT INTO pedido(direccion_pedido, id_cliente)
-                    VALUES((SELECT direccion_cliente FROM cliente WHERE id_cliente = ?), ?)';
+            $sql = 'INSERT INTO Pedidos(direccion_pedidos, id_cliente)
+                    VALUES((SELECT direccion_cliente FROM Clientes WHERE id_cliente = ?), ?)';
             $params = array($_SESSION['idCliente'], $_SESSION['idCliente']);
             // Se obtiene el ultimo valor insertado de la llave primaria en la tabla pedido.
             if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
@@ -82,19 +80,19 @@ class PedidoHandler
     public function createDetail()
     {
         // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO detalle_pedido(id_producto, precio_producto, cantidad_producto, id_pedido)
-                VALUES(?, (SELECT precio_producto FROM producto WHERE id_producto = ?), ?, ?)';
-        $params = array($this->producto, $this->producto, $this->cantidad, $_SESSION['idPedido']);
+        $sql = 'INSERT INTO detalle_pedidos(id_casco, precio_casco, talla_casco, cantidad_productos, id_pedido)
+                VALUES(?, (SELECT precio_casco FROM Cascos WHERE id_casco = ?), ?, ?, ?)';
+        $params = array($this->producto, $this->producto, $this->talla, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
 
     // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readDetail()
     {
-        $sql = 'SELECT id_detalle, nombre_producto, detalle_pedido.precio_producto, detalle_pedido.cantidad_producto
-                FROM detalle_pedido
-                INNER JOIN pedido USING(id_pedido)
-                INNER JOIN producto USING(id_producto)
+        $sql = 'SELECT id_detalle_pedidos, nombre_casco, talla_casco, detalle_pedidos.precio_casco, detalle_pedidos.cantidad_productos
+                FROM detalle_pedidos
+                INNER JOIN Pedidos USING(id_pedido)
+                INNER JOIN Cascos USING(id_casco)
                 WHERE id_pedido = ?';
         $params = array($_SESSION['idPedido']);
         return Database::getRows($sql, $params);
@@ -104,8 +102,8 @@ class PedidoHandler
     public function finishOrder()
     {
         $this->estado = 'Finalizado';
-        $sql = 'UPDATE pedido
-                SET estado_pedido = ?
+        $sql = 'UPDATE Pedidos
+                SET estado_pedidos = ?
                 WHERE id_pedido = ?';
         $params = array($this->estado, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
@@ -124,17 +122,18 @@ class PedidoHandler
     // Método para eliminar un producto que se encuentra en el carrito de compras.
     public function deleteDetail()
     {
-        $sql = 'DELETE FROM detalle_pedido
-                WHERE id_detalle = ? AND id_pedido = ?';
+        $sql = 'DELETE FROM detalle_pedidos
+                WHERE id_detalle_pedidos = ? AND id_pedido = ?';
         $params = array($this->id_detalle, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
 
     //Función para cambiar el estado de un pedido.
-    public function changeState()
-    {
-        $sql = 'CALL cambiar_estado_pedido(?);';
-        $params = array($this->id_pedido);
-        return Database::executeRow($sql, $params);
-    }
+    /*public function changeState()
+    *{
+    *    $sql = 'CALL cambiar_estado_pedido(?);';
+    *    $params = array($this->id_pedido);
+    *    return Database::executeRow($sql, $params);
+    *}
+    */
 }
