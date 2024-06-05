@@ -9,7 +9,7 @@
   font-family: "Inter", sans-serif;
 }
 .header-container {
-  background-color: hsl(0, 100%, 50%);
+  background-color: #ef1e1e;
   display: flex;
   justify-content: center;
 }
