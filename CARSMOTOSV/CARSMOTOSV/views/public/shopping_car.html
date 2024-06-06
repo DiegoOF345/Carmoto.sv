@@ -1,15 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>carmotosv</title>
-    <link rel="icon" href="../../api/Imagenes/img/content/logo.jpeg" />
-    <link rel="stylesheet" href="../../resources/css/style_shopping.css" />
-    <link rel="stylesheet" href="../../resources/css/reset.css" />
-    <link rel="stylesheet" href="../../resources/css/footer.style.css" />
-    <link rel="stylesheet" href="../../resources/css/header.style.css" />
-    <link rel="stylesheet" href="../../resources/css/common-class.style.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cuentas</title>
+    <link type="image/png" rel="icon" href="../../api/Imagenes/img/icons/logo.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../../resources/css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
   </head>
   <body>
     <!-- HEADER -->
@@ -35,136 +40,106 @@
           <ul>
             <li class="has-sub">
               <div class="hamburger-container">
-                <button
-                  class="hamburger actions-btn-no-background"
-                  id="hamburger"
-                >
-                  <img
-                    src="../../api/Imagenes/img/icons/hamburger.png"
-                    class="icons hamburger"
-                    alt="hamburger"
-                  />
-                </button>
-                <h2 class="action-title title">Marcas</h2>
-              </div>
-              <ul id="Marcas_fill">
                 
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <button
-          class="shopping-car-btn actions-btn-no-background"
-          id="shopping-car"
-        >
-          <a href=""
-            ><img
-              src="../../api/Imagenes/img/icons/shopping car.png"
-              class="icons"
-              alt="shopping car"
-          /></a>
-        </button>
       </div>
     </header>
-
-    <!-- MAIN BODY -->
-    <main class="main">
-      <h2 class="title-3">Tus compras</h2>
-      <section class="helmet-section">
-        <article class="helmet-card">
-          <div class="img-container">
-            <img
-              src="../../api/Imagenes/img/Carmoto.sv/Imagenes de scorpion/casco 1.jpg"
-              alt="scorpion helmet"
-            />
+<!-- Contenido principal del documento -->
+<main>
+  <!-- Título del contenido principal -->
+  <h4 id="mainTitle"></h4>
+  <!-- Tabla para mostrar el detalle de los productos agregados al carrito de compras -->
+  <table class="table table-striped">
+      <!-- Cabeza de la tabla para mostrar los títulos de las columnas -->
+      <thead>
+          <tr>
+              <th>PRODUCTO</th>
+              <th>PRECIO (US$)</th>
+              <th>CANTIDAD</th>
+              <th>SUBTOTAL (US$)</th>
+              <th>ACCIONES</th>
+          </tr>
+      </thead>
+      <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+      <tbody id="tableBody"></tbody>
+  </table>
+  <!-- Párrafo para mostrar el monto total a pagar -->
+  <p class="text-end">TOTAL A PAGAR (US$) <b id="pago"></b></p>
+  <!-- Párrafo para mostrar un botón que finaliza el pedido -->
+  <p class="text-end">
+      <button type="button" class="btn btn-primary" onclick="finishOrder()">
+          <i class="bi bi-credit-card-fill"></i> Finalizar pedido
+      </button>
+  </p>
+  <!-- Párrafo para mostrar un enlace a la página web principal -->
+  <p class="text-end">
+      <a href="home.html" class="btn btn-success">
+          <i class="bi bi-cart-fill"></i> Seguir comprando
+      </a>
+  </p>
+  <!-- Componente Modal para mostrar una caja de diálogo -->
+  <div class="modal fade" id="itemModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <!-- Contenido del componente Modal -->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalTitle">Cambiar cantidad</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <!-- Formulario para actualizar cantidad -->
+              <form id="itemForm">
+                  <div class="modal-body row">
+                      <input type="number" class="d-none" id="idDetalle" name="idDetalle">
+                      <div class="col-sm-12">
+                          <label for="cantidadProducto" class="form-label">Cantidad</label>
+                          <input id="cantidadProducto" type="number" name="cantidadProducto" min="1" class="form-control"
+                              required>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+              </form>
           </div>
-          <div class="helmet-information-container">
-            <h2 class="title-2">Casco GPTEK</h2>
-            <p>SKU-912192819</p>
-            <p>
-              Antes de la utilización del producto, leer las instrucciones de
-              uso y seguir las recomendaciones de seguridad que indica la
-              etiqueta o manual del fabricante.
-            </p>
-          </div>
-          <hr class="division" />
-          <div class="price-container">
-            <h3 class="title-2">Precio</h3>
-            <h3 class="title-2 price">$12.00 <span></span></h3>
-            <button class="remove-cart-btn" id="removeToCartBtn">
-              <p>Eliminar producto</p>
-            </button>
-          </div>
-        </article>
-        <article class="helmet-card">
-          <div class="img-container">
-            <img
-              src="../../api/Imagenes/img/Carmoto.sv/Imagenes de scorpion/casco 1.jpg"
-              alt="scorpion helmet"
-            />
-          </div>
-          <div class="helmet-information-container">
-            <h2 class="title-2">Casco GPTEK certificado</h2>
-            <p>SKU-912192819</p>
-            <p>
-              Antes de la utilización del producto, leer las instrucciones de
-              uso y seguir las recomendaciones de seguridad que indica la
-              etiqueta o manual del fabricante.
-            </p>
-          </div>
-          <hr class="division" />
-          <div class="price-container">
-            <h3 class="title-2">Precio</h3>
-            <h3 class="title-2 price">
-              $9.00 <span class="discount">50%</span>
-            </h3>
-            <button class="remove-cart-btn" id="addToCartBtn">
-              <p>Eliminar producto</p>
-            </button>
-          </div>
-        </article>
-      </section>
-      <section class="shopping-cart-information">
-        <h3 class="title">SUB-TOTAL (2 PRODUCTOS): $21.00</h3>
-        <hr />
-        <button class="confirm-order title-2">PAGAR</button>
-      </section>
-    </main>
-
+      </div>
+  </div>
+</main>
+    
     <!-- FOOTER -->
-    <footer class="footer">
-      <section class="footer-more-information">
-        <article class="footer-direction">
-          <p class="name"> CARMOTOSV El Salvador S.A. de C.V.</p>
-          <p class="direction">
-            Avenida Aguilares 218 San Salvador CP, San Salvador 1101 Instituto
-            Técnico Ricaldone, dirección
-          </p>
-        </article>
-        <article class="footer-help">
-          <p class="help">¿Necesitas ayuda? Contactanos</p>
-          <div class="help-container">
-            <div class="icon-cointainer">
-              <img src="../../api/Imagenes/img/icons/whatsapp.png" alt="whatsapp" />
-            </div>
-            <p>2545-6890</p>
-          </div>
-          <div class="help-container">
-            <div class="icon-cointainer">
-              <img src="../../api/Imagenes/img/icons/instagram.png" alt="instagram" />
-            </div>
-            <p>@Carmotosv</p>
-          </div>
-        </article>
-      </section>
-      <p class="copyright">
-        Copyright © 2024 CARMOTOSV. Todos los derechos Reservados.
-      </p>
-    </footer>
+    <div class="footer">
+      <div class="footer-seccion-1">
+          <p>UN FACIL ACCESO PARA ENCONTRARNOS</p>
+          <ul class="lista-info">
+              <li>Avenida Aguilares 218 San Salvador CP, San Salvador 1101 Instituto Técnico Ricaldone
+              </li>
+              <li>Nuestros Horarios 8 a.m.-4 p.m</li>
+          </ul>
+      </div>
 
+      <div class="footer-seccion-2">
+          <p>¿Necesitas Ayuda? Contactanos</p>
+          <ul class="lista-info">
+              <div class="footer-seccion-2">
+                  <img src="../../api/Imagenes/Wa.png" alt="xd " class="imagen-footer">
+                  <li>2545-6890</li>
+                  <img src="../../api/Imagenes/IG.png" alt="xd " class="imagen-footer1">
+                  <li>@Carmotosv</li>
+          </ul>
+      </div>
+  </div>
+  <div class="pie">
+      <p>© CARMOTOSV 2024 | Todos los Derechos Reservados | Términos de uso | Política de privacidad</p>
+  </div>
+ 
+
+
+
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../resources/JS/style.dynamic.js"></script>
     <script type="text/javascript" src="../../resources/JS/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/utils/components.js"></script>
-    <script type="text/javascript" src="../../controllers/public/marca.js"></script>
+    <script type="text/javascript" src="../../controllers/public/cart.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/public.js"></script>
   </body>
 </html>
