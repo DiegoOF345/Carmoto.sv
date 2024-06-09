@@ -1,3 +1,4 @@
+DROP DATABASE CARSMOTOSV;
 CREATE DATABASE CARSMOTOSV;
 
 USE CARSMOTOSV;
@@ -44,35 +45,34 @@ CREATE TABLE Modelos_de_Cascos (
 );
 
 CREATE TABLE Cascos (
-    id_casco int(10) UNSIGNED NOT NULL,
+    id_casco INT PRIMARY KEY AUTO_INCREMENT,
     nombre_casco VARCHAR(100) NOT NULL,
     descripcion_casco VARCHAR(300) NOT NULL,
     imagen_casco VARCHAR(300) NOT NULL,
     precio_casco NUMERIC(5,2) NOT NULL,
-    existencia_casco int(10) UNSIGNED NOT NULL,
-    estado_producto tinyint(1) NOT NULL,
+    existencia_casco INT NOT NULL,
     id_modelo_de_casco INT,
-    id_administrador int(10) UNSIGNED NOT NULL,
+    id_administrador INT NOT NULL,
     CONSTRAINT fk_Modelos_de_Cascos FOREIGN KEY (id_modelo_de_casco) REFERENCES Modelos_de_Cascos(id_modelo_de_casco),
     CONSTRAINT fk_Administradores_Cascos FOREIGN KEY (id_administrador) REFERENCES Administradores(id_administrador)
 );
 
 CREATE TABLE Pedidos (
-    id_pedido int(10) UNSIGNED NOT NULL,
-    id_cliente int(10) UNSIGNED NOT NULL,
-    estado_pedidos ENUM("Pendiente","Finalizado","Entregado","Anulado")NOT NULL,
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente INT NOT NULL,
+    estado_pedidos ENUM("Pendiente","Cancelado","Entregado"),
     fecha_registro DATETIME DEFAULT NOW(),
     direccion_pedidos VARCHAR(255) NOT NULL,
     CONSTRAINT fk_cliente_pedido FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
 );
 
 CREATE TABLE detalle_pedidos (
-    id_detalle_pedidos int(10) UNSIGNED NOT NULL,
-    id_casco int(10) UNSIGNED NOT NULL,
+    id_detalle_pedidos INT PRIMARY KEY AUTO_INCREMENT,
+    id_pedido INT NOT NULL,
+    id_casco INT NOT NULL,
     talla_casco ENUM("S","M","L"),
-    cantidad_productos smallint(6) UNSIGNED NOT NULL,
-    precio_casco_detalle DECIMAL(5,2) NOT NULL,
-    id_pedido int(10) UNSIGNED NOT NULL
+    cantidad_productos INT NOT NULL,
+    precio_total_productos DECIMAL(5,2) NOT NULL,
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
     CONSTRAINT fk_detalle_pedidos FOREIGN KEY (id_casco) REFERENCES Cascos(id_casco)
 );
@@ -116,11 +116,11 @@ INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedid
 (10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 9291","Resistente","casco.png",24.00,10,1,1);
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1,1);
 
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 1413","wow","casco.png",24.00,10,1,1);
+VALUES ("Casco 1413","wow","casco.jpg",24.00,10,1,1);
 
 
 DELIMITER $$
