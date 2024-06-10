@@ -38,6 +38,17 @@ class PedidoData extends PedidoHandler
         }
     }
 
+    public function setProducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->producto = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del producto es incorrecto';
+            return false;
+        }
+    }
+
     public function setCantidad($value){
         if (Validator::validateNaturalNumber($value)) {
             $this->cantidad = $value;

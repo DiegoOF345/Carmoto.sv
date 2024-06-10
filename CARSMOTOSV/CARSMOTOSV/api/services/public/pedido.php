@@ -14,6 +14,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idCliente'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
+        
         switch ($_GET['action']) {
             // Acción para agregar un producto al carrito de compras.
             case 'createDetail':
