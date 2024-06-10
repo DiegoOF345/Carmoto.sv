@@ -193,5 +193,22 @@ footer a {
     text-decoration: none;
 }
 
+.login-box button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 20px auto;
+  font-size: 16px;
+  color: #fff;
+  background-color: #03e9f4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-box button:hover {
+  background-color: #02c9ff;
+}
 
   

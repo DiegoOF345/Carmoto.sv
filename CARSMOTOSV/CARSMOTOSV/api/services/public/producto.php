@@ -19,8 +19,15 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'No existen productos para mostrar';
             }
             break;
+            case 'readAll':
+                if ($result['dataset'] = $producto->readAll()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existen productos para mostrar';
+                }
+                break;
         case 'readOne':
-            if (!$producto->setId($_POST['idProducto'])) {
+            if (!$producto->setId($_POST['id_casco'])) {
                 $result['error'] = $producto->getDataError();
             } elseif ($result['dataset'] = $producto->readOne()) {
                 $result['status'] = 1;

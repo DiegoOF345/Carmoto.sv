@@ -1,3 +1,4 @@
+DROP DATABASE CARSMOTOSV;
 CREATE DATABASE CARSMOTOSV;
 
 USE CARSMOTOSV;
@@ -59,7 +60,7 @@ CREATE TABLE Cascos (
 CREATE TABLE Pedidos (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT NOT NULL,
-    estado_pedidos ENUM("Pendiente","Cancelado","En proceso","Finalizado"),
+    estado_pedidos ENUM("Pendiente","Cancelado","Entregado"),
     fecha_registro DATETIME DEFAULT NOW(),
     direccion_pedidos VARCHAR(255) NOT NULL,
     CONSTRAINT fk_cliente_pedido FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
@@ -71,7 +72,7 @@ CREATE TABLE detalle_pedidos (
     id_casco INT NOT NULL,
     talla_casco ENUM("S","M","L"),
     cantidad_productos INT NOT NULL,
-    precio_casco_detalle DECIMAL(5,2) NOT NULL,
+    precio_total_productos DECIMAL(5,2) NOT NULL,
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
     CONSTRAINT fk_detalle_pedidos FOREIGN KEY (id_casco) REFERENCES Cascos(id_casco)
 );
@@ -115,11 +116,11 @@ INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedid
 (10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 9291","Resistente","casco.png",24.00,10,1,1);
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1,1);
 
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 1413","wow","casco.png",24.00,10,1,1);
+VALUES ("Casco 1413","wow","casco.jpg",24.00,10,1,1);
 
 
 DELIMITER $$
