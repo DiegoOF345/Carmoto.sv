@@ -58,21 +58,21 @@
     <section class="helmet-section">
       <article class="helmet-card">
         <div class="img-container">
-          <img src="../../api/Imagenes/img/Carmoto.sv/Imagenes de scorpion/casco 1.jpg" alt="casco helmet" />
+          <img id="imagen_casco" alt="casco helmet" />
         </div>
         <div class="helmet-information-container">
-          <h2 class="title-2" id="nombre_casco">Casco GPTEK</h2>
+          <h2 class="title-2" id="nombre_casco"></h2>
           <p>Certificado</p>
           <p>
-            Marca:
-            <span class="semi-bold" id="marca_casco">Scorpion</span>
+            Existencias:
+            <span class="semi-bold" id="existencias_casco"></span>
           </p>
           <p>
-            Precio:
-            <span class="semi-bold" id="precio_casco">$48.00</span>
+            Precio (US$):
+            <span class="semi-bold" id="precio_casco"></span>
           </p>
           <form id="shoppingForm">
-            <input type="number" class="hidden" id="idProducto" name="idProducto">
+            <input type="number" class="hidden" id="id_casco" name="id_casco">
 
             <select id="Talla" name="Talla" class="form-control input_style" placeholder="Nombre de la marca" required
               autofocus>
@@ -87,7 +87,7 @@
               placeholder="Ingrese cantidad" required>
             <br>
 
-            <button class="add-cart-btn" id="addToCartBtn">
+            <button class="add-cart-btn" type="submit">
               <p>Agregar al carrito</p>
             </button>
           </form>
@@ -127,7 +127,7 @@
     </p>
   </footer>
 
-  <script src="../../resources/JS/style.dynamic.js"></script>
+  
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -141,6 +141,8 @@
   <script type="text/javascript" src="../../resources/JS/sweetalert.min.js"></script>
   <script type="text/javascript" src="../../controllers/utils/components.js"></script>
   <script type="text/javascript" src="../../controllers/public/marca.js"></script>
+  
+  <script type="text/javascript" src="../../controllers/public/helmet.js"></script>
 </body>
 
 </html>

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         PRODUCTOS.innerHTML = '';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
+            let url = `helmet.html?id=${row.id_casco}`;
             // Se crean y concatenan las tarjetas con los datos de cada producto.
             PRODUCTOS.innerHTML += `
                 <article class="product-card">
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         />
                     </div>
                     <button class="check-details">
-                    <a href="helmet.html?id=${row.id_casco}" class="link">Ver detalles</a>
+                    <a href="${url}" class="link">Ver detalles</a>
                     </button>
                 </article>
             `;

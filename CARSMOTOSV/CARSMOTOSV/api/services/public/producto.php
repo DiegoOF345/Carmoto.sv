@@ -27,7 +27,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
         case 'readOne':
-            if (!$producto->setId($_POST['idProducto'])) {
+            if (!$producto->setId($_POST['id_casco'])) {
                 $result['error'] = $producto->getDataError();
             } elseif ($result['dataset'] = $producto->readOne()) {
                 $result['status'] = 1;
