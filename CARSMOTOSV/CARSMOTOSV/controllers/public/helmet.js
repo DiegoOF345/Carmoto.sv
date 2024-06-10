@@ -8,12 +8,12 @@ const MAIN_TITLE = document.getElementById('MainTitle');
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Se establece el título del contenido principal.
-    const idProducto = PARAMS.get('id');
-    console.log(idProducto)
+    
+    
     MAIN_TITLE.textContent = 'Detalles del producto';
     // Constante tipo objeto con los datos del producto seleccionado.
     const FORM = new FormData();
-    FORM.append('id_casco', PARAMS.get('id'));
+    FORM.append('idProducto', PARAMS.get('id'));
     // Petición para solicitar los datos del producto seleccionado.
     const DATA = await fetchData(PRODUCTO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('nombre_casco').textContent = DATA.dataset.nombre_casco;
         document.getElementById('precio_casco').textContent = DATA.dataset.precio_casco;
         document.getElementById('existencias_casco').textContent = DATA.dataset.existencia_casco;
-        document.getElementById('id_casco').value = DATA.dataset.id_casco;
+        document.getElementById('idProducto').value = DATA.dataset.id_casco;
     } else {
         // Se presenta un mensaje de error cuando no existen datos para mostrar.
         console.log(DATA.error);

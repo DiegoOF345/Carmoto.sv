@@ -49,6 +49,17 @@ class PedidoData extends PedidoHandler
         }
     }
 
+    public function setTalla($value)
+    {
+        if (Validator::validateString($value)) {
+            $this->talla = $value;
+            return true;
+        } else {
+            $this->data_error = 'Problemas con la talla';
+            return false;
+        }
+    }
+
     public function setCantidad($value){
         if (Validator::validateNaturalNumber($value)) {
             $this->cantidad = $value;

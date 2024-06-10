@@ -91,7 +91,7 @@ class ProductoHandler
 
     public function readProductosMarcas()
     {
-        $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
+        $sql = 'SELECT id_casco, nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
                 FROM Cascos
                 INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
                 WHERE id_marca_casco = ?

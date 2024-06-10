@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(idMarca);
     const action = idMarca !== null  ?  'readProductosMarcas' : 'readAll';
     console.log(action);
-    const form = new FormData() 
-    form.append("idMarca",idMarca)
+    const form = new FormData(); 
+    form.append("idMarca",idMarca);
     const DATA = await fetchData(PRODUCTO_API, action,form);
     console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         PRODUCTOS.innerHTML = '';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
-            let url = `helmet.html?id=${row.id_casco}`;
+            console.log(row.id_casco);           
             // Se crean y concatenan las tarjetas con los datos de cada producto.
             PRODUCTOS.innerHTML += `
                 <article class="product-card">
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         />
                     </div>
                     <button class="check-details">
-                    <a href="${url}" class="link">Ver detalles</a>
+                        <a href="helmet.html?id=${row.id_casco}" class="link">Ver detalles</a>
                     </button>
                 </article>
             `;

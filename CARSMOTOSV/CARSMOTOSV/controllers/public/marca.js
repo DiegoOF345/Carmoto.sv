@@ -19,6 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     } else {
         // Se asigna al título del contenido de la excepción cuando no existen datos para mostrar.
-        document.getElementById('mainTitle').textContent = DATA.error;
+        sweetAlert(2, DATA.error, false);
     }
 });
