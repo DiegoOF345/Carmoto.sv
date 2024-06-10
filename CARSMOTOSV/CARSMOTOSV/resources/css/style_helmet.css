@@ -162,3 +162,9 @@
   background-color: #ffffff;
   border-radius: 50%;
 }
+
+.input_style{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+}

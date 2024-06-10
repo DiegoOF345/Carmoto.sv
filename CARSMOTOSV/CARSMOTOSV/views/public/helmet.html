@@ -58,36 +58,35 @@
     <section class="helmet-section">
       <article class="helmet-card">
         <div class="img-container">
-          <img src="../../api/Imagenes/img/Carmoto.sv/Imagenes de scorpion/casco 1.jpg" alt="scorpion helmet" />
+          <img src="../../api/Imagenes/img/Carmoto.sv/Imagenes de scorpion/casco 1.jpg" alt="casco helmet" />
         </div>
         <div class="helmet-information-container">
-          <h2 class="title-2">Casco GPTEK</h2>
+          <h2 class="title-2" id="nombre_casco">Casco GPTEK</h2>
           <p>Certificado</p>
           <p>
             Marca:
-            <span class="semi-bold">Scorpion</span>
+            <span class="semi-bold" id="marca_casco">Scorpion</span>
           </p>
           <p>
             Precio:
-            <span class="semi-bold">$48.00</span>
+            <span class="semi-bold" id="precio_casco">$48.00</span>
           </p>
-          <form>
-            <select id="Talla" name="Talla" class="form-control" placeholder="Nombre de la marca" required
+          <form id="shoppingForm">
+            <input type="number" class="hidden" id="idProducto" name="idProducto">
+
+            <select id="Talla" name="Talla" class="form-control input_style" placeholder="Nombre de la marca" required
               autofocus>
               <option value="" selected>Seleccione una talla</option>
               <option value="S">S</option>
               <option value="L">L</option>
               <option value="M">M</option>
             </select>
-            <div class="order-actions">
-              <button class="action-btn">
-                <p>-</p>
-              </button>
-              <p>1</p>
-              <button class="action-btn">
-                <p>+</p>
-              </button>
-            </div>
+
+            <br>
+            <input type="number" id="cantidadProducto" name="cantidadProducto" min="1" class="form-control input_style"
+              placeholder="Ingrese cantidad" required>
+            <br>
+
             <button class="add-cart-btn" id="addToCartBtn">
               <p>Agregar al carrito</p>
             </button>
@@ -129,6 +128,16 @@
   </footer>
 
   <script src="../../resources/JS/style.dynamic.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
   <script type="text/javascript" src="../../resources/JS/sweetalert.min.js"></script>
   <script type="text/javascript" src="../../controllers/utils/components.js"></script>
   <script type="text/javascript" src="../../controllers/public/marca.js"></script>
