@@ -72,7 +72,7 @@ CREATE TABLE detalle_pedidos (
     id_casco INT NOT NULL,
     talla_casco ENUM("S","M","L"),
     cantidad_productos INT NOT NULL,
-    precio_total_productos DECIMAL(5,2) NOT NULL,
+    precio_productos DECIMAL(5,2) NOT NULL,
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
     CONSTRAINT fk_detalle_pedidos FOREIGN KEY (id_casco) REFERENCES Cascos(id_casco)
 );
@@ -122,6 +122,12 @@ VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1,1);
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
 VALUES ("Casco 1413","wow","casco.jpg",24.00,10,1,1);
 
+INSERT INTO Pedidos(direccion_pedidos, id_cliente)
+                    VALUES((SELECT direccion_cliente FROM Clientes WHERE id_cliente = 1), 1)
+                    
+SELECT * FROM Clientes;
+
+SELECT * FROM Pedidos;
 
 DELIMITER $$
 CREATE PROCEDURE cambiar_estado_pedido(IN pedido_id INT)
