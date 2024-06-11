@@ -80,7 +80,7 @@ class PedidoHandler
     public function createDetail()
     {
         // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO detalle_pedidos(id_casco, precio_casco, talla_casco, cantidad_productos, id_pedido)
+        $sql = 'INSERT INTO detalle_pedidos(id_casco, precio_productos, talla_casco, cantidad_productos, id_pedido)
                 VALUES(?, (SELECT precio_casco FROM Cascos WHERE id_casco = ?), ?, ?, ?)';
         $params = array($this->producto, $this->producto, $this->talla, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);

@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Constante tipo objeto con los datos del producto seleccionado.
     const FORM = new FormData();
     FORM.append('idProducto', PARAMS.get('id'));
+    console.log();
     // Petición para solicitar los datos del producto seleccionado.
     const DATA = await fetchData(PRODUCTO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
+        console.log(DATA.dataset.id_casco);
         // Se colocan los datos en la página web de acuerdo con el producto seleccionado previamente.
         document.getElementById('imagen_casco').src = SERVER_URL.concat('Imagenes/productos/', DATA.dataset.imagen_casco);
         document.getElementById('nombre_casco').textContent = DATA.dataset.nombre_casco;
@@ -41,7 +43,7 @@ SHOPPING_FORM.addEventListener('submit', async (event) => {
     const DATA = await fetchData(PEDIDO_API, 'createDetail', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
     if (DATA.status) {
-        sweetAlert(1, DATA.message, false, 'cart.html');
+        sweetAlert(1, DATA.message, false, 'shopping_car.html');
     } else if (DATA.session) {
         sweetAlert(2, DATA.error, false);
     } else {

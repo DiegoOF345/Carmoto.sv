@@ -13,8 +13,7 @@ MAIN.classList.add('container');
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'CARSMOTOSV';
 // Constante para establecer el elemento del título principal.
-const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
+
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
@@ -29,22 +28,42 @@ const loadTemplate = async () => {
         if (!location.pathname.endsWith('login.html')) {
             // Se agrega el encabezado de la página web antes del contenido principal.
             MAIN.insertAdjacentHTML('beforebegin', `
-                <header>
-                    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
-                        <div class="container">
-                            <a class="navbar-brand" href="index.html"><img src="../../resources/img/logo.png" height="50" alt="CoffeeShop"></a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                                <div class="navbar-nav ms-auto">
-                                    <a class="nav-link" href="index.html"><i class="bi bi-shop"></i> Catálogo</a>
-                                    <a class="nav-link" href="cart.html"><i class="bi bi-cart"></i> Carrito</a>
-                                    <a class="nav-link" href="#" onclick="logOut()"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a>
-                                </div>
-                            </div>
+                <header class="header">
+                    <div class="header-container">
+                        <div class="header-content">
+                            <a href="./index.html">
+                            <div class="logo-img" alt="carmotosv logo"></div>
+                            </a>
+                            <a href="./about_us.html" class="title-navigation title">
+                            <h2>¿Quiénes somos?</h2>
+                            </a>
+                            <a href="./promociones.html" class="title-navigation title">
+                            <h2>Promociones</h2>
+                            </a>
                         </div>
-                    </nav>
+                    </div>
+                    <div class="action-header-container">
+                        <div id="menu">
+                            <ul>
+                                <li class="has-sub">
+                                    <div class="hamburger-container">
+                                        <button class="hamburger actions-btn-no-background" id="hamburger">
+                                        <img src="../../api/Imagenes/img/icons/hamburger.png" class="icons hamburger" alt="hamburger" />
+                                        </button>
+                                        <h2 class="action-title title">Marcas</h2>
+                                    </div>
+                                    <ul id="Marcas_fill">
+              
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <h2 class="action-title title" id="MainTitle"></h2>
+                        <button class="shopping-car-btn actions-btn-no-background" id="shopping-car">
+                        <a href="./shopping_car.html"><img src="../../api/Imagenes/img/icons/shopping car.png" class="icons"
+                        alt="shopping car" /></a>
+                        </button>
+                    </div>
                 </header>
             `);
         } else {

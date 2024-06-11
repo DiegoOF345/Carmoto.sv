@@ -3,7 +3,7 @@
 */
 // Constante para establecer la ruta base del servidor.
 const SERVER_URL = 'http://localhost/Carmoto.sv/CARSMOTOSV/CARSMOTOSV/api/';
-const USER_API = 'services/admin/administrador.php';
+
 /*
 *   Función para mostrar un mensaje de confirmación. Requiere la librería sweetalert para funcionar.
 *   Parámetros: message (mensaje de confirmación).

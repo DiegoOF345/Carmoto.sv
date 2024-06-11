@@ -31,12 +31,13 @@ class ClienteHandler
     */
     public function checkUser($mail, $password)
     {
-        $sql = 'SELECT id_cliente, correo_cliente, contraseñaCliente, estado_cliente
-                FROM cliente
+        $sql = 'SELECT id_cliente, correo_cliente, contraseña_cliente, estado_cliente
+                FROM Clientes
                 WHERE correo_cliente = ?';
         $params = array($mail);
-        $data = Database::getRow($sql, $params);
-        if (password_verify($password, $data['contraseñaCliente'])) {
+        if(!($data = Database::getRow($sql, $params))) {
+            return false;
+        } elseif (password_verify($password, $data['contraseña_cliente'])) {
             $this->id = $data['id_cliente'];
             $this->correo = $data['correo_cliente'];
             $this->estado = $data['estado_cliente'];
