@@ -4,6 +4,7 @@ const PEDIDO_API = 'services/public/pedido.php';
 const TABLE_BODY = document.getElementById('tableBody');
 // Constante para establecer la caja de diálogo de cambiar producto.
 const ITEM_MODAL = new bootstrap.Modal('#itemModal');
+const MAIN_TITLE = document.getElementById('mainTitle')
 // Constante para establecer el formulario de cambiar producto.
 const ITEM_FORM = document.getElementById('itemForm');
 
@@ -78,7 +79,7 @@ async function readDetail() {
         // Se muestra el total a pagar con dos decimales.
         document.getElementById('pago').textContent = total.toFixed(2);
     } else {
-        sweetAlert(4, DATA.error, false, 'home.html');
+        sweetAlert(4, DATA.error, false, 'index.html');
     }
 }
 
