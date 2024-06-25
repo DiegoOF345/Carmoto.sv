@@ -241,15 +241,13 @@
     flex-direction: column;
     width: 100%;
     font-family: "Inter", sans-serif;
-}
-
-.header-container {
+  }
+  .header-container {
     background-color: #ef1e1e;
     display: flex;
     justify-content: center;
-}
-
-.header-content {
+  }
+  .header-content {
     display: flex;
     flex-direction: row;
     padding: 1rem;
@@ -257,13 +255,13 @@
     justify-content: space-between;
     color: white;
     width: 75%;
-}
-
+  }
+  
 .title-navigation {
   padding: 1rem;
   border-radius: 1.25rem;
   &:hover {
-    background-color: white;
+    background-color: rgb(102, 97, 97);
     color: white;
   }
 }
@@ -277,9 +275,7 @@
     background-size: cover;
 }
 
-.title-navigation h2 {
-    color: black; /* Cambia el color del texto a negro */
-}
+
 
 .form-check {
   display: flex;
@@ -297,6 +293,7 @@
 a {
   text-decoration: none; /* Elimina el subrayado de los enlaces */
 }
+
 
 
 
