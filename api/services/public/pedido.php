@@ -1,11 +1,11 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/pedido_data.php');
+require_once('../../Models/data/pedido_data.php');
+session_start();
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
-    session_start();
     // Se instancia la clase correspondiente.
     $pedido = new PedidoData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.

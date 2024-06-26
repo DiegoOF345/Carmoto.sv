@@ -59,12 +59,15 @@ if (isset($_GET['action'])) {
                 !$producto->setImagen($_FILES['imagenProducto'])
             ) {
                 $result['error'] = $producto->getDataError();
-            } elseif ($producto->updateRow()) {
-                $result['status'] = 1;
-                $result['message'] = 'Producto modificado correctamente';
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN);
             } else {
-                $result['error'] = 'Ocurrió un problema al modificar el producto';
+                $imagen = $producto->readOne()['imagen_casco'];
+                if ($producto->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto modificado correctamente';
+                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN, $imagen);
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el producto';
+                }
             }
             break;
         case 'readOne':
@@ -79,12 +82,16 @@ if (isset($_GET['action'])) {
         case 'deleteRow':
                 if (!$producto->setId($_POST['idProducto'])) {
                    $result['error'] = $producto->getDataError();
-               } elseif ($producto->deleteRow()) {
-                   $result['status'] = 1;
-                   $result['message'] = 'Producto eliminado correctamente';
                } else {
-                   $result['error'] = 'Ocurrió un problema al eliminar el modelo';
-               }
+                    $imagen = $producto->readOne()['imagen_casco'];
+                    $imageDeleteStatus = Validator::deleteFile($imagen, $producto::RUTA_IMAGEN);
+                    if ($producto->deleteRow() && $imageDeleteStatus) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Producto eliminado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al eliminar el modelo';
+                    }
+                }
                break;
         default:
             $result['error'] = 'Acción no disponible';

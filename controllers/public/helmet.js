@@ -14,12 +14,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Constante tipo objeto con los datos del producto seleccionado.
     const FORM = new FormData();
     FORM.append('idProducto', PARAMS.get('id'));
-    console.log();
     // Petición para solicitar los datos del producto seleccionado.
     const DATA = await fetchData(PRODUCTO_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        console.log(DATA.dataset.id_casco);
+        console.log(DATA);
         // Se colocan los datos en la página web de acuerdo con el producto seleccionado previamente.
         document.getElementById('imagen_casco').src = SERVER_URL.concat('Imagenes/productos/', DATA.dataset.imagen_casco);
         document.getElementById('nombre_casco').textContent = DATA.dataset.nombre_casco;

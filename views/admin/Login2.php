@@ -1,9 +1,9 @@
 <?php
 // Conexión a la base de datos
-$servername = "localhost";
+$servername = "0.0.0.0";
 $username = "root";
 $password = "";
-$dbname = "carsmotosv";
+$dbname = "CARSMOTOSV";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $correo, $contrasenia);
     $stmt->execute();
     $result = $stmt->get_result();
-
+    
     if ($result->num_rows > 0) {  
         
         // Usuario autenticado correctamente
