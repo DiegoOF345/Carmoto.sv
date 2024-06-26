@@ -52,7 +52,7 @@
   padding: 1rem;
   border-radius: 1.25rem;
   &:hover {
-    background-color: white;
+    background-color: rgb(102, 97, 97);
     color: white;
   }
 }
@@ -195,6 +195,4 @@ li {
   margin-top: -5px;
 }
 
-#menu .fa-angle-right {
-  /* float: right; */
-}
+
