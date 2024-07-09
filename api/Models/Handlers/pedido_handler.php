@@ -26,10 +26,8 @@ class PedidoHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_pedido AS ID, fecha_registro AS FECHA, direccion_pedidos AS DIRECCION, CASE 
-        WHEN estado_pedidos = 1 THEN "Entregado"
-        WHEN estado_pedidos = 0 THEN "Cancelado"
-        END AS ESTADO FROM Pedidos
+        $sql = 'SELECT id_pedido AS ID, fecha_registro AS FECHA, direccion_pedidos AS DIRECCION, estado_pedidos AS Estado
+        FROM Pedidos
                 WHERE fecha_registro LIKE ?
                 ORDER BY FECHA;';
         $params = array($value);
