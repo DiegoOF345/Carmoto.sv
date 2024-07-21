@@ -122,24 +122,3 @@ const openDetail = async (id) => {
     fillDetail(FORM);
 }
 
-const graficoPastelPedido = async () => {
-    // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(PEDIDOS_API, 'porcentajeEstadoPedidos');
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-    if (DATA.status) {
-        // Se declaran los arreglos para guardar los datos a gráficar.
-        let estados = [];
-        let porcentajes = [];
-        // Se recorre el conjunto de registros fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            // Se agregan los datos a los arreglos.
-            estados.push(row.estado_pedidos);
-            porcentajes.push(row.porcentaje);
-        });
-        // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
-        pieGraph('chart1', estados, porcentajes, 'Porcentaje de productos por marca');
-    } else {
-        document.getElementById('chart1').remove();
-        console.log(DATA.error);
-    }
-}

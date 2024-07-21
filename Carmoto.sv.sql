@@ -148,11 +148,9 @@ VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,4);
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
 VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,4);
 
-
-INSERT INTO Pedidos(direccion_pedidos, id_cliente)
-                    VALUES((SELECT direccion_cliente FROM Clientes WHERE id_cliente = 1), 1);
                     
-SELECT * FROM Clientes;
+SELECT * FROM clientes;
+
 
 SELECT * FROM Pedidos;
 
@@ -191,3 +189,8 @@ SELECT nombre_marca, ROUND((COUNT(id_casco) * 100.0 / (SELECT COUNT(id_casco) FR
 SELECT estado_pedidos, ROUND((COUNT(estado_pedidos) * 100.0 / (SELECT COUNT(estado_pedidos) FROM Pedidos)), 2) porcentaje
                 FROM Pedidos
                 GROUP BY estado_pedidos ORDER BY porcentaje DESC;
+
+SELECT nombre_cliente, COUNT(id_cliente) cantidad
+                FROM Clientes
+                INNER JOIN Pedidos USING(id_cliente)
+                GROUP BY nombre_cliente ORDER BY cantidad DESC LIMIT 5;

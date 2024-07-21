@@ -296,9 +296,17 @@ a {
   text-decoration: none; /* Elimina el subrayado de los enlaces */
 }
 
+.centrado{
+  display: flex;
 
+  flex-direction: columna;
+  
+  justify-content: center;
+}
 
-
+.Centrado2{
+  text-align: center;
+}
 
 
 

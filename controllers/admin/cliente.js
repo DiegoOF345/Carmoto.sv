@@ -209,9 +209,9 @@ const graficoBarrasCliente = async () => {
             cantidades.push(row.cantidad);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', cliente, cantidades, 'Cantidad de productos', 'Cantidad de productos por marca');
+        barGraph('chart3', cliente, cantidades, 'Cantidad de productos', 'Cantidad de productos por marca');
     } else {
-        document.getElementById('chart1').remove();
+        document.getElementById('chart3').remove();
         console.log(DATA.error);
     }
 }

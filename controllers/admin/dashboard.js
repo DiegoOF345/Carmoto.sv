@@ -1,5 +1,8 @@
 // Constante para completar la ruta de la API.
 const PRODUCTO_API = 'services/admin/producto.php';
+const CLIENTE_API = 'services/admin/cliente.php';
+const PEDIDOS_API = 'services/admin/pedido.php';
+
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     MAIN_TITLE.textContent = `${greeting}, bienvenido`;
     // Llamada a la funciones que generan los gráficos en la página web.
     graficoBarrasMarcas();
-    graficoPastelMarcas();    
+    graficoPastelMarcas();
+    graficoPastelPedido();    
 });
 
 const graficoBarrasMarcas = async () => {
@@ -63,6 +67,28 @@ const graficoPastelMarcas = async () => {
         pieGraph('chart2', marca, porcentajes, 'Porcentaje de productos por marca');
     } else {
         document.getElementById('chart2').remove();
+        console.log(DATA.error);
+    }
+}
+
+const graficoPastelPedido = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(PEDIDOS_API, 'porcentajeEstadoPedidos');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a gráficar.
+        let estados = [];
+        let porcentajes = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            estados.push(row.estado_pedidos);
+            porcentajes.push(row.porcentaje);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de pastel. Se encuentra en el archivo components.js
+        pieGraph('chart3', estados, porcentajes, 'Porcentaje de productos por marca');
+    } else {
+        document.getElementById('chart3').remove();
         console.log(DATA.error);
     }
 }
