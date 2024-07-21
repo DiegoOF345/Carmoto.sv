@@ -31,6 +31,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+                
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
@@ -92,6 +93,20 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'La cuenta ha sido desactivada';
                 }
                 break;
+                case 'MayoresCompradores':
+                    if ($result['dataset'] = $cliente->MayoresCompradores()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No hay datos disponibles';
+                    }
+                    break;
+                case 'readAll':
+                    if ($result['dataset'] = $cliente->readAll()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen categorías para mostrar';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
         }

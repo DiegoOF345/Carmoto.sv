@@ -128,12 +128,12 @@ class ClienteHandler
     /*
     *   Métodos para generar gráficos.
     */
-    public function cantidadProductosCategoria()
+    public function MayoresCompradores()
     {
-        $sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY cantidad DESC LIMIT 5';
+        $sql = 'SELECT nombre_cliente, COUNT(id_cliente) cantidad
+                FROM Clientes
+                INNER JOIN Pedidos USING(id_cliente)
+                GROUP BY nombre_cliente ORDER BY cantidad DESC LIMIT 5';
         return Database::getRows($sql);
     }
 

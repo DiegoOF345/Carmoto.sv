@@ -52,7 +52,7 @@ CREATE TABLE Cascos (
     precio_casco NUMERIC(5,2) NOT NULL,
     existencia_casco INT NOT NULL,
     id_modelo_de_casco INT,
-    id_administrador INT NOT NULL,
+    id_administrador INT,
     CONSTRAINT fk_Modelos_de_Cascos FOREIGN KEY (id_modelo_de_casco) REFERENCES Modelos_de_Cascos(id_modelo_de_casco),
     CONSTRAINT fk_Administradores_Cascos FOREIGN KEY (id_administrador) REFERENCES Administradores(id_administrador)
 );
@@ -93,8 +93,6 @@ INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_m
 INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("EXO-R420","Gran modelo","2-12-24",3);
 INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("C5","Modelo pequeño","2-12-24",4);
 
-INSERT INTO Administradores(nombre_administrador,apellido_administrador,correo_administrador,contrasenia_administrador,fecha_registro)
-VALUES ("Carlos","Ramon","a@gmail.com","Maceta",CURRENT_DATE());
 
 INSERT INTO Clientes (nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente)
 VALUES
@@ -121,34 +119,34 @@ INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedid
 (9, '2023-05-09 15:40:00', 'Entregado', '2021 Calle Sexta, Ciudad Ejemplo'),
 (10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,1,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,1,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,1);
 
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,2,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,2,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,2,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,2);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,2);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,2);
 
 
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,3,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,3,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,3,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,3);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,3);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,3);
 
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,4,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,4,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,4,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,4);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,4);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,4);
 
 
 INSERT INTO Pedidos(direccion_pedidos, id_cliente)
@@ -177,3 +175,19 @@ BEGIN
         WHERE id_pedido = pedido_id;
     END IF;
 END $$
+
+SELECT nombre_marca, COUNT(id_casco) cantidad
+                FROM Cascos, Modelos_de_Cascos, Marcas_Cascos
+                WHERE Cascos.id_modelo_de_casco = modelos_de_cascos.id_modelo_de_casco
+                AND marcas_cascos.id_marca_casco = modelos_de_cascos.id_marca_casco
+                GROUP BY nombre_marca ORDER BY cantidad DESC LIMIT 5;
+                
+SELECT nombre_marca, ROUND((COUNT(id_casco) * 100.0 / (SELECT COUNT(id_casco) FROM Cascos)), 2) porcentaje
+                FROM Cascos, Modelos_de_Cascos, Marcas_Cascos
+                WHERE Cascos.id_modelo_de_casco = modelos_de_cascos.id_modelo_de_casco
+                AND marcas_cascos.id_marca_casco = modelos_de_cascos.id_marca_casco
+                GROUP BY nombre_marca ORDER BY porcentaje DESC;
+                
+SELECT estado_pedidos, ROUND((COUNT(estado_pedidos) * 100.0 / (SELECT COUNT(estado_pedidos) FROM Pedidos)), 2) porcentaje
+                FROM Pedidos
+                GROUP BY estado_pedidos ORDER BY porcentaje DESC;

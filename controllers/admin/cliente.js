@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+    graficoBarrasCliente();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -191,4 +192,26 @@ const openReport = (id) => {
     PATH.searchParams.append('idCategoria', id);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
+}
+
+const graficoBarrasCliente = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(CLIENTE_API, 'MayoresCompradores');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let cliente = [];
+        let cantidades = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            cliente.push(row.nombre_cliente);
+            cantidades.push(row.cantidad);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart1', cliente, cantidades, 'Cantidad de productos', 'Cantidad de productos por marca');
+    } else {
+        document.getElementById('chart1').remove();
+        console.log(DATA.error);
+    }
 }
