@@ -93,6 +93,20 @@ if (isset($_GET['action'])) {
                     }
                 }
                break;
+        case 'cantidadProductosMarcas':
+                if ($result['dataset'] = $producto->cantidadProductosMarcas()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+                break;
+        case 'porcentajeEstadoPedidos':
+                    if ($result['dataset'] = $producto->porcentajeEstadoPedidos()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No hay datos disponibles';
+                    }
+                    break;
         default:
             $result['error'] = 'Acción no disponible';
     }

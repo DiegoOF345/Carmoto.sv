@@ -134,4 +134,13 @@ class PedidoHandler
     *    return Database::executeRow($sql, $params);
     *}
     */
+
+    //Metodo para señalar el porcentaje de los estados de los productos
+    public function porcentajeEstadoPedidos()
+    {
+        $sql = 'SELECT estado_pedidos, ROUND((COUNT(estado_pedidos) * 100.0 / (SELECT COUNT(estado_pedidos) FROM Pedidos)), 2) porcentaje
+                FROM Pedidos
+                GROUP BY estado_pedidos ORDER BY porcentaje DESC';
+        return Database::getRows($sql);
+    }
 }

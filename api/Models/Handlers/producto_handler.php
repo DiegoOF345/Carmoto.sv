@@ -103,21 +103,23 @@ class ProductoHandler
     /*
     *   Métodos para generar gráficos.
     */
-    public function cantidadProductosCategoria()
+    public function cantidadProductosMarcas()
     {
-        $sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY cantidad DESC LIMIT 5';
+        $sql = 'SELECT nombre_marca, COUNT(id_casco) cantidad
+                FROM Cascos, Modelos_de_Cascos, Marcas_Cascos
+                WHERE Cascos.id_modelo_de_casco = modelos_de_cascos.id_modelo_de_casco
+                AND marcas_cascos.id_marca_casco = modelos_de_cascos.id_marca_casco
+                GROUP BY nombre_marca ORDER BY cantidad DESC LIMIT 5';
         return Database::getRows($sql);
     }
 
-    public function porcentajeProductosCategoria()
+    public function porcentajeProductosMarcas()
     {
-        $sql = 'SELECT nombre_categoria, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM producto)), 2) porcentaje
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY porcentaje DESC';
+        $sql = 'SELECT nombre_marca, ROUND((COUNT(id_casco) * 100.0 / (SELECT COUNT(id_casco) FROM Cascos)), 2) porcentaje
+                FROM Cascos, Modelos_de_Cascos, Marcas_Cascos
+                WHERE Cascos.id_modelo_de_casco = modelos_de_cascos.id_modelo_de_casco
+                AND marcas_cascos.id_marca_casco = modelos_de_cascos.id_marca_casco
+                GROUP BY nombre_marca ORDER BY porcentaje DESC';
         return Database::getRows($sql);
     }
 

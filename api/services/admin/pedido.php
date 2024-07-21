@@ -46,6 +46,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al alterar el estado del pedido';
                 }
                 break;
+            case 'porcentajeProductosMarcas':
+                    if ($result['dataset'] = $producto->porcentajeProductosMarcas()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No hay datos disponibles';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
