@@ -122,7 +122,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Debe crear un administrador para comenzar';
                 }
                 break;
-            case 'registrarse':
+                case 'signUp':
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administrador->setNombre($_POST['nombreAdministrador']) or
@@ -131,7 +131,7 @@ if (isset($_GET['action'])) {
                     !$administrador->setClave($_POST['claveAdministrador'])
                 ) {
                     $result['error'] = $administrador->getDataError();
-                } elseif ($_POST['Contraseña_admin'] != $_POST['confirmarContraseña']) {
+                } elseif ($_POST['claveAdministrador'] != $_POST['confirmarContraseña']) {
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($administrador->createRow()) {
                     $result['status'] = 1;

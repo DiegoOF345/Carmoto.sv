@@ -126,14 +126,13 @@ class ProductoHandler
     /*
     *   Métodos para generar reportes.
     */
-    public function productosCategoria()
+    public function productosMarcas()
     {
-        $sql = 'SELECT nombre_producto, precio_producto, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ?
-                ORDER BY nombre_producto';
-        $params = array($this->modelo);
+        $sql = 'SELECT nombre_casco, descripcion_casco, precio_casco, existencia_casco
+                FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
+                WHERE id_marca_casco = ?';
+        $params = array($this->marca);
         return Database::getRows($sql, $params);
     }
 }
