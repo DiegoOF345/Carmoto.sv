@@ -6,7 +6,7 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const MAIN_TITLE = document.getElementById('mainTitle');
+
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
     MODAL_TITLE_DETAIL = document.getElementById('exampleModalLabel');

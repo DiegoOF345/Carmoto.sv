@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_administrador']) or true) {
+    if (isset($_SESSION['id_administrador'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -107,38 +107,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
-            case 'editProfile':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$administrador->setNombre($_POST['Nombre_admin']) or
-                    !$administrador->setApellido($_POST['Apellido_admin']) or
-                    !$administrador->setCorreo($_POST['Correo_admin']) or
-                    !$administrador->setAlias($_POST['aliasAdministrador'])
-                ) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->editProfile()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Perfil modificado correctamente';
-                    $_SESSION['aliasAdministrador'] = $_POST['aliasAdministrador'];
-                } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el perfil';
-                }
-                break;
-            case 'changePassword':
-                $_POST = Validator::validateForm($_POST);
-                if (!$administrador->checkPassword($_POST['claveActual'])) {
-                    $result['error'] = 'Contraseña actual incorrecta';
-                } elseif ($_POST['claveNueva'] != $_POST['confirmarContraseña']) {
-                    $result['error'] = 'Confirmación de contraseña diferente';
-                } elseif (!$administrador->setClave($_POST['claveNueva'])) {
-                    $result['error'] = $administrador->getDataError();
-                } elseif ($administrador->changePassword()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Contraseña cambiada correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
-                }
-                break;
+            
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
@@ -156,10 +125,10 @@ if (isset($_GET['action'])) {
             case 'registrarse':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$administrador->setNombre($_POST['Nombre_admin']) or
-                    !$administrador->setApellido($_POST['Apellido_admin']) or
-                    !$administrador->setCorreo($_POST['Correo_admin']) or
-                    !$administrador->setClave($_POST['Contraseña_admin'])
+                    !$administrador->setNombre($_POST['nombreAdministrador']) or
+                    !$administrador->setApellido($_POST['apellidoAdministrador']) or
+                    !$administrador->setCorreo($_POST['correoAdministrador']) or
+                    !$administrador->setClave($_POST['claveAdministrador'])
                 ) {
                     $result['error'] = $administrador->getDataError();
                 } elseif ($_POST['Contraseña_admin'] != $_POST['confirmarContraseña']) {
@@ -173,7 +142,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if ($administrador->checkUser($_POST['correo'], $_POST['contra'])) {
+                if ($administrador->checkUser($_POST['correo'], $_POST['contrasenia'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {
