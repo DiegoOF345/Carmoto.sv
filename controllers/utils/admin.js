@@ -11,10 +11,10 @@ const USER_API = 'services/admin/administrador.php';
 // MAIN.style.paddingBottom = '100px';
 // MAIN.classList.add('container');
 // Se establece el título de la página web.
-document.querySelector('title').textContent = 'CoffeeShop - Dashboard';
+
 // Constante para establecer el elemento del título principal.
 let MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
+
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.

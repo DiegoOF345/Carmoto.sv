@@ -84,8 +84,14 @@ CREATE TABLE valoraciones (
 );
 
 INSERT INTO Marcas_Cascos(nombre_marca,descripcion_marca) VALUES ("AGV","Que lindo");
+INSERT INTO Marcas_Cascos(nombre_marca,descripcion_marca) VALUES ("ILM","Ta bonito");
+INSERT INTO Marcas_Cascos(nombre_marca,descripcion_marca) VALUES ("Scorpion","Esta bien");
+INSERT INTO Marcas_Cascos(nombre_marca,descripcion_marca) VALUES ("Schuberth","Esta bien");
 
-INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("AGV","Buen modelo","2-12-24",1);
+INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("ECE 22.06","AGV modelo","2-12-24",1);
+INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("JK313","Buen modelo","2-12-24",2);
+INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("EXO-R420","Gran modelo","2-12-24",3);
+INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("C5","Modelo pequeño","2-12-24",4);
 
 INSERT INTO Administradores(nombre_administrador,apellido_administrador,correo_administrador,contrasenia_administrador,fecha_registro)
 VALUES ("Carlos","Ramon","a@gmail.com","Maceta",CURRENT_DATE());
@@ -117,13 +123,36 @@ INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedid
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
 VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,1,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,1,1);
+
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,2,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,2,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,2,1);
 
 
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
-VALUES ("Casco 1413","wow","casco.jpg",24.00,10,1,1);
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,3,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,3,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,3,1);
+
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,4,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,4,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco,id_administrador)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,4,1);
+
 
 INSERT INTO Pedidos(direccion_pedidos, id_cliente)
-                    VALUES((SELECT direccion_cliente FROM Clientes WHERE id_cliente = 1), 1)
+                    VALUES((SELECT direccion_cliente FROM Clientes WHERE id_cliente = 1), 1);
                     
 SELECT * FROM Clientes;
 

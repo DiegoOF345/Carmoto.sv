@@ -18,7 +18,7 @@ function validarInicioSesion() {
                 if (xhr.responseText === "OK") {
                     alert("Inicio de sesion exitoso");
                     // Redirigir a la página de productos
-                    window.location.href = "productos.html";
+                    window.location.href = "dashboard.html";
                 } else {
                     alert("Usuario o contrasena incorrectos");
                 }
