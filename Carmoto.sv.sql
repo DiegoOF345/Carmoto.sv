@@ -93,6 +93,34 @@ INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_m
 INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("EXO-R420","Gran modelo","2-12-24",3);
 INSERT INTO Modelos_de_Cascos(nombre_modelo,descripcion_modelo, año_modelo,id_marca_casco) VALUES ("C5","Modelo pequeño","2-12-24",4);
 
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,1);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,1);
+
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,2);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,2);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,2);
+
+
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,3);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,3);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,3);
+
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,4);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,4);
+INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
+VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,4);
 
 INSERT INTO Clientes (nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, contraseña_cliente)
 VALUES
@@ -128,34 +156,6 @@ INSERT INTO detalle_pedidos (id_pedido,id_casco,talla_casco,cantidad_productos,p
 (4,10,"S",2,20.00),
 (5,5,"S",2,20.00);
 
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,1);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,1);
-
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,2);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,2);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,2);
-
-
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,3);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,3);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,3);
-
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,4);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV Pista GP RR ","Resistente","casco.jpg",25.00,10,4);
-INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
-VALUES ("AGV K6 S Slashcut","Resistente","casco.jpg",21.00,10,4);
 
                     
 SELECT * FROM clientes;
