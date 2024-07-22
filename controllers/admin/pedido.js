@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
-    graficoPastelPedido();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -120,5 +119,12 @@ const openDetail = async (id) => {
     DETAIL_MODAL.show();
     MODAL_TITLE_DETAIL.textContent = 'Detalle del pedido ' + id;
     fillDetail(FORM);
+}
+
+const openReport = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/pedidos_mes.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 

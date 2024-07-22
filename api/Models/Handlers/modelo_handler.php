@@ -101,16 +101,15 @@ class ModeloHandler
     }
 
     /*
-    *   Métodos para generar reportes.
+    *   Métodos para generar reportes de modelos
     */
-    //public function productosCategoria()
-    //{
-    //    $sql = 'SELECT nombre_producto, precio_producto, estado_producto
-    //            FROM producto
-    //            INNER JOIN categoria USING(id_categoria)
-    //            WHERE id_categoria = ?
-    //            ORDER BY nombre_producto';
-    //    $params = array($this->categoria);
-    //    return Database::getRows($sql, $params);
-    //}
+    public function productosModelo()
+    {
+        $sql = 'SELECT nombre_casco, precio_casco, existencia_casco
+                FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
+                WHERE id_modelo_de_casco = ?';
+        $params = array($this->id);
+       return Database::getRows($sql, $params);
+    }
 }

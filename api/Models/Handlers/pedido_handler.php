@@ -144,6 +144,15 @@ class PedidoHandler
     *}
     */
 
+    public function GananciaMes(){
+        $sql = 'SELECT MONTHNAME(fecha_registro) AS Mes,
+                SUM(detalle_pedidos.precio_productos) AS Total
+                FROM Pedidos, detalle_pedidos
+                WHERE YEAR(fecha_registro) = "2023" AND pedidos.id_pedido = detalle_pedidos.id_pedido
+                AND pedidos.estado_pedidos = "Entregado"
+                GROUP BY Mes';
+        return Database::getRows($sql);
+    }
     
     
 }
