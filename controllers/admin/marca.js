@@ -84,6 +84,9 @@ const fillTable = async (form = null) => {
                         <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_marca_casco})">
                             <i class="bi bi-trash-fill"></i>
                         </button>
+                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_marca_casco})">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                        </button>
                         <button type="button" class="btn btn-warning" onclick="openReport(${row.id_marca_casco})">
                             <i class="bi bi-file-earmark-pdf-fill"></i>
                         </button>
@@ -165,6 +168,33 @@ const openDelete = async (id) => {
     }
 }
 
+const openChart = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('idMarca', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(MARCA_API, 'readTopProductos', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        CHART_MODAL.show();
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let productos = [];
+        let unidades = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            productos.push(row.nombre_producto);
+            unidades.push(row.total);
+        });
+        // Se agrega la etiqueta canvas al contenedor de la modal.
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart', productos, unidades, 'Cantidad de productos', 'Top 5 de productos con más unidades vendidas');
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
 
 /*
 *   Función para abrir un reporte automático de productos por categoría.

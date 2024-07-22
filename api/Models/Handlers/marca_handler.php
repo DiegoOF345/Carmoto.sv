@@ -117,4 +117,19 @@ class MarcaHandler
         $params = array($this->modelo);
         return Database::getRows($sql, $params);
      }*/
+
+     public function readTopProductos()
+     {
+         $sql = 'SELECT nombre_casco, SUM(cantidad_productos) total
+                FROM detalle_pedidos, Cascos, Marcas_Cascos, Modelos_de_Cascos
+                WHERE detalle_pedidos.id_casco = cascos.id_casco AND cascos.id_modelo_de_casco = modelos_de_cascos.id_modelo_de_casco
+                AND marcas_cascos.id_marca_casco = modelos_de_cascos.id_marca_casco
+                GROUP BY nombre_casco
+                ORDER BY total DESC
+                LIMIT 3';
+         $params = array($this->id);
+         return Database::getRows($sql, $params);
+     }
+
+     
 }
