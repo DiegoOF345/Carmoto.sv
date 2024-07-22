@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Método del evento para cuando se envía el formulario de registro del primer usuario.
 SIGNUP_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
+    console.log();
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SIGNUP_FORM);

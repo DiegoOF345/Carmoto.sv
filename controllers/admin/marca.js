@@ -86,9 +86,6 @@ const fillTable = async (form = null) => {
                         <button type="button" class="btn btn-outline-danger" onclick="openDelete(${row.id_marca_casco})">
                             <i class="bi bi-trash-fill"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_marca_casco})">
-                            <i class="bi bi-bar-chart-line-fill"></i>
-                        </button>
                         <button type="button" class="btn btn-warning" onclick="openReport(${row.id_marca_casco})">
                             <i class="bi bi-file-earmark-pdf-fill"></i>
                         </button>
@@ -185,7 +182,7 @@ const graficoBarrasMarcas = async () => {
             cantidades.push(row.total);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', marca, cantidades, 'Cantidad de productos', 'Cantidad de productos por categoría');
+        barGraph('chart1', marca, cantidades, 'Cantidad de productos', 'Cantidad de productos por marca');
     } else {
         document.getElementById('chart1').remove();
         console.log(DATA.error);
