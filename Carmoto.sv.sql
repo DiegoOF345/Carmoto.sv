@@ -1,3 +1,6 @@
+DROP USER if EXISTS 'CarmotoSQL'@'localhost';
+CREATE USER 'CarmotoSQL'@'localhost' IDENTIFIED BY 'CARSMOTOSV';
+GRANT ALL PRIVILEGES ON CARSMOTOSV. * TO 'CarmotoSQL'@'localhost';
 
 SET lc_time_names = 'es_MX';
 DROP DATABASE if EXISTS CARSMOTOSV;
