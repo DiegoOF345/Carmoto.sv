@@ -153,6 +153,16 @@ class ClienteHandler
         return Database::getRows($sql);
     }
 
+    public function ClientesPedidos()
+    {
+        $sql = 'SELECT id_pedido, estado_pedidos, fecha_registro
+                FROM Pedidos
+                INNER JOIN Clientes USING (id_cliente)
+                WHERE id_cliente = ?';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+
     public function checkDuplicate($value)
     {
         $sql = 'SELECT id_cliente
