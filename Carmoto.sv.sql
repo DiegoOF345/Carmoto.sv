@@ -1,4 +1,6 @@
-DROP DATABASE CARSMOTOSV;
+
+SET lc_time_names = 'es_MX';
+DROP DATABASE if EXISTS CARSMOTOSV;
 CREATE DATABASE CARSMOTOSV;
 
 USE CARSMOTOSV;
@@ -136,30 +138,56 @@ VALUES
   ('Andrea', 'Rodríguez', '109876543', 'andrea.rodriguez@email.com', '+503 7654 3210', '2003-10-27', 'Calle Delgado 5678, San Salvador', 'contraseña3210');
 
 INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedidos) VALUES
-(1, '2023-05-01 10:30:00', 'Pendiente', '123 Calle Falsa, Ciudad Ejemplo'),
-(2, '2023-05-02 14:45:00', 'Entregado', '456 Avenida Siempreviva, Ciudad Ejemplo'),
-(3, '2023-05-03 09:15:00', 'Pendiente', '789 Calle Verdadera, Ciudad Ejemplo'),
-(4, '2023-05-04 11:50:00', 'Pendiente', '1011 Calle Principal, Ciudad Ejemplo'),
-(5, '2023-05-05 13:30:00', 'Pendiente', '1213 Avenida Secundaria, Ciudad Ejemplo'),
-(6, '2023-05-06 16:20:00', 'Pendiente', '1415 Calle Tercera, Ciudad Ejemplo'),
-(7, '2023-05-07 08:05:00', 'Cancelado', '1617 Calle Cuarta, Ciudad Ejemplo'),
-(8, '2023-05-08 12:10:00', 'Pendiente', '1819 Calle Quinta, Ciudad Ejemplo'),
+(1, '2023-06-01 10:30:00', 'Pendiente', '123 Calle Falsa, Ciudad Ejemplo'),
+(2, '2023-06-02 14:45:00', 'Entregado', '456 Avenida Siempreviva, Ciudad Ejemplo'),
+(3, '2023-06-03 09:15:00', 'Entregado', '789 Calle Verdadera, Ciudad Ejemplo'),
+(4, '2023-08-04 11:50:00', 'Pendiente', '1011 Calle Principal, Ciudad Ejemplo'),
+(5, '2023-08-05 13:30:00', 'Pendiente', '1213 Avenida Secundaria, Ciudad Ejemplo'),
+(6, '2023-08-06 16:20:00', 'Pendiente', '1415 Calle Tercera, Ciudad Ejemplo'),
+(7, '2023-02-07 08:05:00', 'Cancelado', '1617 Calle Cuarta, Ciudad Ejemplo'),
+(8, '2023-02-08 12:10:00', 'Pendiente', '1819 Calle Quinta, Ciudad Ejemplo'),
+(9, '2023-05-09 15:40:00', 'Entregado', '2021 Calle Sexta, Ciudad Ejemplo'),
+(10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo'),
+(1, '2023-06-01 10:30:00', 'Entregado', '123 Calle Falsa, Ciudad Ejemplo'),
+(2, '2023-06-02 14:45:00', 'Entregado', '456 Avenida Siempreviva, Ciudad Ejemplo'),
+(3, '2023-06-03 09:15:00', 'Entregado', '789 Calle Verdadera, Ciudad Ejemplo'),
+(4, '2023-08-04 11:50:00', 'Pendiente', '1011 Calle Principal, Ciudad Ejemplo'),
+(5, '2023-08-05 13:30:00', 'Entregado', '1213 Avenida Secundaria, Ciudad Ejemplo'),
+(6, '2023-08-06 16:20:00', 'Pendiente', '1415 Calle Tercera, Ciudad Ejemplo'),
+(7, '2023-02-07 08:05:00', 'Cancelado', '1617 Calle Cuarta, Ciudad Ejemplo'),
+(8, '2023-02-08 12:10:00', 'Pendiente', '1819 Calle Quinta, Ciudad Ejemplo'),
 (9, '2023-05-09 15:40:00', 'Entregado', '2021 Calle Sexta, Ciudad Ejemplo'),
 (10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
 INSERT INTO detalle_pedidos (id_pedido,id_casco,talla_casco,cantidad_productos,precio_productos) VALUES
-(1,1,"S",2,20.00),
-(2,5,"S",2,20.00),
-(3,3,"S",2,20.00),
-(4,5,"S",2,20.00),
-(4,6,"S",2,20.00),
-(4,10,"S",2,20.00),
-(5,5,"S",2,20.00);
+(1,1,"S",1,20.00),
+(2,5,"S",1,20.00),
+(3,3,"S",1,20.00),
+(4,5,"S",1,20.00),
+(4,6,"S",1,20.00),
+(4,10,"S",1,20.00),
+(5,5,"S",1,20.00),
+(7,5,"S",1,20.00),
+(8,5,"S",1,20.00),
+(9,5,"S",1,20.00),
+(10,5,"S",1,20.00),
+(11,1,"S",1,20.00),
+(12,5,"S",1,20.00),
+(13,3,"S",1,20.00),
+(14,5,"S",1,20.00),
+(14,6,"S",1,20.00),
+(14,10,"S",1,20.00),
+(15,5,"S",1,20.00),
+(17,5,"S",1,20.00),
+(18,5,"S",1,20.00),
+(19,5,"S",1,20.00),
+(20,5,"S",1,20.00);
 
-
+SELECT * FROM Administradores;
                     
 SELECT * FROM clientes;
 
+SELECT * FROM detalle_pedidos;
 
 SELECT * FROM Pedidos;
 
@@ -211,3 +239,21 @@ SELECT nombre_marca, SUM(cantidad_productos) total
                 GROUP BY nombre_marca
                 ORDER BY total DESC
                 LIMIT 3;
+
+SELECT nombre_casco, precio_casco, existencia_casco
+                FROM Cascos
+                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
+                WHERE id_modelo_de_casco = 1;
+
+SELECT MONTHNAME(fecha_registro) AS Mes,
+                SUM(detalle_pedidos.precio_productos) AS Total
+                FROM Pedidos, detalle_pedidos
+                WHERE YEAR(fecha_registro) = "2023" AND pedidos.id_pedido = detalle_pedidos.id_pedido
+                AND pedidos.estado_pedidos = "Entregado"
+                GROUP BY Mes;
+                
+SELECT id_pedido, estado_pedidos, fecha_registro
+					 FROM Pedidos
+					 INNER JOIN Clientes USING (id_cliente)
+					 WHERE id_cliente = 1;
+
