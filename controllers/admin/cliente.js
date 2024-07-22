@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
-    graficoBarrasCliente();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -182,15 +181,12 @@ const openDelete = async (id) => {
 
 /*
 *   Función para abrir un reporte parametrizado de productos de una categoría.
-*   Parámetros: id (identificador del registro seleccionado).
+*   
 *   Retorno: ninguno.
 */
-const openReport = (id) => {
+const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
-    const PATH = new URL(`${SERVER_URL}reports/admin/productos_categoria.php`);
-    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
-    PATH.searchParams.append('idCategoria', id);
+    const PATH = new URL(`${SERVER_URL}reports/admin/cliente.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }
-

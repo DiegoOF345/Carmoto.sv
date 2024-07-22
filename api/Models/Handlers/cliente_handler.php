@@ -19,6 +19,8 @@ class ClienteHandler
     protected $direccion = null;
     protected $contraseña = null;
 
+    protected $fecha = null;
+
     protected $estado = null;
 
     
@@ -142,16 +144,14 @@ class ClienteHandler
     /*
     *   Métodos para generar reportes.
     */
-    /*public function productosCategoria()
+    public function MayoresCompradoresReporte()
     {
-        $sql = 'SELECT nombre_producto, precio_producto, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ?
-                ORDER BY nombre_producto';
-        $params = array($this->modelo);
-        return Database::getRows($sql, $params);
-    }*/
+        $sql = 'SELECT nombre_cliente, correo_cliente, COUNT(id_cliente) cantidad
+                FROM Clientes
+                INNER JOIN Pedidos USING(id_cliente)
+                GROUP BY nombre_cliente ORDER BY cantidad DESC';
+        return Database::getRows($sql);
+    }
 
     public function checkDuplicate($value)
     {

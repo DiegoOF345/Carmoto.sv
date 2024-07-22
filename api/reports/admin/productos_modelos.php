@@ -38,7 +38,7 @@ if (isset($_GET['idModelo'])) {
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para el modelo'), 1, 1);
             }
-            // Se llama implícitamente al método footer() y se envía el documento al navegador web.
+            // Se llama al método footer() y se envía el documento al navegador web.
             $pdf->output('I', 'categoria.pdf');
         } else {
             print('Modelo inexistente');
