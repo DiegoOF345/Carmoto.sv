@@ -19,7 +19,7 @@ if (isset($_GET['idModelo'])) {
             // Verificacion de los productos existentes, si no encuentra ningun producto, dara un mensaje. Cambiar "$modelo" y el metodo
             if ($dataProductos = $modelo->productosModelo()) {
                 // Se establece un color de relleno para los encabezados.
-                $pdf->setFillColor(225);
+                $pdf->setFillColor(203, 13, 13);
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
                 // Se imprimen las celdas con los encabezados.

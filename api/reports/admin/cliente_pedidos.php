@@ -19,7 +19,7 @@ if (isset($_GET['idCliente'])) {
             // Verificacion de los productos existentes, si no encuentra ningun producto, dara un mensaje. Cambiar "$modelo" y el metodo
             if ($dataClientes = $cliente->ClientesPedidos()) {
                 // Se establece un color de relleno para los encabezados.
-                $pdf->setFillColor(225);
+                $pdf->setFillColor(203, 13, 13);
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
@@ -31,7 +31,7 @@ if (isset($_GET['idCliente'])) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataClientes as $rowProducto) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(40, 10, $pdf->encodeString($rowProducto['id_pedido']), 1, 0);
+                    $pdf->cell(40, 10, $rowProducto['id_pedido'], 1, 0);
                     $pdf->cell(60, 10, $rowProducto['estado_pedidos'], 1, 0);
                     $pdf->cell(70, 10, $rowProducto['fecha_registro'], 1, 1);
                 }

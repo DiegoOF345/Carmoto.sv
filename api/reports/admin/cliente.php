@@ -13,7 +13,7 @@ $cliente = new ClienteData;
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataCliente = $cliente->MayoresCompradoresReporte()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(200);
+    $pdf->setFillColor(203, 13, 13);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 11);
     // Se imprimen las celdas con los encabezados.
@@ -29,7 +29,7 @@ if ($dataCliente = $cliente->MayoresCompradoresReporte()) {
     // Se recorren los registros fila por fila.
     foreach ($dataCliente as $rowCliente) {
         // Se instancia el módelo Producto para procesar los datos.
-        $pdf->cell(40, 10, $rowCliente['nombre_cliente'], 1, 0);
+        $pdf->cell(40, 10, $pdf->encodeString($rowCliente['nombre_cliente']), 1, 0);
         $pdf->cell(60, 10, $rowCliente['correo_cliente'], 1, 0);
         $pdf->cell(60, 10, $rowCliente['cantidad'], 1, 1);
     }
