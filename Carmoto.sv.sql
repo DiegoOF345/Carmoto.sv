@@ -119,6 +119,15 @@ INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedid
 (9, '2023-05-09 15:40:00', 'Entregado', '2021 Calle Sexta, Ciudad Ejemplo'),
 (10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
+INSERT INTO detalle_pedidos (id_pedido,id_casco,talla_casco,cantidad_productos,precio_productos) VALUES
+(1,1,"S",2,20.00),
+(2,5,"S",2,20.00),
+(3,3,"S",2,20.00),
+(4,5,"S",2,20.00),
+(4,6,"S",2,20.00),
+(4,10,"S",2,20.00),
+(5,5,"S",2,20.00);
+
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
 VALUES ("Casco 9291","Resistente","casco.jpg",24.00,10,1);
 INSERT INTO Cascos(nombre_casco,descripcion_casco,imagen_casco,precio_casco,existencia_casco,id_modelo_de_casco)
@@ -194,3 +203,11 @@ SELECT nombre_cliente, COUNT(id_cliente) cantidad
                 FROM Clientes
                 INNER JOIN Pedidos USING(id_cliente)
                 GROUP BY nombre_cliente ORDER BY cantidad DESC LIMIT 5;
+                
+SELECT nombre_marca, SUM(cantidad_productos) total
+                FROM detalle_pedidos, Cascos, Marcas_Cascos, Modelos_de_Cascos
+                WHERE detalle_pedidos.id_casco = cascos.id_casco AND cascos.id_modelo_de_casco = modelos_de_cascos.id_modelo_de_casco
+                AND marcas_cascos.id_marca_casco = modelos_de_cascos.id_marca_casco
+                GROUP BY nombre_marca
+                ORDER BY total DESC
+                LIMIT 3;
