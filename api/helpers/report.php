@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para generar archivos PDF.
-require_once('../Librerias/fpdf185/fpdf.php');
+require_once('../../librerias/fpdf185/fpdf.php');
 
 /*
 *   Clase para definir las plantillas de los reportes del sitio privado.
@@ -23,7 +23,7 @@ class Report extends FPDF
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a la página web principal.
-        if (isset($_SESSION['idAdministrador'])) {
+        if (isset($_SESSION['id_administrador'])) {
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
             // Se establece el título del documento (true = utf-8).
@@ -56,7 +56,7 @@ class Report extends FPDF
     public function header()
     {
         // Se establece el logo.
-        $this->image('../../Imagenes/content/logo.jpeg', 15, 15, 20);
+        $this->image('../../Imagenes/img/content/logo.jpeg', 15, 15, 20);
         // Se ubica el título.
         $this->cell(20);
         $this->setFont('Arial', 'B', 15);
@@ -79,7 +79,9 @@ class Report extends FPDF
         $this->setY(-15);
         // Se establece la fuente para el número de página.
         $this->setFont('Arial', 'I', 8);
+        // Se muestra el usuario que ha iniciado sesión.
+        $this->cell(93, 10, $this->encodeString($_SESSION['correo_administrador']), 0, 0, 'L');
         // Se imprime una celda con el número de página.
-        $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
+        $this->cell(93, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'R');
     }
 }

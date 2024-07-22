@@ -122,17 +122,4 @@ class ProductoHandler
                 GROUP BY nombre_marca ORDER BY porcentaje DESC';
         return Database::getRows($sql);
     }
-
-    /*
-    *   Métodos para generar reportes.
-    */
-    public function productosMarcas()
-    {
-        $sql = 'SELECT nombre_casco, descripcion_casco, precio_casco, existencia_casco
-                FROM Cascos
-                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
-                WHERE id_marca_casco = ?';
-        $params = array($this->marca);
-        return Database::getRows($sql, $params);
-    }
 }

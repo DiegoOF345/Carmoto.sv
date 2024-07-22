@@ -200,5 +200,5 @@ const openReport = (id) => {
     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
     PATH.searchParams.append('idMarca', id);
     // Se abre el reporte en una nueva pestaña.
-    window.open(PATH.href, '_blank');
+    window.open(PATH.href);
 }
