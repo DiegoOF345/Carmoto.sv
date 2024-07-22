@@ -13,13 +13,13 @@ if (isset($_GET['idMarca'])) {
     $marca = new MarcaData;
     $producto = new ProductoData;
     // Se establece el valor de la categoría, de lo contrario se muestra un mensaje.
-    if ($marca->setId($_GET['idMarca']) && $producto->setMarca($_GET['idMarca'])) {
+    if ($marca->setId($_GET['idMarca'])) {
         // Se verifica si la categoría existe, de lo contrario se muestra un mensaje.
         if ($rowMarca = $marca->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
             $pdf->startReport('Productos de la categoría ' . $rowMarca['nombre_marca']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataProductos = $producto->productosCategoria()) {
+            if ($dataProductos = $producto->productosMarcas()) {
                 // Se establece un color de relleno para los encabezados.
                 $pdf->setFillColor(225);
                 // Se establece la fuente para los encabezados.
