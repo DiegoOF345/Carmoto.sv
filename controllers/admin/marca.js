@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+    graficoBarrasMarcas();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -31,6 +32,7 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     const FORM = new FormData(SEARCH_FORM);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
+    
 });
 
 // Método del evento para cuando se envía el formulario de guardar.
@@ -168,31 +170,25 @@ const openDelete = async (id) => {
     }
 }
 
-const openChart = async (id) => {
-    // Se define una constante tipo objeto con los datos del registro seleccionado.
-    const FORM = new FormData();
-    FORM.append('idMarca', id);
-    // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(MARCA_API, 'readTopProductos', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con el error.
+const graficoBarrasMarcas = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(MARCA_API, 'readTopProductos');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        CHART_MODAL.show();
         // Se declaran los arreglos para guardar los datos a graficar.
-        let productos = [];
-        let unidades = [];
+        let marca = [];
+        let cantidades = [];
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            productos.push(row.nombre_producto);
-            unidades.push(row.total);
+            marca.push(row.nombre_marca);
+            cantidades.push(row.total);
         });
-        // Se agrega la etiqueta canvas al contenedor de la modal.
-        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart', productos, unidades, 'Cantidad de productos', 'Top 5 de productos con más unidades vendidas');
+        barGraph('chart1', marca, cantidades, 'Cantidad de productos', 'Cantidad de productos por categoría');
     } else {
-        sweetAlert(4, DATA.error, true);
+        document.getElementById('chart1').remove();
+        console.log(DATA.error);
     }
 }
 

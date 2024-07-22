@@ -82,14 +82,12 @@ if (isset($_GET['action'])) {
                     }
                     break;
             case 'readTopProductos':
-                    if (!$marca->setId($_POST['idMarca'])) {
-                        $result['error'] = $marca->getDataError();
-                    } elseif ($result['dataset'] = $marca->readTopProductos()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'No existen productos vendidos por el momento';
-                    }
-                    break;
+                if ($result['dataset'] = $marca->readTopProductos()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+                break;
 
         default:
             $result['error'] = 'Acción no disponible';
