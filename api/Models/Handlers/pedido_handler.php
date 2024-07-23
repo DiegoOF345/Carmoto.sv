@@ -126,7 +126,7 @@ class PedidoHandler
         return Database::executeRow($sql, $params);
     }
 
-    //Metodo para señalar el porcentaje de los estados de los productos
+    //Metodo para  el grafico de paster de los estados de los pedidos
     public function porcentajeEstadoPedidos()
     {
         $sql = 'SELECT estado_pedidos, ROUND((COUNT(estado_pedidos) * 100.0 / (SELECT COUNT(estado_pedidos) FROM Pedidos)), 2) porcentaje
@@ -144,6 +144,7 @@ class PedidoHandler
     *}
     */
 
+    //Metodo para calcular las ganancias de los meses que se han vendido en el reporte
     public function GananciaMes(){
         $sql = 'SELECT MONTHNAME(fecha_registro) AS Mes,
                 SUM(detalle_pedidos.precio_productos) AS Total

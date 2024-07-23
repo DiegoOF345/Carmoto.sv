@@ -71,53 +71,7 @@ class MarcaHandler
         return Database::executeRow($sql, $params);
     }
 
-    /*public function readProductosModelos()
-    {
-        $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
-                FROM Cascos
-                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
-                WHERE id_modelo_de_casco = ?
-                ORDER BY nombre_casco';
-        $params = array($this->modelo);
-        return Database::getRows($sql, $params);
-    }*/
-
-    /*
-    *   Métodos para generar gráficos.
-    */
-    public function cantidadProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY cantidad DESC LIMIT 5';
-        return Database::getRows($sql);
-    }
-
-    public function porcentajeProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM producto)), 2) porcentaje
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY porcentaje DESC';
-        return Database::getRows($sql);
-    }
-
-    /*
-    *   Métodos para generar reportes.
-    */
-
-    /*public function productosCategoria()
-    {
-        $sql = 'SELECT nombre_producto, precio_producto, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE id_categoria = ?
-                ORDER BY nombre_producto';
-        $params = array($this->modelo);
-        return Database::getRows($sql, $params);
-     }*/
-
+     //metodo para los graficos de los mejores productos
      public function readTopProductos()
      {
          $sql = 'SELECT nombre_marca, SUM(cantidad_productos) total
@@ -129,9 +83,8 @@ class MarcaHandler
                 LIMIT 3';
          return Database::getRows($sql);
      }
-/*
-    *   Métodos para generar reportes.
-    */
+
+     //metodo para el reporte de las marcas
     public function productosMarcas()
     {
         $sql = 'SELECT nombre_casco, descripcion_casco, precio_casco, existencia_casco

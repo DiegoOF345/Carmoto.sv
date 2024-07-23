@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     graficoBarrasCliente();
 });
 
+//Grafico de barras de la cantidad de productos por la marca
 const graficoBarrasMarcas = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(PRODUCTO_API, 'cantidadProductosMarcas');
@@ -50,6 +51,7 @@ const graficoBarrasMarcas = async () => {
     }
 }
 
+//Grafico de pastel que muestra la cantidad de productos por marca
 const graficoPastelMarcas = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(PRODUCTO_API, 'porcentajeProductosMarcas');
@@ -72,6 +74,7 @@ const graficoPastelMarcas = async () => {
     }
 }
 
+//grafico de pastel de los estados de los pedidos
 const graficoPastelPedido = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(PEDIDOS_API, 'porcentajeEstadoPedidos');
@@ -94,6 +97,7 @@ const graficoPastelPedido = async () => {
     }
 }
 
+//Grafico de barras de los mayores compradores
 const graficoBarrasCliente = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(CLIENTE_API, 'MayoresCompradores');

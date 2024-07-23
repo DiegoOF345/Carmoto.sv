@@ -167,6 +167,7 @@ const openDelete = async (id) => {
     }
 }
 
+//Grafico para medir cual ha sido la marca que mas ha vendido
 const graficoBarrasMarcas = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(MARCA_API, 'readTopProductos');
@@ -189,11 +190,7 @@ const graficoBarrasMarcas = async () => {
     }
 }
 
-/*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
+//reporte para saber los productos por marca
 const openReport = (id) => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/productos_marcas.php`);

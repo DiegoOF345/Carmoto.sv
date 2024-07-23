@@ -116,20 +116,9 @@ class ClienteHandler
         return Database::executeRow($sql, $params);
     }
 
-    /*public function readProductosModelos()
-    {
-        $sql = 'SELECT nombre_casco, descripcion_casco, imagen_casco, precio_casco, existencia_casco
-                FROM Cascos
-                INNER JOIN Modelos_de_Cascos USING(id_modelo_de_casco)
-                WHERE id_modelo_de_casco = ?
-                ORDER BY nombre_casco';
-        $params = array($this->modelo);
-        return Database::getRows($sql, $params);
-    }*/
+    
 
-    /*
-    *   Métodos para generar gráficos.
-    */
+    //metodo para el grafico de los clientes que mas pedidos tienen
     public function MayoresCompradores()
     {
         $sql = 'SELECT nombre_cliente, COUNT(id_cliente) cantidad
@@ -141,9 +130,7 @@ class ClienteHandler
 
 
 
-    /*
-    *   Métodos para generar reportes.
-    */
+    //metodo usado para el reporte de los mayores compradores
     public function MayoresCompradoresReporte()
     {
         $sql = 'SELECT nombre_cliente, correo_cliente, COUNT(id_cliente) cantidad
@@ -153,6 +140,7 @@ class ClienteHandler
         return Database::getRows($sql);
     }
 
+    //metodo usado para los reportes que permite saber que cliente corresponde cada pedido y el estado
     public function ClientesPedidos()
     {
         $sql = 'SELECT id_pedido, estado_pedidos, fecha_registro
@@ -163,6 +151,8 @@ class ClienteHandler
         return Database::getRows($sql, $params);
     }
 
+
+    //otros metodos
     public function checkDuplicate($value)
     {
         $sql = 'SELECT id_cliente

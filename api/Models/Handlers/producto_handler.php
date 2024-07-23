@@ -100,9 +100,7 @@ class ProductoHandler
         return Database::getRows($sql, $params);
     }
 
-    /*
-    *   Métodos para generar gráficos.
-    */
+    //Metodo para generar graficos de barra en el dashboard
     public function cantidadProductosMarcas()
     {
         $sql = 'SELECT nombre_marca, COUNT(id_casco) cantidad
@@ -113,6 +111,7 @@ class ProductoHandler
         return Database::getRows($sql);
     }
 
+    //Metodo para generar graficos de pastel en el dashboard
     public function porcentajeProductosMarcas()
     {
         $sql = 'SELECT nombre_marca, ROUND((COUNT(id_casco) * 100.0 / (SELECT COUNT(id_casco) FROM Cascos)), 2) porcentaje

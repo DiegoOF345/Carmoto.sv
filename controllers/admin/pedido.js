@@ -121,6 +121,7 @@ const openDetail = async (id) => {
     fillDetail(FORM);
 }
 
+//reporte para saber las ganancias de los pedidos
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/pedidos_mes.php`);

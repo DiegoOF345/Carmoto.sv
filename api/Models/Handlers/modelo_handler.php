@@ -78,31 +78,8 @@ class ModeloHandler
     }
 
     
-
-    /*
-    *   Métodos para generar gráficos.
-    */
-    public function cantidadProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY cantidad DESC LIMIT 5';
-        return Database::getRows($sql);
-    }
-
-    public function porcentajeProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM producto)), 2) porcentaje
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY porcentaje DESC';
-        return Database::getRows($sql);
-    }
-
-    /*
-    *   Métodos para generar reportes de modelos
-    */
+    //Métodos para los reportes de los modelos
+    
     public function productosModelo()
     {
         $sql = 'SELECT nombre_casco, precio_casco, existencia_casco

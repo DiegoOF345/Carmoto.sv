@@ -172,11 +172,7 @@ const openDelete = async (id) => {
     }
 }
 
-/*
-*   Función para abrir un reporte parametrizado de productos de una categoría.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
+//reporte para visualizar los productos por cada modelo
 const openReport = (id) => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/productos_modelos.php`);
