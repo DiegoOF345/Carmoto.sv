@@ -41,6 +41,15 @@ class PedidoHandler
         return Database::getRows($sql);
     }
 
+    public function readAllofOne()
+    {
+        $sql = 'SELECT id_pedido, fecha_registro, estado_pedidos 
+        FROM Pedidos
+        WHERE id_cliente = ?';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
     public function getOrder()
     {
         $this->estado = 'Pendiente';
@@ -99,7 +108,7 @@ class PedidoHandler
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
     {
-        $this->estado = 'Finalizado';
+        $this->estado = 'Pendiente';
         $sql = 'UPDATE Pedidos
                 SET estado_pedidos = ?
                 WHERE id_pedido = ?';
@@ -135,16 +144,6 @@ class PedidoHandler
         return Database::getRows($sql);
     }
 
-    //Función para cambiar el estado de un pedido.
-    /*public function changeState()
-    *{
-    *    $sql = 'CALL cambiar_estado_pedido(?);';
-    *    $params = array($this->id_pedido);
-    *    return Database::executeRow($sql, $params);
-    *}
-    */
-
-    //Metodo para calcular las ganancias de los meses que se han vendido en el reporte
     public function GananciaMes(){
         $sql = 'SELECT MONTHNAME(fecha_registro) AS Mes,
                 SUM(detalle_pedidos.precio_productos) AS Total

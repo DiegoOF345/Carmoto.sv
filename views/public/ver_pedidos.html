@@ -6,11 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>carmotosv</title>
   <link rel="icon" href="../../api/Imagenes/img/content/logo.jpeg" />
-  <link rel="stylesheet" href="../../resources/css/style_us.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="../../resources/css/reset.css" />
   <link rel="stylesheet" href="../../resources/css/footer.style.css" />
   <link rel="stylesheet" href="../../resources/css/header.style.css" />
   <link rel="stylesheet" href="../../resources/css/common-class.style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -39,7 +44,7 @@
               </button>
               <h2 class="action-title title">Marcas</h2>
             </div>
-            <ul>
+            <ul id="Marcas_fill">
               <li class="item">
                 <a title="" href="../../views/public/index.html">Inicio</a>
               </li>
@@ -52,6 +57,7 @@
         </ul>
       </div>
       <h2 class="action-title title">Inicio</h2>
+      <h2 class="action-title title"><a href="./ver_pedidos.html">Ver Pedidos</a></h2>
       <button class="shopping-car-btn actions-btn-no-background" id="shopping-car">
         <a href="./shopping_car.html"><img src="../../api/Imagenes/img/icons/shopping car.png" class="icons"
             alt="shopping car" /></a>
@@ -61,58 +67,47 @@
 
   <!-- MAIN BODY -->
   <main class="main">
-    <h1 class="title-3">¿Quienes <span> somos?</span></h1>
-    <section class="about-us-container">
-      <article class="information-pic">
-        <div class="img-container">
-          <img src="../../api/Imagenes/img/content/about-us.png" alt="Motorcycle rider" />
+    <h3 id="mainTitle"></h3>
+    <div class="row">
+        <!-- Formulario de búsqueda -->
+        <form class="col-sm-12 col-md-6" id="searchForm">
+          <div class="row">
+            <div class="col-6">
+              <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-search"></i>
+              </button>
+              <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                <i class="bi bi-x-square-fill"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="col-sm-12 col-md-6 text-end">
+          <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
         </div>
-        <p>
-          Somos una empresa dedicada a brindar protección y seguridad a
-          nuestros clientes a través de la venta de cascos de alta calidad.
-          Con una pasión por la seguridad y la excelencia en el servicio al
-          cliente, nos esforzamos por ofrecer productos que cumplan con los
-          más altos estándares de seguridad y comodidad.
-        </p>
-      </article>
-      <article class="more-information">
-        <p>
-          Objetivo General : Es ofrecer la más amplia gama de cascos de alta
-          calidad y certificados buscamos no solo aumentar nuestras ventas
-          sino también establecer relaciones sólidas y duraderas con nuestros
-          clientes, basadas en la confianza, la calidad y el servicio
-          excepcional. Nos esforzamos por ser reconocidos por nuestra
-          dedicación a la seguridad y la excelencia en el diseño y la
-          fabricación de cascos, contribuyendo así a un mundo más seguro para
-          todos.
-        </p>
-      </article>
-    </section>
-    <hr class="division" />
-    <section class="mision-vision-container">
-      <article class="mision-vision">
-        <div class="title-container">
-          <h2 class="title-2">VISIÓN</h2>
-        </div>
-        <p>
-          "Ser la principal fuente de cascos certificados reconocidos por
-          nuestra excelencia en seguridad y calidad, y ser un referente en la
-          promoción de la seguridad vial en todos los ámbitos."
-        </p>
-      </article>
-      <article class="mision-vision">
-        <div class="title-container">
-          <h2 class="title-2">MISIÓN</h2>
-        </div>
-        <p>
-          "Ofrecer una amplia gama de cascos certificados que cumplan con los
-          más altos estándares de seguridad, calidad y comodidad, garantizando
-          la protección de nuestros clientes. Nos comprometemos a brindar un
-          servicio excepcional, asesoramiento experto y productos innovadores
-          ."
-        </p>
-      </article>
-    </section>
+      </div>
+
+    <table class="table table-hover separador">
+        <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+        <thead>
+          <tr>
+            <td colspan="4" id="rowsFound"></td>
+          </tr>
+          <tr>
+            <th>ID del pedido</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Ver reporte</th>
+          </tr>
+        </thead>
+        <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+        <tbody id="tableBody">
+    
+        </tbody>
+      </table>
   </main>
 
   <!-- FOOTER -->
@@ -145,8 +140,17 @@
       Copyright © 2024 CARMOTOSV. Todos los derechos Reservados.
     </p>
   </footer>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../../controllers/public/ver_pedidos.js"></script>
+  <script type="text/javascript" src="../../controllers/public/marca.js"></script>
+  <script type="text/javascript" src="../../resources/JS/sweetalert.min.js"></script>
+  <script type="text/javascript" src="../../controllers/utils/components.js"></script>
 
-  <script src="../../resources/JS/style.dynamic.js"></script>
 </body>
 
 </html>

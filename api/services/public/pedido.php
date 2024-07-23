@@ -79,9 +79,21 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al finalizar el pedido';
                 }
                 break;
+
+            case 'readAllofOne':
+                    if (!$pedido->setIdPedido($_POST['idProducto'])) {
+                        $result['error'] = 'Pedido incorrecto';
+                    } elseif ($result['dataset'] = $pedido->readAllofOne()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Pedido inexistente';
+                    }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
+
+
     } else {
         // Se compara la acción a realizar cuando un cliente no ha iniciado sesión.
         switch ($_GET['action']) {
