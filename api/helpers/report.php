@@ -56,7 +56,7 @@ class Report extends FPDF
     public function header()
     {
         // Se establece el logo.
-        $this->image('../../Imagenes/img/content/logo.jpeg', 15, 15, 20);
+        $this->image('../../Imagenes/img/content/logo.jpeg', 20, 20, 20);
         // Se ubica el título.
         $this->cell(20);
         $this->setFont('Arial', 'B', 15);

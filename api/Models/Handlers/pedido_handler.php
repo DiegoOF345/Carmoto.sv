@@ -17,6 +17,8 @@ class PedidoHandler
     protected $estado = null;
     protected $talla = null;
 
+    protected $id_cliente = null;
+
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).

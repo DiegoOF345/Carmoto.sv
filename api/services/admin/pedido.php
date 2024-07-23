@@ -34,9 +34,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 // Estado
-            case 'changeState':
+            /*case 'changeState':
                 if (
-                    !$pedido->setId($_POST['idPedido'])
+                    !$pedido->setIdPedido($_POST['idPedido'])
                 ) {
                     $result['error'] = $pedido->getDataError();
                 } elseif ($pedido->changeState()) {
@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Ocurrió un problema al alterar el estado del pedido';
                 }
-                break;
+                break; */
             case 'porcentajeEstadoPedidos':
                     if ($result['dataset'] = $pedido->porcentajeEstadoPedidos()) {
                         $result['status'] = 1;

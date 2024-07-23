@@ -81,7 +81,7 @@ if (isset($_GET['action'])) {
                 break;
 
             case 'readAllofOne':
-                    if (!$pedido->setIdPedido($_POST['idProducto'])) {
+                    if (!$pedido->setIdPedido($_SESSION['idCliente'])) {
                         $result['error'] = 'Pedido incorrecto';
                     } elseif ($result['dataset'] = $pedido->readAllofOne()) {
                         $result['status'] = 1;

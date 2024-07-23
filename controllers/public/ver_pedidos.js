@@ -39,7 +39,7 @@ const fillTable = async (form = null) => {
                     <td>${row.fecha_registro}</td>
                     <td>${row.estado_pedidos}</td>                     
                     <td>
-                        <button type="button" class="btn btn-warning" onclick="openReport(${row.id_marca_casco})">
+                        <button type="button" class="btn btn-warning" onclick="openReport(${row.id_pedido})">
                             <i class="bi bi-file-earmark-pdf-fill"></i>
                         </button>
                     </td>

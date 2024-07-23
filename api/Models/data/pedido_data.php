@@ -26,6 +26,7 @@ class PedidoData extends PedidoHandler
             return false;
         }
     }
+    
 
     public function setIdDetalle($value)
     {
