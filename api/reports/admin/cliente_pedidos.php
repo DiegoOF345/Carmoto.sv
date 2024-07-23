@@ -36,16 +36,16 @@ if (isset($_GET['idCliente'])) {
                     $pdf->cell(70, 10, $rowProducto['fecha_registro'], 1, 1);
                 }
             } else {
-                $pdf->cell(0, 10, $pdf->encodeString('No hay productos para el modelo'), 1, 1);
+                $pdf->cell(0, 10, $pdf->encodeString('No hay pedidos de' . $rowCliente['nombre_cliente']), 1, 1);
             }
             // Se llama al método footer() y se envía el documento al navegador web.
             $pdf->output('I', 'categoria.pdf');
         } else {
-            print('Modelo inexistente');
+            print('cliente inexistente');
         }
     } else {
-        print('Modelo incorrecta');
+        print('cliente incorrecto');
     }
 } else {
-    print('Debe seleccionar un modelo');
+    print('Debe seleccionar un cliente');
 }

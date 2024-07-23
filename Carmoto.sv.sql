@@ -163,28 +163,28 @@ INSERT INTO Pedidos (id_cliente, fecha_registro, estado_pedidos, direccion_pedid
 (10, '2023-05-10 17:25:00', 'Pendiente', '2223 Avenida Séptima, Ciudad Ejemplo');
 
 INSERT INTO detalle_pedidos (id_pedido,id_casco,talla_casco,cantidad_productos,precio_productos) VALUES
-(1,1,"S",1,20.00),
-(2,5,"S",1,20.00),
+(1,1,"S",1,40.00),
+(2,5,"S",1,30.00),
 (3,3,"S",1,20.00),
 (4,5,"S",1,20.00),
-(4,6,"S",1,20.00),
+(4,6,"S",1,60.00),
 (4,10,"S",1,20.00),
 (5,5,"S",1,20.00),
-(7,5,"S",1,20.00),
-(8,5,"S",1,20.00),
+(7,5,"S",1,50.00),
+(8,5,"S",1,50.00),
 (9,5,"S",1,20.00),
-(10,5,"S",1,20.00),
+(10,5,"S",1,50.00),
 (11,1,"S",1,20.00),
 (12,5,"S",1,20.00),
-(13,3,"S",1,20.00),
+(13,3,"S",1,50.00),
 (14,5,"S",1,20.00),
-(14,6,"S",1,20.00),
-(14,10,"S",1,20.00),
-(15,5,"S",1,20.00),
+(14,6,"S",1,30.00),
+(14,10,"S",1,50.00),
+(15,5,"S",1,50.00),
 (17,5,"S",1,20.00),
-(18,5,"S",1,20.00),
+(18,5,"S",1,30.00),
 (19,5,"S",1,20.00),
-(20,5,"S",1,20.00);
+(20,5,"S",1,30.00);
 
 SELECT * FROM Administradores;
                     
@@ -259,4 +259,5 @@ SELECT id_pedido, estado_pedidos, fecha_registro
 					 FROM Pedidos
 					 INNER JOIN Clientes USING (id_cliente)
 					 WHERE id_cliente = 1;
+
 
