@@ -39,6 +39,26 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+                case 'editProfile':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cliente->setNombre($_POST['nombreCliente']) or
+                        !$cliente->setApellido($_POST['apellidoCliente']) or
+                        !$cliente->setCorreo($_POST['correoCliente']) or
+                        !$cliente->setDUI($_POST['duiCliente']) or
+                        !$cliente->setTelefono($_POST['telefonoCliente']) or
+                        !$cliente->setNacimiento($_POST['nacimientoCliente']) or
+                        !$cliente->setDireccion($_POST['direccionCliente']) 
+                    ) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($cliente->editProfile()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Perfil modificado correctamente';
+                        $_SESSION['correoCliente'] = $_POST['correoCliente'];
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al modificar el perfil';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

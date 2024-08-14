@@ -53,7 +53,7 @@ class ClienteHandler
         $sql = 'UPDATE cliente
                 SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->nacimiento, $this->direccion, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->nacimiento, $this->direccion, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
@@ -194,7 +194,7 @@ class ClienteHandler
         $sql = 'SELECT  id_cliente, nombre_cliente, apellido_cliente, correo_cliente, direccion_cliente,dui_cliente, telefono_cliente
                 FROM clientes   
                 WHERE id_cliente = ?';
-        $params = array($_SESSION['id_cliente']);
+        $params = array($_SESSION['idCliente']);
         return Database::getRow($sql, $params);
     }
  
