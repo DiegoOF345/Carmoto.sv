@@ -66,9 +66,6 @@ class ClienteData extends ClienteHandler
         if (!Validator::validateDUI($value)) {
             $this->data_error = 'El DUI debe tener el formato ########-#';
             return false;
-        } elseif($this->checkDuplicate($value)) {
-            $this->data_error = 'El DUI ingresado ya existe';
-            return false;
         } else {
             $this->dui = $value;
             return true;
@@ -82,9 +79,6 @@ class ClienteData extends ClienteHandler
             return false;
         } elseif (!Validator::validateLength($value, $min, $max)) {
             $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
-            return false;
-        } elseif($this->checkDuplicate($value)) {
-            $this->data_error = 'El correo ingresado ya existe';
             return false;
         } else {
             $this->correo = $value;

@@ -45,10 +45,9 @@ if (isset($_GET['action'])) {
                         !$cliente->setNombre($_POST['nombreCliente']) or
                         !$cliente->setApellido($_POST['apellidoCliente']) or
                         !$cliente->setCorreo($_POST['correoCliente']) or
+                        !$cliente->setDireccion($_POST['direccionCliente']) or
                         !$cliente->setDUI($_POST['duiCliente']) or
-                        !$cliente->setTelefono($_POST['telefonoCliente']) or
-                        !$cliente->setNacimiento($_POST['nacimientoCliente']) or
-                        !$cliente->setDireccion($_POST['direccionCliente']) 
+                        !$cliente->setTelefono($_POST['telefonoCliente'])
                     ) {
                         $result['error'] = $cliente->getDataError();
                     } elseif ($cliente->editProfile()) {
