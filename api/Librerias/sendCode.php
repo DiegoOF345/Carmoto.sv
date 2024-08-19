@@ -24,18 +24,16 @@ if ($method == "OPTIONS") {
 $pin = isset($_POST['codigo_recuperacion']) ? trim($_POST['codigo_recuperacion']) : '';
 $email = isset($_POST['correo_cliente']) ? trim($_POST['correo_cliente']) : '';
 
-error_log("Datos recibidos en PHP:");
-error_log("PIN: '" . $pin . "'");
-error_log("Email: '" . $email . "'");
-
 // Validación de datos
 if (empty($pin) || empty($email)) {
-    echo json_encode(['status' => false, 'message' => 'Datos incompletos']);
+    $response = ['status' => false, 'message' => 'Datos incompletos'];
+    echo json_encode($response);
     exit();
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['status' => false, 'message' => 'Correo electrónico inválido']);
+    $response = ['status' => false, 'message' => 'Correo electrónico inválido'];
+    echo json_encode($response);
     exit();
 }
 
@@ -46,7 +44,8 @@ try {
     $result = Database::executeRow($query, $values);
 
     if (!$result) {
-        echo json_encode(['status' => false, 'message' => 'Error al guardar el código de recuperación']);
+        $response = ['status' => false, 'message' => 'Error al guardar el código de recuperación'];
+        echo json_encode($response);
         exit();
     }
 
@@ -56,13 +55,13 @@ try {
     $mail->SMTPDebug = 0;
     $mail->Debugoutput = 'html';
 
-    $mail->setFrom("suppcarsmotosv@gmail.com");
+    $mail->setFrom("carsmotosvz503@gmail.com", "Carmoto.sv"); // Nombre del remitente opcional
     $mail->SMTPAuth = true;
-    $mail->SMTPSecure = 'ssl';
-    $mail->Host = "smtp.gmail.com";
-    $mail->Port = 465;
-    $mail->Username = "suppcarsmotosv@gmail.com";
-    $mail->Password = "grmhcnhakxcqfggk";
+    $mail->SMTPSecure = 'tls'; // TLS
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587; // Puerto para TLS
+    $mail->Username = "carsmotosvz503@gmail.com";
+    $mail->Password = "iondqbcqmkzuohnm"; // Usa una contraseña de aplicación si tienes 2FA habilitado
 
     $mail->addAddress($email);
     $mail->Subject = 'Recuperación de contraseña';
@@ -111,7 +110,7 @@ try {
         <body>
             <div class='container'>
                 <div class='header'>Recuperación de contraseña</div>
-                <p>Hola, <strong>$alias</strong>.</p>
+                <p>Hola, <strong>$email</strong>.</p>
                 <p>Este es tu código de recuperación: <strong class='pin'>$pin</strong></p>
                 <p class='message'>Si no solicitó este código, ignore este mensaje.</p>
                 <div class='footer'>SAAR - Sistema de Administración Automotriz Rodríguez</div>
@@ -121,7 +120,10 @@ try {
     $mail->Body = $html;
     $mail->send();
 
-    echo json_encode(['status' => true, 'message' => 'Correo enviado correctamente']);
+    $response = ['status' => true, 'message' => 'Correo enviado correctamente'];
 } catch (Exception $e) {
-    echo json_encode(['status' => false, 'message' => 'Error al enviar el correo: ' . $e->getMessage()]);
+    $response = ['status' => false, 'message' => 'Error al enviar el correo: ' . $e->getMessage()];
 }
+
+// Envía la respuesta JSON al cliente
+echo json_encode($response);
