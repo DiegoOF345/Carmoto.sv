@@ -22,6 +22,13 @@ class ClienteData extends ClienteHandler
     /*
      *   Métodos para validar y establecer los datos.
      */
+    public function verifUs()
+{
+    $sql = 'SELECT * FROM clientes WHERE correo_cliente = ?';
+    $params = array($this->correo);
+    return Database::getRow($sql, $params);
+}
+
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {

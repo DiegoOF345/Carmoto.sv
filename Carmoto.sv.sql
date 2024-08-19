@@ -22,6 +22,7 @@ CREATE TABLE Clientes (
     contraseña_cliente VARCHAR(170) NOT NULL,
     estado_cliente tinyint(1) NOT NULL DEFAULT 1,
     fecha_cliente DATE DEFAULT NOW(),
+     codigo_recuperacion VARCHAR(6) NOT NULL,
     CONSTRAINT dui_unico UNIQUE (dui_cliente)
 );
 
