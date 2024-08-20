@@ -89,6 +89,13 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Pedido inexistente';
                     }
                 break;
+                case 'readHistorial':
+                    if ($result['dataset'] = $pedido->getHistorialCompras()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No hay historial de compras disponible';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
