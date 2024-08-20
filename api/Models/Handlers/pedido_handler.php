@@ -110,7 +110,7 @@ class PedidoHandler
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
     {
-        $this->estado = 'Pendiente';
+        $this->estado = 'En camino';
         $sql = 'UPDATE Pedidos
                 SET estado_pedidos = ?
                 WHERE id_pedido = ?';
@@ -121,9 +121,9 @@ class PedidoHandler
     // Método para actualizar la cantidad de un producto agregado al carrito de compras.
     public function updateDetail()
     {
-        $sql = 'UPDATE detalle_pedido
-                SET cantidad_producto = ?
-                WHERE id_detalle = ? AND id_pedido = ?';
+        $sql = 'UPDATE detalle_pedidos
+                SET cantidad_productos = ?
+                WHERE id_detalle_pedidos = ? AND id_pedido = ?';
         $params = array($this->cantidad, $this->id_detalle, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }

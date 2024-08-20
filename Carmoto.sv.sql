@@ -72,6 +72,9 @@ CREATE TABLE Pedidos (
     CONSTRAINT fk_cliente_pedido FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
 );
 
+ALTER TABLE Pedidos
+MODIFY COLUMN estado_pedidos ENUM('Pendiente', 'Entregado', 'En camino', 'Cancelado') DEFAULT 'Pendiente';
+
 CREATE TABLE detalle_pedidos (
     id_detalle_pedidos INT PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT NOT NULL,
@@ -260,5 +263,7 @@ SELECT id_pedido, estado_pedidos, fecha_registro
 					 FROM Pedidos
 					 INNER JOIN Clientes USING (id_cliente)
 					 WHERE id_cliente = 1;
+					 
+					 
 
 
