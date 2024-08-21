@@ -155,13 +155,15 @@ class PedidoHandler
                 GROUP BY Mes';
         return Database::getRows($sql);
     }
-
     public function getHistorialCompras()
 {
-    $sql = 'SELECT id_pedido, fecha_registro, estado_pedidos 
-            FROM Pedidos 
-            WHERE id_cliente = ? 
-            ORDER BY fecha_registro DESC';
+    $sql = 'SELECT p.id_pedido, c.nombre_casco, p.fecha_registro, p.estado_pedidos, 
+                   d.talla_casco, d.cantidad_productos, d.precio_productos
+            FROM Pedidos p
+            JOIN detalle_pedidos d ON p.id_pedido = d.id_pedido
+            JOIN Cascos c ON d.id_casco = c.id_casco
+            WHERE p.id_cliente = ? 
+            ORDER BY p.fecha_registro DESC';
     $params = array($_SESSION['idCliente']);
     return Database::getRows($sql, $params);
 }
